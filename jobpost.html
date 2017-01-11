@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+	<link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+	<link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+	<title>Subic Jobs</title>
+</head>
+<body>
+	<nav id="loggedin" class="blue lighten-1" role="navigation" style="display: none;">
+		<div class="nav-wrapper container">
+
+			<ul class="right">
+				<li><a href="" id="link1"><img src="icons/s.png" class="icon"> Job Postings</a></li>
+				<li><a href="" id="link2"><img src="icons/avatar1.png" class="icon"> Profile</a></li>
+				<li><a href="index.html"><img src="icons/sign-in.png" class="icon"> Logout</a></li>
+			</ul>
+		</div>
+	</nav>
+	<nav class="blue lighten-1 itdepends" role="navigation">
+		<div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo" ><img src="icons/logo1.png" alt="" class="responsive-img"></a>
+		<ul class="right hide-on-med-and-down">
+			<li><a href="index.html"><img src="icons/h.png" classs="icon"> Home</a></li>
+			<li><a href="jobpost.html"><img src="icons/s.png" class="icon"> Job Postings</a></li>
+			<li><a href="faqs.html"><img src="icons/q.png" class="icon"> FAQs</a></li>
+			<li><a href="about.html"><img src="icons/a.png" class="icon"> About Us</a></li>
+			<li>
+				<!--<a href="login.html" class="nbm"><img src="icons/sign-in1.png" class="icon"> Login</a>-->
+				<a class='dropdown-button btn blue darken-3' href='#' data-activates='dropdown1'>LogIn</a>
+				<ul id='dropdown1' class='dropdown-content'>
+					<li><a href="adminlogin.html">Admin</a></li>
+					<li><a href="locatorlogin.html">Locator</a></li>
+					<li><a href="applicantlogin.html">Applicant</a></li>
+				</ul>
+			</li>
+		</ul>
+		<ul id="nav-mobile" class="side-nav">
+			<li><a href="index.html" class="nbm"><img src="icons/h1.png" class="icon"> Home</a></li>
+			<li><a href="jobpost.html" class="nbm"><img src="icons/s1.png" class="icon"> Job Postings</a></li>
+			<li><a href="faqs.html" class="nbm"><img src="icons/q1.png" class="icon"> FAQs</a></li>
+			<li><a href="about.html" class="nbm"><img src="icons/a1.png" class="icon"> About Us</a></li>
+			<li>
+				<!--<a href="login.html" class="nbm"><img src="icons/sign-in1.png" class="icon"> Login</a>-->
+				<a class='dropdown-button btn blue darken-3' href='#' data-activates='dropdown2'>LogIn</a>
+				<ul id='dropdown2' class='dropdown-content'>
+					<!--<li><a href="adminlogin.html">Admin</a></li>
+					<li><a href="locatorlogin.html">Locator</a></li>-->
+					<li><a href="applicantlogin.html">Applicant</a></li>
+				</ul>
+			</li>
+		</ul>
+		<a href="#" data-activates="nav-mobile" class="button-collapse"><img src="icons/menu.png" class="icon"></a>
+		</div>
+	</nav>
+	<br>
+	
+	<div class="container">
+		<h4><img src="icons/jbs.png" class="icon"> Job Posts</h4>
+		<div id="jobpost" class="row">
+
+		</div>
+	</div>
+	
+	
+	
+	<!--  Scripts-->
+	<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script src="js/materialize.js"></script>
+	<script src="js/init.js"></script>
+	<script>
+	$(document).ready(function(){
+		function getUrlParameter(sParam) {
+			var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+				sURLVariables = sPageURL.split('&'),
+				sParameterName,
+				i;
+
+			for (i = 0; i < sURLVariables.length; i++) {
+				sParameterName = sURLVariables[i].split('=');
+
+				if (sParameterName[0] === sParam) {
+					return sParameterName[1] === undefined ? true : sParameterName[1];
+				}
+			}
+		}	
+
+		var appId = getUrlParameter('appId');
+		var server = '';
+		var url = '';
+
+		if(appId) {
+			server = 'http://grand-pillar.com/upload/subicjobs/loadData.php?appIdJob='+appId;
+		
+			$("#link1").attr("href", "jobpost.html?appId="+appId);
+			$("#link2").attr("href", "applicant.html?appId="+appId);
+
+			$('#loggedin').show();
+			$('.itdepends').hide();
+		} else {
+			server = 'http://grand-pillar.com/upload/subicjobs/loadData.php?jobpostings=true';
+		
+			$('#loggedin').hide();
+			$('.itdepends').show();
+		}
+		
+		$.getJSON(server, function(json) {
+/*
+var data = [{"name":"placeHolder","section":"right"},{"name":"Overview","section":"left"},{"name":"ByFunction","section":"left"},{"name":"Time","section":"left"},{"name":"allFit","section":"left"},{"name":"allbMatches","section":"left"},{"name":"allOffers","section":"left"},{"name":"allInterests","section":"left"},{"name":"allResponses","section":"left"},{"name":"divChanged","section":"right"}];
+var index = -1;
+var val = "allInterests"
+var filteredObj = data.find(function(item, i){
+  if(item.name === val){
+    index = i;
+    return i;
+  }
+});
+
+console.log(index, filteredObj);
+
+$('input[name=myInput]').change(function() { 
+	var tagName = $(this).val();
+	var i = null;
+	for (i = 0; tags.length > i; i += 1) {
+		if (tags[i].tagName === tagName) {
+			return true;
+		}
+	}
+	//return false;
+	$("#jobpost").empty();
+});
+*/		
+		
+			$.each(json, function (key, val) {
+				var status = '';
+
+				if(val.jobpost_status == 0) {
+					status = 'Closed';
+				} else if(val.jobpost_status == 1) {
+					status = 'Pending';
+				} else if(val.jobpost_status == 3) {
+					status = 'Approve';
+				}
+
+				if(appId) {
+					url = 'jobfulldetails.html?appId='+appId+'&postId='+val.jobpost_id;
+				} else {
+					url = 'applicantlogin.html?postId='+val.jobpost_id;
+				}
+				
+				//$("#jobpost").append('<div class="col s12 m6"><div class="card blue-grey darken-1"><div class="card-content white-text"><span class="card-title">'+val.jobpost_title+'</span><p>Date Posted: '+val.jobpost_date_posted+'</p><p>Date Closing: '+val.jobpost_date_closing+'</p></div><div class="card-action"><a href="applicantlogin.html?postId='+val.jobpost_id+'">Click Here to Apply</a></div></div></div>');
+				$("#jobpost").append('<div class="col s12 m6"><div class="card blue-grey darken-1"><div class="card-content white-text"><span class="card-title">'+val.jobpost_title+'</span><p>Date Posted: '+val.jobpost_date_posted+'</p><p>Date Closing: '+val.jobpost_date_closing+'</p></div><div class="card-action"><a href="'+url+'">Click Here to Apply</a></div></div></div>');
+				
+			});
+		});
+	
+	
+	
+	
+	});
+	</script>	
+	
+		<footer class="page-footer  blue lighten-1">
+		<div class="container ">
+			<div class="row">
+				<div class="col l6 s12">
+					<h5 class="white-text">Subic Bay Metropolitan Authority</h5>
+					<p class="white-text">Bldg. 229 Waterfront Road, Subic Bay Freeport Zone, Philippines.<br> Voice: +6347 252 4000 Fax: +6347 252 4185 </p>
+				</div>
+			</div>
+		</div>
+		<div class="footer-copyright">
+			<div class="container">
+				<a class="white-text" href="#">Copyright. All Rights Reserved</a>
+			</div>
+		</div>
+	</footer>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+	<title>SubicJobs</title>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+	<link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+</head>
+<body>
+	<nav class="  blue lighten-1 " role="navigation">
+		<div class="nav-wrapper container">
+			<ul class="right hide-on-med-and-down">
+				<!--<li><a href="" id="link1"><img src="icons/sign-in.png" class="icon"> Back</a></li>-->
+				<li><a href="index.html"><img src="icons/sign-in.png" class="icon"> Logout</a></li>
+			</ul>
+		</div>
+	</nav>
+	
+	<div class="row">
+		<div class="col s12">
+			<div class="card z-depth-5">
+				<div class="card-image" >
+					<img id="cdImg" src="bground354.jpg">
+				</div>
+				<div class="col s2">
+					<img id="crImg" src="icons/user.png" alt="" class="circle responsive-img z-depth-2"> 
+				</div>
+				<div class="card-content">
+					<h4 id="hi"></h4>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col s2">
+			<div class="collection">
+				<a href="" id="link1" class="collection-item">Job Post List</a>
+				<a href="" id="link2" class="collection-item">Send Notification</a>
+				<a href="" id="link3" class="collection-item">New Job Post Request</a>
+				<a href="" id="link4" class="collection-item">Applicants List</a>
+			</div>
+		</div>
+	
+	<div class="col s10">
+			<h5 class="teal white-text header2">Applicants List</h5>		
+			<table class ="highlight bordered centered responsive-table">
+				<thead>
+					<tr>
+						<th data-field="Fullname">Fullname</th>
+						<th data-field="Contact Number">Contact Number</th>
+						<th data-field="Date of Application">Date of Application</th>
+						<th data-field="Application Status">Application Status</th>
+					</tr>
+				</thead>
+				<tbody id="applicantslist">
+				</tbody>
+			</table>		
+		</div>
+	
+	
+	<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script src="js/materialize.js"></script>
+	<script src="js/init.js"></script>
+	<script>
+	$(document).ready(function(){
+		function getUrlParameter(sParam) {
+			var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+				sURLVariables = sPageURL.split('&'),
+				sParameterName,
+				i;
+
+			for (i = 0; i < sURLVariables.length; i++) {
+				sParameterName = sURLVariables[i].split('=');
+
+				if (sParameterName[0] === sParam) {
+					return sParameterName[1] === undefined ? true : sParameterName[1];
+				}
+			}
+		}
+		
+		var locId = getUrlParameter('locId');
+		
+		$("#link1").attr("href", "company.html?locId="+locId);
+		$("#link2").attr("href", "notification.html?locId="+locId);
+		$("#link3").attr("href", "jobposting.html?locId="+locId);
+		$("#link4").attr("href", "applist.html?locId="+locId);
+		
+		$.getJSON('server/loadData.php?appfilter='+locId, function(json) {
+			console.log(json);
+			$.each(json, function (key, val) {		
+				$("#applicantslist").append('<tr><td>'+val.applicant_lname+' '+val.applicant_fname+'</td><td>'+val.applicant_contact+'</td><td>'+val.application_date+'</td><td>'+val.application_status+'</td>');
+			});
+		});		
+		
+		$.getJSON('server/loadData.php?loc='+locId, function(json) {
+			$("#hi").text(json.locators_name);		
+		});
+		
+	});
+	</script>	
+
+</body>
+</html>

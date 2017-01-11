@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+	<title>SubicJobs</title>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+	<link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+</head>
+<body>
+	<nav class="  blue lighten-1 " role="navigation">
+		<div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo" ><img src="icons/logo1.png" alt="" class="responsive-img"></a>
+		<ul class="right hide-on-med-and-down">
+			<li><a href="index.html"><img src="icons/h.png" class="icon"> Home</a></li>
+			<li><a href="jobpost.html"><img src="icons/s.png" class="icon"> Job Postings</a></li>
+			<li><a href="faqs.html"><img src="icons/q.png" class="icon"> FAQs</a></li>
+			<li><a href="about.html"><img src="icons/a.png" class="icon"> About Us</a></li>
+			
+			<li>
+				<!--<a href="login.html" class="nbm"><img src="icons/sign-in1.png" class="icon"> Login</a>-->
+				<a class='dropdown-button btn blue darken-3' href='#' data-activates='dropdown1'>LogIn</a>
+				<ul id='dropdown1' class='dropdown-content'>
+					<li><a href="adminlogin.html">Admin</a></li>
+					<li><a href="locatorlogin.html">Locator</a></li>
+					<li><a href="applicantlogin.html">Applicant</a></li>
+				</ul>		
+			</li>
+		</ul>
+		<ul id="nav-mobile" class="side-nav">
+			<li><a href="index.html" class="nbm"><img src="icons/h1.png" class="icon"> Home</a></li>
+			<li><a href="jobpost.html" class="nbm"><img src="icons/s1.png" class="icon"> Job Postings</a></li>
+			<li><a href="faqs.html" class="nbm"><img src="icons/q1.png" class="icon"> FAQs</a></li>
+			<li><a href="about.html" class="nbm"><img src="icons/a1.png" class="icon"> About Us</a></li>
+			
+			<li>
+				<!--<a href="login.html" class="nbm"><img src="icons/sign-in1.png" class="icon"> Login</a>-->
+				<a class='dropdown-button btn blue darken-3' href='#' data-activates='dropdown2'>LogIn</a>
+				<ul id='dropdown2' class='dropdown-content'>
+					<!--<li><a href="adminlogin.html">Admin</a></li>
+					<li><a href="locatorlogin.html">Locator</a></li>-->
+					<li><a href="applicantlogin.html">Applicant</a></li>
+				</ul>				
+			</li>
+		</ul>
+		<a href="#" data-activates="nav-mobile" class="button-collapse"><img src="icons/menu.png" class="icon"></a>
+		</div>
+	</nav>
+	<h3 class="register"><img src="icons/r2.png" class="icon"> Applicant Registration</h3> <br>
+	<div class="row wew">
+		<form method="post" id="saveapp" class="col s12">
+			<div class="row">
+				<div class="input-field col s4">
+					<input id="applicant_fname" name="applicant_fname" type="text" required />
+					<label for="applicant_fname">First Name</label>
+				</div>
+				
+				<div class="input-field col s4">
+					<input id="applicant_mname" name="applicant_mname" type="text">
+					<label for="applicant_mname">Middle Name</label>
+				</div>
+				
+				<div class="input-field col s4">
+					<input id="applicant_lname" name="applicant_lname" type="text" required />
+					<label for="applicant_lname">Last Name</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s6">
+					<input id="applicant_address" name="applicant_address" type="text" required />
+					<label for="applicant_address">Street</label>
+				</div>
+				<div class="input-field col s6">
+					<input id="applicant_city" name="applicant_city" type="text" required />
+					<label for="applicant_city">City</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s6">
+					<input id="applicant_province" name="applicant_province" type="text" required />
+					<label for="applicant_province">State/Province</label>
+				</div>
+				<div class="input-field col s6">
+					<input id="applicant_postal" name="applicant_postal" type="number" required />
+					<label for="applicant_postal">Postal/Zip Code</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s6">
+					<input id="applicant_email" name="applicant_email" type="email" required />
+					<label for="applicant_email" data-error="wrong" data-success="right">Email</label>
+				</div>
+				<div class="input-field col s6">
+					<input id="applicant_contact" name="applicant_contact" type="number" required />
+					<label for="applicant_contact">Contact Number</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s4">
+					<input id="applicant_age" name="applicant_age" type="number" required />
+					<label for="applicant_age">Age</label>
+				</div>
+			
+				<div class="input-field col s4">
+					<select class="browser-default" id="applicant_gender" name="applicant_gender" required />
+						<option value="Male">Male</option>
+						<option value="Female">Female</option>
+					</select>
+				</div>
+				<div class="input-field col s4">
+					<select class="browser-default" id="applicant_cstatus" name="applicant_cstatus" required />
+						<option value="Single">Single</option>
+						<option value="Married">Married</option>
+						<option value="Widowed">Widowed</option>
+						<option value="Separated">Separated</option>
+						<option value="Divorced">Divorced</option>
+					</select>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="input-field col s6">
+					<input id="applicant_dob" name="applicant_dob" type="date" class="datepicker" required />
+					<label for="applicant_dob" data-error="wrong" data-success="right">Date of Birth</label>
+				</div>
+				<div class="input-field col s6">
+					<input id="applicant_pob" name="applicant_pob" type="text" required />
+					<label for="applicant_pob">Place of Birth</label>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="input-field col s4">
+					<input id="applicant_username" name="applicant_username" type="text" required />
+					<label for="applicant_username">Username</label>
+				</div>
+				<div class="input-field col s4">
+					<input id="applicant_password" name="applicant_password" type="password" required />
+					<label for="applicant_password">Password</label>
+				</div>
+				<div class="input-field col s4">
+					<input id="applicant_confirmpass" name="applicant_confirmpass" type="password" required />
+					<label for="applicant_confirmpass">Confirm Password</label>
+					<div class="registrationFormAlert" id="divCheckPasswordMatch"></div>
+				</div>
+			</div>
+			
+			<div class="row">
+			<h5 id="hAdmin">Skills/Work Experiences</h5>
+			<div id="skillset" class="row"></div>
+			</div>
+			
+			</br />
+			</br />
+			<div>
+			<button class="btn waves-effect waves-light btn-large responsive-button right" type="submit" name="saveApplicant" id="saveApplicant">Submit</button>
+			</div>
+		</form>
+	</div>
+	
+	<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script src="js/materialize.js"></script>
+	<script src="js/init.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function() {
+	
+	$('.datepicker').pickadate({
+		formatSubmit: 'yyyy/mm/dd',
+		hiddenName: true,
+		selectYears: 15
+	});
+		
+		
+	$(function() {
+    $("#applicant_confirmpass").keyup(function() {
+        var password = $("#applicant_password").val();
+        $("#divCheckPasswordMatch").html(password == $(this).val() ? "Passwords match." : "Passwords do not match!");
+    });
+	});
+
+	$.getJSON('http://grand-pillar.com/upload/subicjobs/loadData.php?category=true',  function(json)  {
+			$.each(json,  function  (key,  val)  {
+				$('#skillset').append('<div class="input-field col s4"><p><input type="checkbox" required name="skills[]" value="'+val.category_id+'" id="index'+key+'" class="chkbox"/><label for="index'+key+'">'+val.category_title+'</label></p></div>');
+			});	
+		});		
+		
+		$("#saveApplicant").click(function() {
+			var data = $("#saveapp").serialize();
+			
+			$.ajax({
+				type : 'POST',
+				url  : 'http://grand-pillar.com/upload/subicjobs/saveApplicantData.php',
+				data : data,
+				success :  function(response) {
+					$('#applicant_fname').val('');
+					$('#applicant_mname').val('');
+					$('#applicant_lname').val('');
+					$('#applicant_address').val('');
+					$('#applicant_city').val('');
+					$('#applicant_province').val('');
+					$('#applicant_postal').val('');
+					$('#applicant_email').val('');
+					$('#applicant_contact').val('');
+					$('#applicant_age').val('');
+					$("#applicant_gender").val($("#applicant_gender option:first").val());
+					$("#applicant_cstatus").val($("#applicant_cstatus option:first").val());
+					$('#applicant_dob').val('');
+					$('#applicant_pob').val('');
+					$('#applicant_username').val('');
+					$('#applicant_password').val('');
+					$('#applicant_confirmpass').val('');
+					$('.chkbox').attr('checked', false);
+					 //alert("Registration Successful");
+					window.alert('Succesfully Registered');
+					 window.location.href='applicantlogin.html';
+				
+				}
+			});	
+
+			return false;
+		});			
+	});
+	
+	$(function() {
+      $("#refresh").click(function() {
+         $("#randomdiv").load("registration.html")
+      });
+    });
+  
+	 
+	</script>	
+	
+</body>
+</html>

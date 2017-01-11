@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+	<title>SubicJobs</title>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+	<link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+</head>
+<body>
+	<nav class="  blue lighten-1 " role="navigation">
+		<div class="nav-wrapper container">
+
+			<ul class="right">
+			<li><a href="" id="link2"><img src="icons/avatar1.png" class="icon">Profile</a></li>
+			<li><a href="index.html"><img src="icons/sign-in.png" class="icon">Logout</a></li>
+			</ul>
+		</div>
+	</nav>
+	
+	<div class="row">
+	<div class="col s12">
+			<div class="card z-depth-5">
+				<div class="card-image" >
+					<img id="cdImg" src="bground354.jpg">
+				</div>
+				<div class="col s12 center" id="imgSze">
+					<img src="icons/e1.png" width="95px" height="95px" class="circle">
+				</div>
+				
+			    <div id="hello" class="card-content center">
+        		</div>
+				
+		</div>
+	</div>	
+	</div>
+	
+	<h3 class="register"><img src="icons/r2.png" class="icon">Edit Skills</h3> <br>
+	<div class="row wew">
+		<form method="post" id="saveapp" class="col s12">
+			<div class="row">
+	
+		<div class="row">
+			<h5 id="hAdmin">Skills/Work Experiences</h5>
+			<div id="skillset" class="row"></div>
+		</div>
+			
+			</br />
+			</br />
+			<div>
+			<button class="btn waves-effect waves-light btn-large responsive-button right" type="submit" name="saveApplicant" id="saveApplicant">Submit</button>
+			</div>
+			
+	</form>
+	</div>
+	
+	<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script src="js/materialize.js"></script>
+	<script src="js/init.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function() {
+		function getUrlParameter(sParam) {
+			var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+				sURLVariables = sPageURL.split('&'),
+				sParameterName,
+				i;
+
+			for (i = 0; i < sURLVariables.length; i++) {
+				sParameterName = sURLVariables[i].split('=');
+
+				if (sParameterName[0] === sParam) {
+					return sParameterName[1] === undefined ? true : sParameterName[1];
+				}
+			}
+		}
+		
+		var appId = getUrlParameter('appId');
+		
+		
+		$("#link1").attr("href", "jobpost.html?appId="+appId);
+		$("#link2").attr("href", "applicant.html?appId="+appId);
+		$("#link3").attr("href", "editApplicant.html?appId="+appId);
+		$("#link4").attr("href", "editEduc.html?appId="+appId);
+		$("#link5").attr("href", "editJob.html?appId="+appId);
+		$("#link6").attr("href", "appEduc.html?appId="+appId);
+		$("#link7").attr("href", "jobexp.html?appId="+appId);		
+
+		
+		$.getJSON('http://grand-pillar.com/upload/subicjobs/loadData.php?category=true',  function(json)  {
+			$.each(json,  function  (key,  val)  {
+				$('#skillset').append('<div class="input-field col s4"><p><input type="checkbox" name="skills[]" value="'+val.category_id+'" id="index'+key+'" class="chkbox"/><label for="index'+key+'">'+val.category_title+'</label></p></div>');
+			});	
+		});		
+		
+		$.getJSON('http://grand-pillar.com/upload/subicjobs/loadData.php?applicantsprofile='+appId, function(json) {
+			$("#applicant_id").val(json.applicant_id);
+			$("#applicant_username").val(json.applicant_username);
+			$("#applicant_password").val(json.applicant_password);
+			$("#applicant_lname").val(json.applicant_lname);
+			$("#applicant_fname").val(json.applicant_fname);
+			$("#applicant_email").val(json.applicant_email);
+			$("#applicant_address").val(json.applicant_address);
+			$("#applicant_city").val(json.applicant_city);
+			$("#applicant_province").val(json.applicant_province);
+			$("#applicant_postal").val(json.applicant_postal);
+			$("#applicant_contact").val(json.applicant_contact);
+			//$("#applicant_gender").val(json.applicant_gender);
+			$('select[name="applicant_gender"]').find('option:contains("'+json.applicant_gender+'")').attr("selected", true);
+			//$("#applicant_cstatus").val(json.applicant_cstatus);
+			$('select[name="applicant_cstatus"]').find('option:contains("'+json.applicant_cstatus+'")').attr("selected", true);
+		});	
+	
+		$.getJSON('http://grand-pillar.com/upload/subicjobs/loadData.php?applicantsprofile='+appId, function(json) {
+			$("#hello").text(json.applicant_fname);		
+		});
+		
+		
+		$("#editApplicant").click(function() {
+			var data = $("#saveapp").serialize();
+			
+			$.ajax({
+				type : 'POST',
+				url  : 'http://grand-pillar.com/upload/subicjobs/editApplicant.php',
+				data : data,
+				success :  function(response) {
+				$('.chkbox').attr('checked', false);				
+				}
+			});	
+
+			return false;
+		});			
+	});
+	</script>	
+	
+	<div class="footer-copyright  blue lighten-1">
+		<div class="container">
+			<a class="white-text" href="#">Copyright. All Rights Reserved</a>
+		</div>
+	</div>
+	
+</body>
+</html>

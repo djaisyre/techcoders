@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemadesigner version="6.5">
+<source>
+<database charset="latin1" collation="latin1_swedish_ci">dblabor</database>
+</source>
+<canvas zoom="100">
+<tables>
+<table name="tbl_admin" view="colnames">
+<left>85</left>
+<top>49</top>
+<width>127</width>
+<height>192</height>
+<sql_create_table>CREATE TABLE `tbl_admin` (
+  `admin_id` int(10) NOT NULL AUTO_INCREMENT,
+  `admin_lname` varchar(35) DEFAULT NULL,
+  `admin_fname` varchar(35) DEFAULT NULL,
+  `admin_email` varchar(35) DEFAULT NULL,
+  `admin_uname` varchar(35) DEFAULT NULL,
+  `admin_upass` varchar(35) DEFAULT NULL,
+  `admin_status` int(10) DEFAULT NULL,
+  PRIMARY KEY (`admin_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="tbl_applicant" view="colnames">
+<left>323</left>
+<top>44</top>
+<width>182</width>
+<height>257</height>
+<sql_create_table>CREATE TABLE `tbl_applicant` (
+  `applicant_id` int(10) NOT NULL AUTO_INCREMENT,
+  `applicant_lname` varchar(35) DEFAULT NULL,
+  `applicant_fname` varchar(35) DEFAULT NULL,
+  `applicant_gender` varchar(35) DEFAULT NULL,
+  `applicant_cstatus` varchar(35) DEFAULT NULL,
+  `applicant_address` varchar(35) DEFAULT NULL,
+  `applicant_contact` varchar(35) DEFAULT NULL,
+  `applicant_email` varchar(35) DEFAULT NULL,
+  `applicant_username` varchar(35) DEFAULT NULL,
+  `applicant_password` varchar(35) DEFAULT NULL,
+  `applicant_status` int(10) DEFAULT '0',
+  PRIMARY KEY (`applicant_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="tbl_category" view="colnames">
+<left>760</left>
+<top>236</top>
+<width>165</width>
+<height>124</height>
+<sql_create_table>CREATE TABLE `tbl_category` (
+  `category_id` int(10) NOT NULL AUTO_INCREMENT,
+  `category_title` varchar(35) DEFAULT NULL,
+  `category_description` blob,
+  PRIMARY KEY (`category_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="tbl_application" view="colnames">
+<left>60</left>
+<top>265</top>
+<width>148</width>
+<height>158</height>
+<sql_create_table>CREATE TABLE `tbl_application` (
+  `application_id` int(10) NOT NULL AUTO_INCREMENT,
+  `application_date` date DEFAULT NULL,
+  `application_status` int(10) DEFAULT '0',
+  `jobpost_id` int(10) DEFAULT NULL,
+  `applicant_id` int(10) DEFAULT NULL,
+  PRIMARY KEY (`application_id`),
+  KEY `jobpost_id` (`jobpost_id`),
+  KEY `applicant_id` (`applicant_id`),
+  CONSTRAINT `tbl_application_ibfk_1` FOREIGN KEY (`jobpost_id`) REFERENCES `tbl_jobpost` (`jobpost_id`),
+  CONSTRAINT `tbl_application_ibfk_2` FOREIGN KEY (`applicant_id`) REFERENCES `tbl_applicant` (`applicant_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="tbl_jobpost" view="colnames">
+<left>323</left>
+<top>302</top>
+<width>182</width>
+<height>192</height>
+<sql_create_table>CREATE TABLE `tbl_jobpost` (
+  `jobpost_id` int(10) NOT NULL AUTO_INCREMENT,
+  `jobpost_title` varchar(35) DEFAULT NULL,
+  `jobpost_description` blob,
+  `jobpost_date_posted` date DEFAULT NULL,
+  `jobpost_date_closing` date DEFAULT NULL,
+  `jobpost_status` int(10) DEFAULT '0',
+  `locators_id` int(10) DEFAULT NULL,
+  PRIMARY KEY (`jobpost_id`),
+  KEY `locators_id` (`locators_id`),
+  CONSTRAINT `tbl_jobpost_ibfk_1` FOREIGN KEY (`locators_id`) REFERENCES `tbl_locators` (`locators_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="tbl_locators" view="colnames">
+<left>70</left>
+<top>437</top>
+<width>143</width>
+<height>192</height>
+<sql_create_table>CREATE TABLE `tbl_locators` (
+  `locators_id` int(10) NOT NULL AUTO_INCREMENT,
+  `locators_name` varchar(35) DEFAULT NULL,
+  `locators_address` varchar(35) DEFAULT NULL,
+  `locators_contact` varchar(35) DEFAULT NULL,
+  `locators_uname` varchar(35) DEFAULT NULL,
+  `locators_upass` varchar(35) DEFAULT NULL,
+  `locators_status` int(10) DEFAULT '0',
+  PRIMARY KEY (`locators_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="tbl_qualification" view="colnames">
+<left>570</left>
+<top>281</top>
+<width>131</width>
+<height>124</height>
+<sql_create_table>CREATE TABLE `tbl_qualification` (
+  `qualification_id` int(10) NOT NULL AUTO_INCREMENT,
+  `jobpost_id` int(10) DEFAULT NULL,
+  `category_id` int(10) DEFAULT NULL,
+  PRIMARY KEY (`qualification_id`),
+  KEY `jobpost_id` (`jobpost_id`),
+  KEY `category_id` (`category_id`),
+  CONSTRAINT `tbl_qualification_ibfk_1` FOREIGN KEY (`jobpost_id`) REFERENCES `tbl_jobpost` (`jobpost_id`),
+  CONSTRAINT `tbl_qualification_ibfk_2` FOREIGN KEY (`category_id`) REFERENCES `tbl_category` (`category_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="tbl_skills" view="colnames">
+<left>570</left>
+<top>155</top>
+<width>133</width>
+<height>124</height>
+<sql_create_table>CREATE TABLE `tbl_skills` (
+  `skills_id` int(10) NOT NULL AUTO_INCREMENT,
+  `applicant_id` int(10) DEFAULT NULL,
+  `category_id` int(10) DEFAULT NULL,
+  PRIMARY KEY (`skills_id`),
+  KEY `applicant_id` (`applicant_id`),
+  KEY `category_id` (`category_id`),
+  CONSTRAINT `tbl_skills_ibfk_1` FOREIGN KEY (`applicant_id`) REFERENCES `tbl_applicant` (`applicant_id`),
+  CONSTRAINT `tbl_skills_ibfk_2` FOREIGN KEY (`category_id`) REFERENCES `tbl_category` (`category_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+</tables>
+</canvas>
+</schemadesigner>

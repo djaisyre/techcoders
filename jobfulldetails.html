@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+	<link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+	<link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+	<title>Subic Jobs</title>
+</head>
+<body>
+	<nav class="  blue lighten-1 " role="navigation">
+		<div class="nav-wrapper container">
+			<ul class="right hide-on-med-and-down">
+				<li><a href="" id="link4"><img src="icons/sign-in.png" class="icon"> Back</a></li>
+				<li><a href="index.html"><img src="icons/sign-in.png" class="icon"> Logout</a></li>
+			</ul>
+		</div>
+	</nav>
+	<div class="row">
+		<div class="col s12">
+			<div class="card z-depth-5">
+				<div class="card-image" >
+					<img id="cdImg" src="background4.jpg">
+				</div>
+				<div class="col s2">
+					<img id="crImg" src="icons/user.png" alt="" class="circle responsive-img z-depth-2"> 
+				</div>
+				<div class="card-content">
+					<h4 id="hi"></h4>
+				</div>
+			</div>
+		</div>
+	</div>
+	<br />
+	<div class="row border">
+		<h4 class="teal white-text header2">Job Full Details</h4>
+		<br />
+		<div class="col s12">
+			<div class="row padding-left-right">
+				<div class="col l12 s12">
+					<label>Job Vacancy</label>
+					<p id="jTitle"></p>
+				</div>
+				
+			</div>
+			
+			<div class="row padding-left-right">
+				<div class="col l4 s5">
+					<label>Name of Company</label>
+					<p id="jCompany"></p>
+				</div>
+				<div class="col l4 s5">
+					<label>Qualifications</label>
+					<p id="quali"></p>
+				</div>
+			</div>
+			
+			<div class="row padding-left-right">
+				<div class="col l4 s5">
+					<label>Date Posted</label>
+					<p id="posted"></p>
+				</div>
+				<div class="col l4 s5">
+					<label>Closing Date of Position</label>
+					<p id="closed"></p>
+				</div>
+			</div>
+			
+			<br />
+			<a id="apply" class="waves-effect waves-light btn right" onclick=""><i class="material-icons left">cloud</i>Apply Now!</a>
+			<br />
+			<br />
+		</div>
+	</div>
+
+	
+	
+	<!--Scripts-->
+	<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>	
+	<script src="js/materialize.js"></script>
+	<script src="js/init.js"></script>
+	<script>
+	$(document).ready(function(){
+	
+	
+	
+	
+	
+		function getUrlParameter(sParam) {
+			var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+				sURLVariables = sPageURL.split('&'),
+				sParameterName,
+				i;
+
+			for (i = 0; i < sURLVariables.length; i++) {
+				sParameterName = sURLVariables[i].split('=');
+
+				if (sParameterName[0] === sParam) {
+					return sParameterName[1] === undefined ? true : sParameterName[1];
+				}
+			}
+		}
+		
+		var appId = getUrlParameter('appId');
+		var postId = getUrlParameter('postId');
+		
+		//function validate(parApp, parjobpost){
+	
+		
+	
+	//$.getJSON("server/loadData.php?applicant_id="+parApp+"&jobpost_id="+parjobpost, function(json) {
+		$.getJSON("http://grand-pillar.com/upload/subicjobs/loadData.php?applicant_id="+appId+"&jobpost_id="+postId, function(json) {
+			if(json.length>=1){
+			alert("You already Applied");
+			$("#apply").hide();
+			}
+			
+		});
+	
+	//}
+		var count="";
+		$.getJSON('http://grand-pillar.com/upload/subicjobs/loadData.php?jobpostdtls='+postId, function(json) {
+			$("#jTitle").text(json.jobpost_title);
+			$("#jCompany").text(json.locators_name);
+			$("#quali").text(json.jobpost_description);
+			$("#posted").text(json.jobpost_date_posted);
+			$("#closed").text(json.jobpost_date_closing);
+			/*continuation here*/
+			count=json.jobpost_numapp;
+
+			
+		});
+		
+			$.getJSON('http://grand-pillar.com/upload/subicjobs/loadData.php?count='+postId, function(jsonn) {
+			console.log(jsonn);
+			if(jsonn.length>=count){
+				alert("Job Post is Already Closed");
+				$("#apply").hide();
+			}		
+		
+	});
+
+		$('#link4').attr('href', 'jobpost.html?appId='+appId);
+		$('#link1').attr('href', 'applicant.html?appId='+appId);
+		$('#apply').attr('onclick', 'validate('+appId+', '+postId+')');
+		
+		
+		$("#apply").click(function() {
+			$.ajax({
+				type : 'GET',
+				url  : 'http://grand-pillar.com/upload/subicjobs/saveApplication.php?jobpost_id='+postId+'&applicant_id='+appId,
+				success :  function(response) {
+					console.log(response);
+					location.reload();
+					 alert("Application Successfully Submitted");
+					 //window.location.href = "link1";
+				}
+			});	
+
+			return false;
+		});
+
+			$.getJSON('http://grand-pillar.com/upload/subicjobs/loadData.php?applicantsprofile='+appId, function(json) {
+			$("#hi").text(json.applicant_fname);		
+		});		
+	});
+	</script>	
+	
+	<div class="footer-copyright  blue lighten-1">
+		<div class="container">
+			<a class="white-text" href="#">Copyright. All Rights Reserved</a>
+		</div>
+	</div>
+</body>
+</html>

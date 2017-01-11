@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+	<link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+	<link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+	<title>Subic Jobs</title>
+</head>
+<body>
+	<nav class="  blue lighten-1 " role="navigation">
+		<div class="nav-wrapper container">
+			<ul class="right hide-on-med-and-down">
+				
+				<li><a href="index.html"><img src="icons/sign-in.png" class="icon"> Logout</a></li>
+			</ul>
+		</div>
+	</nav>
+	<div class="row">
+		<div class="col s12">
+			<div class="card z-depth-5">
+				<div class="card-image" >
+					<img id="cdImg" src="bground354.jpg">
+				</div>
+				<div class="col s2">
+					<img id="crImg" src="icons/user.png" alt="" class="circle responsive-img z-depth-2"> 
+				</div>
+				<div class="card-content">
+					<h4 id="hi"></h4>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col s2">
+			<div class="collection">
+				<a href="" id="link1" class="collection-item">Job Post List</a>
+				<a href="" id="link2" class="collection-item">Send Notification</a>
+				<a href="" id="link3" class="collection-item">New Job Post Request</a>
+				<a href="" id="link4" class="collection-item">Applicants List</a>
+				<a href="" id="link5" class="collection-item">Job Category</a>
+			</div>
+		</div>
+		<div class="col s10">
+			<h5 class="teal white-text header2">Job Posting List</h5>		
+			<table class ="highlight bordered centered responsive-table">
+				<thead>
+					<tr>
+						<th data-field="Title">Title</th>
+						<th data-field="Date Posted">Date Posted</th>
+						<th data-field="Closing Date">Closing Date</th>
+						<th data-field="Status">Status</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody id="jobpostlist">
+				</tbody>
+			</table>		
+		</div>
+	</div>
+
+	<!--  Scripts-->
+	<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script src="js/materialize.js"></script>
+	<script src="js/init.js"></script>
+	<script>
+	$(document).ready(function(){
+		function getUrlParameter(sParam) {
+			var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+				sURLVariables = sPageURL.split('&'),
+				sParameterName,
+				i;
+
+			for (i = 0; i < sURLVariables.length; i++) {
+				sParameterName = sURLVariables[i].split('=');
+
+				if (sParameterName[0] === sParam) {
+					return sParameterName[1] === undefined ? true : sParameterName[1];
+				}
+			}
+		}
+		
+		var locId = getUrlParameter('locId');
+		
+		$("#link1").attr("href", "company.html?locId="+locId);
+		$("#link2").attr("href", "notification.html?locId="+locId);
+		$("#link3").attr("href", "jobposting.html?locId="+locId);
+		$("#link4").attr("href", "applist.html?locId="+locId);
+		$("#link5").attr("href", "locatorjcategory.html?locId="+locId);
+		
+		$.getJSON('server/loadData.php?locatorpost='+locId, function(json) {
+			$.each(json, function (key, val) {
+				var status = '';
+				if(val.jobpost_status == 0) {
+					status = 'Closed';
+				} else if(val.jobpost_status == 1) {
+					status = 'Pending';
+				} else if(val.jobpost_status == 3) {
+					status = 'Approve';
+				}
+				$("#jobpostlist").append('<tr><td>'+val.jobpost_title+'</td><td>'+val.jobpost_date_posted+'</td><td>'+val.jobpost_date_closing+'</td><td>'+status+'</td><td><a href="editCompany.html?compId='+val.jobpost_id+'&locId='+locId+'" class="waves-effect waves-light btn"><i class="material-icons left">cloud</i>Edit</a> <a href="viewApplicant.html?jobId='+val.jobpost_id+'&locId='+locId+'" class="waves-effect waves-light btn"><i class="material-icons left">cloud</i>Applicants</a></td></tr>');
+			});			
+		});
+		
+		$.getJSON('server/loadData.php?loc='+locId, function(json) {
+			$("#hi").text(json.locators_name);		
+		});
+	});
+	</script>	
+	
+	<br/><br /><br /><br /> <br />
+	<div class="footer-copyright  blue lighten-1">
+		<div class="container">
+			<a class="white-text" href="#">Copyright. All Rights Reserved</a>
+		</div>
+	</div>
+</body>
+</html>
