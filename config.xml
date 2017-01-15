@@ -61,7 +61,7 @@
   <access origin="*"/>
 
   <plugin name="cordova-plugin-whitelist" spec="1" />
-  <icon src="img/F.png" />
+  <icon src="icon.png" />
 
   <allow-intent href="http://*/*" />
   <allow-intent href="https://*/*" />
