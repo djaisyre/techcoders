@@ -50,17 +50,21 @@
 	<div class="row wew">
 		<form method="post" id="saveapp" class="col s12">
 			<div class="row">
-				<div class="input-field col s4">
+				<div class="input-field col s12">
 					<input id="applicant_fname" name="applicant_fname" type="text" required />
 					<label for="applicant_fname">First Name</label>
 				</div>
-				
-				<div class="input-field col s4">
+			</div>
+			
+			<div class="row">			
+				<div class="input-field col s12">
 					<input id="applicant_mname" name="applicant_mname" type="text">
 					<label for="applicant_mname">Middle Name</label>
 				</div>
-				
-				<div class="input-field col s4">
+			</div>
+			
+			<div class="row">
+				<div class="input-field col s12">
 					<input id="applicant_lname" name="applicant_lname" type="text" required />
 					<label for="applicant_lname">Last Name</label>
 				</div>
@@ -178,7 +182,7 @@
     });
 	});
 
-	$.getJSON('http://grand-pillar.com/upload/subicjobs/loadData.php?category=true',  function(json)  {
+	$.getJSON('http://grand-pillar.com/uploads/subicjobs/loadData.php?category=true',  function(json)  {
 			$.each(json,  function  (key,  val)  {
 				$('#skillset').append('<div class="input-field col s4"><p><input type="checkbox" required name="skills[]" value="'+val.category_id+'" id="index'+key+'" class="chkbox"/><label for="index'+key+'">'+val.category_title+'</label></p></div>');
 			});	
@@ -189,7 +193,7 @@
 			
 			$.ajax({
 				type : 'POST',
-				url  : 'http://grand-pillar.com/upload/subicjobs/saveApplicantData.php',
+				url  : 'http://grand-pillar.com/uploads/subicjobs/saveApplicantData.php',
 				data : data,
 				success :  function(response) {
 					$('#applicant_fname').val('');
@@ -212,7 +216,7 @@
 					$('.chkbox').attr('checked', false);
 					 //alert("Registration Successful");
 					window.alert('Succesfully Registered');
-					 window.location.href='applicantlogin.html';
+					// window.location.href='applicantlogin.html';
 				
 				}
 			});	
@@ -220,13 +224,6 @@
 			return false;
 		});			
 	});
-	
-	$(function() {
-      $("#refresh").click(function() {
-         $("#randomdiv").load("registration.html")
-      });
-    });
-  
 	 
 	</script>	
 	

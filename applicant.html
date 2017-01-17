@@ -100,29 +100,40 @@
 				</div>
 			</div>
 			<div class="row padding-left-right">
-				<div class="col l4 s4">
+				<div class="col l6 s6">
 					<label>Email:</label>
 					<p id="email"></p>
 				</div>
-				<div class="col l4 s4">
+				
+				<div class="col l6 s6">
 					<label>Contact Number:</label>
 					<p id="contact"></p>
 				</div>
+			</div>
+				
+			<div class="row padding-left-right">	
+				<div class="col l4 s4">
+					<label>Age:</label>
+					<p id="age"></p>
+				</div>
+				
+				<div class="col l4 s4">
+					<label>Sex:</label>
+					<p id="sex"></p>
+				</div>
+				
 				<div class="col l4 s4">
 					<label>Civil Status:</label>
 					<p id="cstatus"></p>
 				</div>
 			</div>
 			<div class="row padding-left-right">
-				<div class="col l4 s4">
-					<label>Sex:</label>
-					<p id="sex"></p>
-				</div>
-				<div class="col l4 s5">
+				
+				<div class="col l4 s6">
 					<label>Date of Birth:</label>
 					<p id="dob"></p>
 			</div>
-			<div class="col l4 s5">
+			<div class="col l4 s6">
 					<label>Place of Birth:</label>
 					<p id="pob"></p>
 			</div>
@@ -271,7 +282,7 @@
 		
 		
 		
-		$.getJSON('http://grand-pillar.com/upload/subicjobs/loadData.php?applicantsprofile='+appId, function(json) {
+		$.getJSON('http://grand-pillar.com/uploads/subicjobs/loadData.php?applicantsprofile='+appId, function(json) {
 			$("#apid").text(json.applicant_id);
 			$("#lname").text(json.applicant_lname);
 			$("#fname").text(json.applicant_fname);
@@ -282,13 +293,14 @@
 			$("#province").text(json.applicant_province);
 			$("#postal").text(json.applicant_postal);
 			$("#contact").text(json.applicant_contact);
+			$("#age").text(json.applicant_age);
 			$("#sex").text(json.applicant_gender);
 			$("#cstatus").text(json.applicant_cstatus);
 			$("#dob").text(json.applicant_dob);
 			$("#pob").text(json.applicant_pob);
 		});
 		
-		$.getJSON('http://grand-pillar.com/upload/subicjobs/loadData.php?applicanteduc='+appId, function(json) {
+		$.getJSON('http://grand-pillar.com/uploads/subicjobs/loadData.php?applicanteduc='+appId, function(json) {
 			$("#eductype").text(json.educ_type);
 			$("#school").text(json.school_name);
 			$("#schooladdr").text(json.school_addr);
@@ -296,7 +308,7 @@
 			//$("#app").text(json.applicant_id);
 		});
 		
-		$.getJSON('http://grand-pillar.com/upload/subicjobs/loadData.php?jobexperience='+appId, function(json) {
+		$.getJSON('http://grand-pillar.com/uploads/subicjobs/loadData.php?jobexperience='+appId, function(json) {
 			$("#pos").text(json.jobex_title);
 			$("#cname").text(json.jobex_company);
 			$("#from").text(json.jobex_started);
@@ -304,18 +316,18 @@
 			//$("#appli").text(json.applicant_id);
 		});
 		
-		$.getJSON('http://grand-pillar.com/upload/subicjobs/loadData.php?applicantsprofile='+appId, function(json) {
+		$.getJSON('http://grand-pillar.com/uploads/subicjobs/loadData.php?applicantsprofile='+appId, function(json) {
 			$("#hello").text(json.applicant_fname);		
 		});
 	
 		
-		$.getJSON('http://grand-pillar.com/upload/subicjobs/loadData.php?appId='+appId, function(json) {
+		$.getJSON('http://grand-pillar.com/uploads/subicjobs/loadData.php?appId='+appId, function(json) {
 			$.each(json, function (key, val) {
 				$("#skilllist").append('<div class="input-field col s2">'+val.category_title+'</div>');
 			});			 
 		});
 		
-		$.getJSON('http://grand-pillar.com/upload/subicjobs/loadData.php?application='+appId, function(json) {
+		$.getJSON('http://grand-pillar.com/uploads/subicjobs/loadData.php?application='+appId, function(json) {
 			$.each(json, function (key, val) {
 				var jpoststat = '';
 				if(val.jobpost_status == 0) {
