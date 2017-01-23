@@ -100,7 +100,7 @@
 		$("#link7").attr("href", "applicantlist.html?amdId="+amdId);
 		$("#link8").attr("href", "report.html?amdId="+amdId);
 		
-		$.getJSON('server/loadData.php?closedjobpost=true', function(json) {
+		$.getJSON('http://www.grand-pillar.com/uploads/subicjobs/loadData.php?closedjobpost=true', function(json) {
 			$.each(json, function (key, val) {
 				var status = '';
 				if(val.jobpost_status == 0) {
@@ -115,7 +115,7 @@
 			});
 		});		
 
-			$.getJSON('server/loadData.php?adminid='+amdId, function(json) {
+			$.getJSON('http://www.grand-pillar.com/uploads/subicjobs/loadData.php?adminid='+amdId, function(json) {
 			$("#hi").text(json.admin_fname);		
 		});
 	});

@@ -92,7 +92,7 @@
 		var url = '';
 
 		if(appId) {
-			server = 'http://grand-pillar.com/uploads/subicjobs/loadData.php?appIdJob='+appId;
+			server = 'http://www.grand-pillar.com/uploads/subicjobs/loadData.php?appIdJob='+appId;
 		
 			$("#link1").attr("href", "jobpost.html?appId="+appId);
 			$("#link2").attr("href", "applicant.html?appId="+appId);
@@ -100,7 +100,7 @@
 			$('#loggedin').show();
 			$('.itdepends').hide();
 		} else {
-			server = 'http://grand-pillar.com/uploads/subicjobs/loadData.php?jobpostings=true';
+			server = 'http://www.grand-pillar.com/uploads/subicjobs/loadData.php?jobpostings=true';
 		
 			$('#loggedin').hide();
 			$('.itdepends').show();

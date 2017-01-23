@@ -24,7 +24,7 @@ $('document').ready(function() {
 
 		$.ajax({
 			type : 'POST',
-			url  : 'server/loginadmin.php',
+			url  : 'http://www.grand-pillar.com/uploads/subicjobs/loginadmin.php',
 			data : data,
 			beforeSend: function()
 			{
@@ -58,7 +58,7 @@ $('document').ready(function() {
 
 		$.ajax({
 			type : 'POST',
-			url  : 'server/loginlocator.php',
+			url  : 'http://www.grand-pillar.com/uploads/subicjobs/loginlocator.php',
 			data : data,
 			beforeSend: function()
 			{
@@ -90,7 +90,7 @@ $('document').ready(function() {
 
 		$.ajax({
 			type : 'POST',
-			url  : 'server/loginapplicant.php',
+			url  : 'http://www.grand-pillar.com/uploads/subicjobs/loginapplicant.php',
 			data : data,
 			beforeSend: function()
 			{

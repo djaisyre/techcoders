@@ -74,7 +74,7 @@
 		
 		$("#link1").attr("href", "jobcategory.html?amdId="+amdId);
 		
-		$.getJSON('server/loadData.php?catId='+catId, function(json) {
+		$.getJSON('http://www.grand-pillar.com/uploads/subicjobs/loadData.php?catId='+catId, function(json) {
 			$('#category_id').val(json.category_id);
 			$('#category_title').val(json.category_title);
 			$('#category_description').val(json.category_description);
@@ -85,7 +85,7 @@
 			
 			$.ajax({
 				type : 'POST',
-				url  : 'server/editCategory.php',
+				url  : 'http://www.grand-pillar.com/uploads/subicjobs/editCategory.php',
 				data : data,
 				success :  function(response) {
 					console.log(response);

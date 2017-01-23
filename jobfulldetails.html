@@ -111,7 +111,7 @@
 		
 	
 	//$.getJSON("server/loadData.php?applicant_id="+parApp+"&jobpost_id="+parjobpost, function(json) {
-		$.getJSON("http://grand-pillar.com/uploads/subicjobs/loadData.php?applicant_id="+appId+"&jobpost_id="+postId, function(json) {
+		$.getJSON("http://www.grand-pillar.com/uploads/subicjobs/loadData.php?applicant_id="+appId+"&jobpost_id="+postId, function(json) {
 			if(json.length>=1){
 			alert("You already Applied");
 			$("#apply").hide();
@@ -121,7 +121,7 @@
 	
 	//}
 		var count="";
-		$.getJSON('http://grand-pillar.com/uploads/subicjobs/loadData.php?jobpostdtls='+postId, function(json) {
+		$.getJSON('http://www.grand-pillar.com/uploads/subicjobs/loadData.php?jobpostdtls='+postId, function(json) {
 			$("#jTitle").text(json.jobpost_title);
 			$("#jCompany").text(json.locators_name);
 			$("#quali").text(json.jobpost_description);
@@ -133,7 +133,7 @@
 			
 		});
 		
-			$.getJSON('http://grand-pillar.com/uploads/subicjobs/loadData.php?count='+postId, function(jsonn) {
+			$.getJSON('http://www.grand-pillar.com/uploads/subicjobs/loadData.php?count='+postId, function(jsonn) {
 			console.log(jsonn);
 			if(jsonn.length>=count){
 				alert("Job Post is Already Closed");
@@ -150,7 +150,7 @@
 		$("#apply").click(function() {
 			$.ajax({
 				type : 'GET',
-				url  : 'http://grand-pillar.com/uploads/subicjobs/saveApplication.php?jobpost_id='+postId+'&applicant_id='+appId,
+				url  : 'http://www.grand-pillar.com/uploads/subicjobs/saveApplication.php?jobpost_id='+postId+'&applicant_id='+appId,
 				success :  function(response) {
 					console.log(response);
 					location.reload();
@@ -162,7 +162,7 @@
 			return false;
 		});
 
-			$.getJSON('http://grand-pillar.com/uploads/subicjobs/loadData.php?applicantsprofile='+appId, function(json) {
+			$.getJSON('http://www.grand-pillar.com/uploads/subicjobs/loadData.php?applicantsprofile='+appId, function(json) {
 			$("#hi").text(json.applicant_fname);		
 		});		
 	});

@@ -182,7 +182,7 @@
     });
 	});
 
-	$.getJSON('http://grand-pillar.com/uploads/subicjobs/loadData.php?category=true',  function(json)  {
+	$.getJSON('http://www.grand-pillar.com/uploads/subicjobs/loadData.php?category=true',  function(json)  {
 			$.each(json,  function  (key,  val)  {
 				$('#skillset').append('<div class="input-field col s4"><p><input type="checkbox" required name="skills[]" value="'+val.category_id+'" id="index'+key+'" class="chkbox"/><label for="index'+key+'">'+val.category_title+'</label></p></div>');
 			});	
@@ -193,7 +193,7 @@
 			
 			$.ajax({
 				type : 'POST',
-				url  : 'http://grand-pillar.com/uploads/subicjobs/saveApplicantData.php',
+				url  : 'http://www.grand-pillar.com/uploads/subicjobs/saveApplicantData.php',
 				data : data,
 				success :  function(response) {
 					$('#applicant_fname').val('');

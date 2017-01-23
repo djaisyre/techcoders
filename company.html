@@ -91,7 +91,7 @@
 		$("#link4").attr("href", "applist.html?locId="+locId);
 		$("#link5").attr("href", "locatorjcategory.html?locId="+locId);
 		
-		$.getJSON('server/loadData.php?locatorpost='+locId, function(json) {
+		$.getJSON('http://www.grand-pillar.com/uploads/subicjobs/loadData.php?locatorpost='+locId, function(json) {
 			$.each(json, function (key, val) {
 				var status = '';
 				if(val.jobpost_status == 0) {
@@ -105,7 +105,7 @@
 			});			
 		});
 		
-		$.getJSON('server/loadData.php?loc='+locId, function(json) {
+		$.getJSON('http://www.grand-pillar.com/uploads/subicjobs/loadData.php?loc='+locId, function(json) {
 			$("#hi").text(json.locators_name);		
 		});
 	});
