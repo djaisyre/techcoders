@@ -91,7 +91,6 @@
 				</div>
 			</div>
 			<div class="row">
-			
 				<div class="input-field col s4">
 					<input id="applicant_age" name="applicant_age" type="number" class="validate">
 					<label for="applicant_age">Age</label>
@@ -113,7 +112,17 @@
 					</select>
 				</div>
 			</div>
-
+			
+			<div class="row">
+				<div class="input-field col s6">
+					<input type="date" class="datepicker" id="applicant_dob" name="applicant_dob" required />
+					<label for="applicant_dob">Date of Birth</label>
+				</div>
+				<div class="input-field col s6">
+					<input id="applicant_pob" name="applicant_pob" type="text" required />
+					<label for="applicant_pob">Place of Birth</label>
+				</div>
+			</div>
 			
 			<div class="row">
 			<h5 id="hAdmin">Skills</h5>
@@ -130,6 +139,15 @@
 	<script src="js/init.js"></script>
 	<script type="text/javascript">
 	$(document).ready(function() {
+	
+	$('.datepicker').pickadate({
+		formatSubmit: 'yyyy/mm/dd',
+		hiddenName: true,
+		selectYears: 15
+	});
+	
+	
+	
 		function getUrlParameter(sParam) {
 			var sPageURL = decodeURIComponent(window.location.search.substring(1)),
 				sURLVariables = sPageURL.split('&'),
@@ -157,7 +175,7 @@
 		$("#link7").attr("href", "jobexp.html?appId="+appId);		
 
 		
-		$.getJSON('http://www.grand-pillar.com/uploads/subicjobs/loadData.php?applicantsprofile='+appId, function(json) {
+		$.getJSON('http://www.grand-pillar.com/uploads/subicjob/loadData.php?applicantsprofile='+appId, function(json) {
 			$("#applicant_id").val(json.applicant_id);
 			$("#applicant_username").val(json.applicant_username);
 			$("#applicant_password").val(json.applicant_password);
@@ -173,14 +191,16 @@
 			$('select[name="applicant_gender"]').find('option:contains("'+json.applicant_gender+'")').attr("selected", true);
 			//$("#applicant_cstatus").val(json.applicant_cstatus);
 			$('select[name="applicant_cstatus"]').find('option:contains("'+json.applicant_cstatus+'")').attr("selected", true);
+			$('#applicant_dob').val(json.applicant_dob);
+			$('#applicant_pob').val(json.applicant_pob);
 		});	
 	
 		
-		$.getJSON('http://www.grand-pillar.com/uploads/subicjobs/loadData.php?applicantsprofile='+appId, function(json) {
+		$.getJSON('http://www.grand-pillar.com/uploads/subicjob/loadData.php?applicantsprofile='+appId, function(json) {
 			$("#hello").text(json.applicant_fname);		
 		});
 		
-		$.getJSON('http://www.grand-pillar.com/uploads/subicjobs/loadData.php?category=true', function(json) {
+		$.getJSON('http://www.grand-pillar.com/uploads/subicjob/loadData.php?category=true', function(json) {
 			$.each(json, function (key, val) {
 				$('#skillset').append('<div class="input-field col s4"><p><input type="checkbox" name="skills[]" value="'+val.category_id+'" id="index'+key+'" class="chkbox" /><label for="index'+key+'">'+val.category_title+'</label></p></div>');
 			});	
@@ -191,7 +211,7 @@
 			
 			$.ajax({
 				type : 'POST',
-				url  : 'http://www.grand-pillar.com/uploads/subicjobs/editApplicant.php',
+				url  : 'http://www.grand-pillar.com/uploads/subicjob/editApplicant.php',
 				data : data,
 				success :  function(response) {
 				$("#applicant_id").val('');
@@ -208,9 +228,11 @@
 				$("#applicant_age").val('');
 				$("#applicant_gender").val($("#applicant_gender option:first").val());
 				$("#applicant_cstatus").val($("#applicant_cstatus option:first").val());
+				$('#applicant_dob').val('');
+				$('#applicant_pob').val('');
 				$('.chkbox').attr('checked', false);
 				
-				window.alert('Succesfully Edited');
+				window.alert('Edited Succesfully');
 				}
 			});	
 

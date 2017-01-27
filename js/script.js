@@ -24,7 +24,7 @@ $('document').ready(function() {
 
 		$.ajax({
 			type : 'POST',
-			url  : 'http://www.grand-pillar.com/uploads/subicjobs/loginadmin.php',
+			url  : 'http://www.grand-pillar.com/uploads/subicjob/loginadmin.php',
 			data : data,
 			beforeSend: function()
 			{
@@ -43,7 +43,7 @@ $('document').ready(function() {
 				else
 				{
 					$("#error").fadeIn(1000, function(){						
-						$("#error").html('<div class="alert alert-danger"><i class="material-icons">https</i> &nbsp; '+response+' !</div>');
+						$("#error").html('<div class="preloader-wrapper activer"><i class="material-icons">https</i> &nbsp; '+response+' !</div>');
 						$("#btn-admin").html('<i class="material-icons">repeat</i> &nbsp; Sign In');
 					});
 				}
@@ -58,7 +58,7 @@ $('document').ready(function() {
 
 		$.ajax({
 			type : 'POST',
-			url  : 'http://www.grand-pillar.com/uploads/subicjobs/loginlocator.php',
+			url  : 'http://www.grand-pillar.com/uploads/subicjob/loginlocator.php',
 			data : data,
 			beforeSend: function()
 			{
@@ -90,7 +90,7 @@ $('document').ready(function() {
 
 		$.ajax({
 			type : 'POST',
-			url  : 'http://www.grand-pillar.com/uploads/subicjobs/loginapplicant.php',
+			url  : 'http://www.grand-pillar.com/uploads/subicjob/loginapplicant.php',
 			data : data,
 			beforeSend: function()
 			{

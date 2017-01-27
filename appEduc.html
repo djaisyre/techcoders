@@ -130,7 +130,7 @@
 			
 			$.ajax({
 				type : 'POST',
-				url  : 'http://www.grand-pillar.com/uploads/subicjobs/saveEducData.php',
+				url  : 'http://www.grand-pillar.com/uploads/subicjob/saveEducData.php',
 				data : data,
 				success :  function(response) {
 					$('#educ_type').val('');
@@ -138,14 +138,14 @@
 					$('#school_addr').val('');
 					$('#year_graduated').val('');
 					$('#applicant_id').val('');
-					window.alert('Succesfully Added');
+			
 				}
 			});	
 
 			return false;
 		});			
 		
-		$.getJSON('http://www.grand-pillar.com/uploads/subicjobs/loadData.php?applicantsprofile='+appId, function(json) {
+		$.getJSON('http://www.grand-pillar.com/uploads/subicjob/loadData.php?applicantsprofile='+appId, function(json) {
 			$("#hello").text(json.applicant_fname);		
 		});
 		

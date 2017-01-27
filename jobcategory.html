@@ -13,7 +13,6 @@
 	<nav class="  blue lighten-1 " role="navigation">
 		<div class="nav-wrapper container">
 			<ul class="right hide-on-med-and-down">
-				
 				<li><a href="index.html"><img src="icons/sign-in.png" class="icon"> Logout</a></li>
 			</ul>
 		</div>
@@ -28,7 +27,7 @@
 					<img id="crImg" src="icons/user.png" alt="" class="circle responsive-img z-depth-2"> 
 				</div>
 				<div class="card-content">
-					<h4 id="hi"></h4>
+					<h4 id="hAdmin">Hello Admin!</h4>
 					
 				</div>
 			</div>
@@ -37,31 +36,34 @@
 	<div class="row">
 		<div class="col s2">
 			<div class="collection">
-				<a href="" id="link1" class="collection-item">Job Post List</a>
-				<a href="" id="link2" class="collection-item">Send Notification</a>
-				<a href="" id="link3" class="collection-item">New Job Post Request</a>
-				<a href="" id="link4" class="collection-item">Applicants List</a>
-				<a href="" id="link5" class="collection-item">Job Category</a>
+				
+				<a href="" id="link1" class="collection-item">Locators List</a>
+				<a href="" id="link7" class="collection-item">Applicants List</a>
+				<a href="" id="link2" class="collection-item">Job Category</a>
+				<a href="" id="link3" class="collection-item">Job Post Request</a>
+				<a href="" id="link4" class="collection-item">Register of Eligibles</a>
+				<a href="" id="link6" class="collection-item">Evaluation</a>
+				<a href="" id="link8" class="collection-item">Report</a>
 			</div>
 		</div>
 		<div class="col s10">
-			<h5 class="teal white-text header2">Job Posting List</h5>		
+			<h5 class="teal white-text header2">Job Category List
+				<a href="category.html" id="link5" class="btn-floating btn-small waves-effect waves-light amber darken-4 right" id="btnAdd"><i class="material-icons">add</i></a>
+			</h5>		
 			<table class ="highlight bordered centered responsive-table">
 				<thead>
 					<tr>
-						<th data-field="Title">Title</th>
-						<th data-field="Date Posted">Date Posted</th>
-						<th data-field="Closing Date">Closing Date</th>
-						<th data-field="Status">Status</th>
+						<th data-field="Category">Category</th>
+						<th data-field="Description">Description</th>
 						<th></th>
 					</tr>
 				</thead>
-				<tbody id="jobpostlist">
+				<tbody id="categorylist">
 				</tbody>
 			</table>		
 		</div>
 	</div>
-
+	
 	<!--  Scripts-->
 	<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 	<script src="js/materialize.js"></script>
@@ -83,35 +85,29 @@
 			}
 		}
 		
-		var locId = getUrlParameter('locId');
+		var amdId = getUrlParameter('amdId');
 		
-		$("#link1").attr("href", "company.html?locId="+locId);
-		$("#link2").attr("href", "notification.html?locId="+locId);
-		$("#link3").attr("href", "jobposting.html?locId="+locId);
-		$("#link4").attr("href", "applist.html?locId="+locId);
-		$("#link5").attr("href", "locatorjcategory.html?locId="+locId);
+		$("#link1").attr("href", "admin.html?amdId="+amdId);
+		$("#link2").attr("href", "jobcategory.html?amdId="+amdId);
+		$("#link3").attr("href", "jobrequest.html?amdId="+amdId);
+		$("#link4").attr("href", "gatepass.html?amdId="+amdId);
+		$("#link5").attr("href", "category.html?amdId="+amdId);
+		$("#link6").attr("href", "evaluation.html?amdId="+amdId);
+		$("#link7").attr("href", "applicantlist.html?amdId="+amdId);
+		$("#link8").attr("href", "report.html?amdId="+amdId);
 		
-		$.getJSON('http://www.grand-pillar.com/uploads/subicjobs/loadData.php?locatorpost='+locId, function(json) {
+		$.getJSON('http://www.grand-pillar.com/uploads/subicjob/loadData.php?category=true', function(json) {
 			$.each(json, function (key, val) {
-				var status = '';
-				if(val.jobpost_status == 0) {
-					status = 'Closed';
-				} else if(val.jobpost_status == 1) {
-					status = 'Pending';
-				} else if(val.jobpost_status == 3) {
-					status = 'Approve';
-				}
-				$("#jobpostlist").append('<tr><td>'+val.jobpost_title+'</td><td>'+val.jobpost_date_posted+'</td><td>'+val.jobpost_date_closing+'</td><td>'+status+'</td><td><a href="editCompany.html?compId='+val.jobpost_id+'&locId='+locId+'" class="waves-effect waves-light btn"><i class="material-icons left">cloud</i>Edit</a> <a href="viewApplicant.html?jobId='+val.jobpost_id+'&locId='+locId+'" class="waves-effect waves-light btn"><i class="material-icons left">cloud</i>Applicants</a></td></tr>');
-			});			
+				$("#categorylist").append('<tr><td>'+val.category_title+'</td><td>'+val.category_description+'</td><td><a href="editCategory.html?catId='+val.category_id+'&amdId='+amdId+'" class="waves-effect waves-light btn"><i class="material-icons left">cloud</i>Edit</a></td></tr>');
+			});
+		});		
+		
+			$.getJSON('http://www.grand-pillar.com/uploads/subicjob/loadData.php?adminid='+amdId, function(json) {
+			$("#hi").text(json.admin_fname);		
 		});
 		
-		$.getJSON('http://www.grand-pillar.com/uploads/subicjobs/loadData.php?loc='+locId, function(json) {
-			$("#hi").text(json.locators_name);		
-		});
 	});
 	</script>	
-	
-	<br/><br /><br /><br /> <br />
 	<div class="footer-copyright  blue lighten-1">
 		<div class="container">
 			<a class="white-text" href="#">Copyright. All Rights Reserved</a>
