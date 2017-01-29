@@ -127,7 +127,7 @@
 					if(appId) {
 						url = 'jobfulldetails.html?appId='+appId+'&postId='+val.jobpost_id;
 					} else {
-						url = 'applicantlogin.html?postId='+val.jobpost_id;
+						url = 'registration.html?postId='+val.jobpost_id;
 					}
 
 					$("#jobpost").append('<div class="col s12 m6"><div class="card blue-grey darken-1"><div class="card-content white-text"><span class="card-title">'+val.jobpost_title+'</span><p>Date Posted: '+val.jobpost_date_posted+'</p><p>Date Closing: '+val.jobpost_date_closing+'</p></div><div class="card-action"><a href="'+url+'">Click Here to Apply</a></div></div></div>');
@@ -151,7 +151,7 @@
 				if(appId) {
 					url = 'jobfulldetails.html?appId='+appId+'&postId='+val.jobpost_id;
 				} else {
-					url = 'applicantlogin.html?postId='+val.jobpost_id;
+					url = 'registration.html?postId='+val.jobpost_id;
 				}
 				
 				//$("#jobpost").append('<div class="col s12 m6"><div class="card blue-grey darken-1"><div class="card-content white-text"><span class="card-title">'+val.jobpost_title+'</span><p>Date Posted: '+val.jobpost_date_posted+'</p><p>Date Closing: '+val.jobpost_date_closing+'</p></div><div class="card-action"><a href="applicantlogin.html?postId='+val.jobpost_id+'">Click Here to Apply</a></div></div></div>');
