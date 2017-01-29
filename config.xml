@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<widget id="com.daisyre.paet" version="0.10.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">  
+<widget id="com.daisyre.paet" version="0.11.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">  
 
-  <!-- versionCode is optional and Android only -->
+ <!-- versionCode is optional and Android only -->
 
-  <name>Subic Jobs</name>
+  <name> Subic Jobs </name>
 
   <description>
    Employment Opportunities inside the Subic Bay Freeport Zone
@@ -11,7 +11,7 @@
 
   <author href="https://github.com/djaisyre/techcoders" email="daisyre14.dp@gmail.com">
    Daisyre P. Paet
-   Kryzzia Mae M. Plamnco
+   Kryzzia Mae M. Plamenco
   </author>
 
   <content src="index.html"/>
@@ -69,10 +69,13 @@
   <allow-intent href="sms:*" />
   <allow-intent href="mailto:*" />
   <allow-intent href="geo:*" />
+
   <platform name="android">
     <allow-intent href="market:*" />
   </platform>
+
   <feature name="StatusBar">
     <param name="ios-package" value="CDVStatusBar" onload="true" />
   </feature>
+
 </widget>
