@@ -29,21 +29,13 @@
 			</li>
 		</ul>
 		<ul id="nav-mobile" class="side-nav">
-			<li><a href="index.html" class="nbm"><img src="icons/h1.png" class="icon"> Home</a></li>
-			<li><a href="jobpost.html" class="nbm"><img src="icons/s1.png" class="icon"> Job Postings</a></li>
-			<li><a href="faqs.html" class="nbm"><img src="icons/q1.png" class="icon"> FAQs</a></li>
-			<li><a href="about.html" class="nbm"><img src="icons/a1.png" class="icon"> About Us</a></li>
-			
-			<li>
-				<!--<a href="login.html" class="nbm"><img src="icons/sign-in1.png" class="icon"> Login</a>-->
-				<a class='dropdown-button btn blue darken-3' href='#' data-activates='dropdown2'>LogIn</a>
-				<ul id='dropdown2' class='dropdown-content'>
-					<li><a href="adminlogin.html">Admin</a></li>
-					<li><a href="locatorlogin.html">Locator</a></li>
-					<li><a href="applicantlogin.html">Applicant</a></li>
-				</ul>				
-			</li>
-		</ul>
+			 <li><img src="icons/banner1.png" class="icon responsive-img"></li>
+        <li><a href="index.html" class="nbm"><img src="icons/h1.png" class="icon"> Home</a></li>
+		<li><a href="jobpost.html" class="nbm"><img src="icons/s1.png" class="icon"> Job Postings</a></li>
+        <li><a href="faqs.html" class="nbm"><img src="icons/q1.png" class="icon"> FAQs</a></li>
+        <li><a href="about.html" class="nbm"><img src="icons/a1.png" class="icon"> About Us</a></li>
+		<li><a href="applicantlogin.html" class="nbm"><img src="icons/sign-in1.png" class="icon"> Login</a></li>
+      </ul>
 		<a href="#" data-activates="nav-mobile" class="button-collapse"><img src="icons/menu.png" class="icon"></a>
 		</div>
 	</nav>
@@ -51,17 +43,21 @@
 	<div class="row wew">
 		<form method="post" id="saveapp" class="col s12">
 			<div class="row">
-				<div class="input-field col s4">
+				<div class="input-field col s12">
 					<input id="applicant_fname" name="applicant_fname" type="text" required />
 					<label for="applicant_fname">First Name</label>
 				</div>
-				
-				<div class="input-field col s4">
+			</div>
+			
+			<div class="row">
+				<div class="input-field col s12">
 					<input id="applicant_mname" name="applicant_mname" type="text">
 					<label for="applicant_mname">Middle Name</label>
 				</div>
-				
-				<div class="input-field col s4">
+			</div>
+			
+			<div class="row">
+				<div class="input-field col s12">
 					<input id="applicant_lname" name="applicant_lname" type="text" required />
 					<label for="applicant_lname">Last Name</label>
 				</div>
@@ -87,27 +83,33 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="input-field col s6">
+				<div class="input-field col s12">
 					<input id="applicant_email" name="applicant_email" type="email" required />
 					<label for="applicant_email" data-error="wrong" data-success="right">Email</label>
 				</div>
+			</div>
+			
+			<div class="row">
 				<div class="input-field col s6">
 					<input id="applicant_contact" name="applicant_contact" type="number" required />
 					<label for="applicant_contact">Contact Number</label>
 				</div>
-			</div>
-			<div class="row">
-				<div class="input-field col s4">
+				
+				<div class="input-field col s6">
 					<input id="applicant_age" name="applicant_age" type="number" required />
 					<label for="applicant_age">Age</label>
 				</div>
+			</div>
+			<div class="row">
+				
 			
-				<div class="input-field col s4">
+				<div class="input-field col s6">
 					<select class="browser-default" id="applicant_gender" name="applicant_gender" required />
 						<option value="Male">Male</option>
 						<option value="Female">Female</option>
 					</select>
 				</div>
+				
 				<div class="input-field col s4">
 					<select class="browser-default" id="applicant_cstatus" name="applicant_cstatus" required />
 						<option value="Single">Single</option>
@@ -118,7 +120,6 @@
 					</select>
 				</div>
 			</div>
-			
 			<div class="row">
 				<div class="input-field col s6">
 					<input type="date" class="datepicker" id="applicant_dob" name="applicant_dob" required />
@@ -186,7 +187,7 @@
 
 	$.getJSON('http://www.grand-pillar.com/uploads/subicjob/loadData.php?category=true',  function(json)  {
 			$.each(json,  function  (key,  val)  {
-				$('#skillset').append('<div class="input-field col s4"><p><input type="checkbox" required name="skills[]" value="'+val.category_id+'" id="index'+key+'" class="chkbox"/><label for="index'+key+'">'+val.category_title+'</label></p></div>');
+				$('#skillset').append('<div class="input-field col s6"><p><input type="checkbox" required name="skills[]" value="'+val.category_id+'" id="index'+key+'" class="chkbox"/><label for="index'+key+'">'+val.category_title+'</label></p></div>');
 			});	
 		});		
 		
