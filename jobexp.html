@@ -37,15 +37,20 @@
   <h3 class="register"><img src="icons/r2.png" class="icon"> Job Experience </h3> <br>
 
   <div class="row wew">
-    <form id="ajaxform" class="col s12">
+    <form id="ajaxform" method="post" class="col s12">
 
-      <div class="input-field col s4 right">
-      <input type="text" name="applicant_id" id="applicant_id" class="validate" placeholder="Applicant ID" />
-      <label for="applicant_id">Applicant ID :</label>
-      </div>
+      <div class="row">
+
+				<div class="input-field col s4 right">
+					<input type="text" name="applicant_id" id="applicant_id" class="validate"  readonly/>
+					<label for="applicant_id">Applicant ID</label>
+				</div>
+	   </div>
+
 
       <div class="row">
 	   <div class="input-field col s12">
+		<input type="hidden" name="jobex_id" id="jobex_id" class="validate" />
           <input id="jobexp_title" name="jobex_title" type="text" class="validate" />
           <label for="jobex_title">Job Title :</label>
         </div>
@@ -90,8 +95,7 @@
 
         <div class="row">
         <div class="input-field col s12">
-          <button class="btn waves-effect waves-light btn-large right responsive-button" type="submit" name="saveJob" id="saveJob">Submit
-             <i class="material-icons right">send</i></button> <br /> <br /> <br />
+          <button class="btn waves-effect waves-light btn-large right responsive-button" type="submit" name="saveJob" id="saveJob">Submit<i class="material-icons right">send</i></button> <br /> <br /> <br />
         </div>
 		   
     </form>
@@ -136,37 +140,36 @@ $('.datepicker').pickadate({
 		
 		var appId = getUrlParameter('appId');
 		
-		
 		$("#link1").attr("href", "jobpost.html?appId="+appId);
 		$("#link2").attr("href", "applicant.html?appId="+appId);
 		$("#link3").attr("href", "editApplicant.html?appId="+appId);
 		$("#link4").attr("href", "editEduc.html?appId="+appId);
 		$("#link5").attr("href", "editJob.html?appId="+appId);
 		$("#link6").attr("href", "appEduc.html?appId="+appId);
-		$("#link7").attr("href", "jobexp.html?appId="+appId);	
+		$("#link7").attr("href", "jobexp.html?appId="+appId);		
 		
+		$("#applicant_id").val(appId);
 
 		$("#saveJob").click(function() {
 			var data = $("#ajaxform").serialize();
 			
 			$.ajax({
 				type : 'POST',
-				url  : 'http://www.grand-pillar.com/uploads/subicjob/saveExperienceData.php',
+				url  : 'http://www.grand-pillar.com/uploads/Subicjobs/saveExperienceData.php',
 				data : data,
 				success :  function(response) {
 					$('#jobex_title').val('');
 					$('#jobex_company').val('');
 					$('#jobex_started').val('');
 					$('#jobex_end').val('');
-					$('#applicant_id').val('');
-			
+					$('#applicant_id').val('');	
 				}
 			});	
 
 			return false;
 		});			
 		
-		$.getJSON('http://www.grand-pillar.com/uploads/subicjob/loadData.php?applicantsprofile='+appId, function(json) {
+		$.getJSON('http://www.grand-pillar.com/uploads/Subicjobs/loadData.php?applicantsprofile='+appId, function(json) {
 			$("#hello").text(json.applicant_fname);		
 		});
 		

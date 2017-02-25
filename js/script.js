@@ -24,12 +24,12 @@ $('document').ready(function() {
 
 		$.ajax({
 			type : 'POST',
-			url  : 'http://www.grand-pillar.com/uploads/subicjob/loginadmin.php',
+			url  : 'http://www.grand-pillar.com/uploads/Subicjobs/loginadmin.php',
 			data : data,
 			beforeSend: function()
 			{
 				$("#error").fadeOut();
-				$("#btn-login").html('<i class="material-icons">repeat</i> &nbsp; sending ...');
+				$("#btn-login").html('<i class="fa fa-spinner"></i> &nbsp; sending ...');
 			},
 			success :  function(response)
 			{
@@ -37,14 +37,14 @@ $('document').ready(function() {
 				//if(response=="ok"){
 				if(response > 0)
 				{
-					$("#btn-admin").html('<i class="material-icons">repeat</i> &nbsp; Signing In ...');
+					$("#btn-admin").html('<i class="fa fa-spinner"></i> &nbsp; Signing In');
 					setTimeout(' window.location.href = "admin.html?amdId='+response+'"; ',4000);
 				}
 				else
 				{
 					$("#error").fadeIn(1000, function(){						
-						$("#error").html('<div class="preloader-wrapper activer"><i class="material-icons">https</i> &nbsp; '+response+' !</div>');
-						$("#btn-admin").html('<i class="material-icons">repeat</i> &nbsp; Sign In');
+						$("#error").html('<div class="alert alert-danger"><i class="fa fa-spinner">Error</i> &nbsp; '+response+' </div>');
+						$("#btn-admin").html('<i class="fa fa-spinner"></i> &nbsp; Sign In');
 					});
 				}
 			}
@@ -58,25 +58,25 @@ $('document').ready(function() {
 
 		$.ajax({
 			type : 'POST',
-			url  : 'http://www.grand-pillar.com/uploads/subicjob/loginlocator.php',
+			url  : 'http://www.grand-pillar.com/uploads/Subicjobs/loginlocator.php',
 			data : data,
 			beforeSend: function()
 			{
 				$("#error").fadeOut();
-				$("#btn-login").html('<i class="material-icons">repeat</i> &nbsp; sending ...');
+				$("#btn-login").html('<i class="fa fa-spinner"></i> &nbsp; sending ...');
 			},
 			success :  function(response)
 			{	
 				if(response > 0)
 				{
-					$("#btn-locator").html('<i class="material-icons">repeat</i> &nbsp; Signing In ...');
+					$("#btn-locator").html('<i class="fa fa-spinner"></i> &nbsp; Signing In ...');
 					setTimeout(' window.location.href = "company.html?locId='+response+'"; ',4000);
 				}
 				else
 				{
 					$("#error").fadeIn(1000, function(){						
-						$("#error").html('<div class="alert alert-danger"><i class="material-icons">https</i> &nbsp; '+response+' !</div>');
-						$("#btn-locator").html('<i class="material-icons">repeat</i> &nbsp; Sign In');
+						$("#error").html('<div class="alert alert-danger"><i class="fa fa-spinner">https</i> &nbsp; '+response+' !</div>');
+						$("#btn-locator").html('<i class="fa fa-spinner"></i> &nbsp; Sign In');
 					});
 				}
 			}
@@ -90,18 +90,18 @@ $('document').ready(function() {
 
 		$.ajax({
 			type : 'POST',
-			url  : 'http://www.grand-pillar.com/uploads/subicjob/loginapplicant.php',
+			url  : 'http://www.grand-pillar.com/uploads/Subicjobs/loginapplicant.php',
 			data : data,
 			beforeSend: function()
 			{
 				$("#error").fadeOut();
-				$("#btn-applicant").html('<i class="material-icons">repeat</i> &nbsp; sending ...');
+				$("#btn-applicant").html('<i class="fa fa-spinner"></i> &nbsp; sending ...');
 			},
 			success :  function(response)
 			{
 				if(response > 0)
 				{
-					$("#btn-applicant").html('<i class="material-icons">repeat</i> &nbsp; Signing In ...');
+					$("#btn-applicant").html('<i class="fa fa-spinner"></i> &nbsp; Signing In ...');
 					
 					var postId = getUrlParameter('postId');
 					
@@ -114,8 +114,8 @@ $('document').ready(function() {
 				else
 				{
 					$("#error").fadeIn(1000, function(){						
-						$("#error").html('<div class="alert alert-danger"><i class="material-icons">https</i> &nbsp; '+response+' !</div>');
-						$("#btn-applicant").html('<i class="material-icons">repeat</i> &nbsp; Sign In');
+						$("#error").html('<div class="alert alert-danger"><i class="fa fa-spinner">Error</i> &nbsp; '+response+' </div>');
+						$("#btn-applicant").html('<i class="fa fa-spinner"></i> &nbsp; Sign In');
 					});
 				}
 			}

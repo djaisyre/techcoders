@@ -5,8 +5,13 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
 	<title>SubicJobs</title>
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.0.3/jquery-confirm.min.css">
 	<link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 	<link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+	<style type="text/css">
+		input[type="checkbox"]:required:invalid + label { color: black; }
+		input[type="checkbox"]:required:valid + label { color: red; }
+	</style>
 </head>
 <body>
 	<nav class="  blue lighten-1 " role="navigation">
@@ -19,118 +24,138 @@
 			
 			<li>
 				<!--<a href="login.html" class="nbm"><img src="icons/sign-in1.png" class="icon"> Login</a>-->
-				<a href="applicantlogin.html" class='dropdown-button btn blue darken-3'> LogIn</a>
-				<!--<a class='dropdown-button btn blue darken-3' href='#' data-activates='dropdown2'>LogIn</a>
+				<a class='dropdown-button btn blue darken-3' href='#' data-activates='dropdown1'>LogIn</a>
+				<ul id='dropdown1' class='dropdown-content'>
+					<li><a href="adminlogin.html">Admin</a></li>
+					<li><a href="locatorlogin.html">Locator</a></li>
+					<li><a href="applicantlogin.html">Applicant</a></li>
+				</ul>		
+			</li>
+		</ul>
+		<ul id="nav-mobile" class="side-nav">
+			<li><a href="index.html" class="nbm"><img src="icons/h1.png" class="icon"> Home</a></li>
+			<li><a href="jobpost.html" class="nbm"><img src="icons/s1.png" class="icon"> Job Postings</a></li>
+			<li><a href="faqs.html" class="nbm"><img src="icons/q1.png" class="icon"> FAQs</a></li>
+			<li><a href="about.html" class="nbm"><img src="icons/a1.png" class="icon"> About Us</a></li>
+			
+			<li>
+				<!--<a href="login.html" class="nbm"><img src="icons/sign-in1.png" class="icon"> Login</a>-->
+				<a class='dropdown-button btn blue darken-3' href='#' data-activates='dropdown2'>LogIn</a>
 				<ul id='dropdown2' class='dropdown-content'>
 					<li><a href="adminlogin.html">Admin</a></li>
 					<li><a href="locatorlogin.html">Locator</a></li>
 					<li><a href="applicantlogin.html">Applicant</a></li>
-				</ul>-->				
+				</ul>				
 			</li>
 		</ul>
-		<ul id="nav-mobile" class="side-nav">
-			 <li><img src="icons/banner1.png" class="icon responsive-img"></li>
-        <li><a href="index.html" class="nbm"><img src="icons/h1.png" class="icon"> Home</a></li>
-		<li><a href="jobpost.html" class="nbm"><img src="icons/s1.png" class="icon"> Job Postings</a></li>
-        <li><a href="faqs.html" class="nbm"><img src="icons/q1.png" class="icon"> FAQs</a></li>
-        <li><a href="about.html" class="nbm"><img src="icons/a1.png" class="icon"> About Us</a></li>
-		<li><a href="applicantlogin.html" class="nbm"><img src="icons/sign-in1.png" class="icon"> Login</a></li>
-      </ul>
 		<a href="#" data-activates="nav-mobile" class="button-collapse"><img src="icons/menu.png" class="icon"></a>
 		</div>
 	</nav>
 	<h3 class="register"><img src="icons/r2.png" class="icon"> Applicant Registration</h3> <br>
-	<div class="row wew">
-		<form method="post" id="saveapp" class="col s12">
+	
+	<div class="row wew">	
+	
+		<form method="POST" id="saveapp" class="col s12">
+	
 			<div class="row">
 				<div class="input-field col s12">
-					<input id="applicant_fname" name="applicant_fname" type="text" required />
-					<label for="applicant_fname">First Name</label>
+					<input id="applicant_fname" name="applicant_fname" type="text" class="validate" minlength="2" required >
+					<label for="applicant_fname" data-error="Enter Valid First Name." data-success="">First Name</label>
+				</div>
+				
+				<div class="input-field col s12">
+					<input id="applicant_mname" name="applicant_mname" type="text" minlength="2" class="validate">
+					<label for="applicant_mname" data-error="Enter Valid Middle Name." data-success="">Middle Name</label>
+				</div>
+				
+				<div class="input-field col s12">
+					<input id="applicant_lname" name="applicant_lname" type="text" class="validate" minlength="2" required>
+					<label for="applicant_lname" data-error="Enter Valid Last Name." data-success="">Last Name</label>
 				</div>
 			</div>
-			
 			<div class="row">
 				<div class="input-field col s12">
-					<input id="applicant_mname" name="applicant_mname" type="text">
-					<label for="applicant_mname">Middle Name</label>
+					<input id="applicant_address" name="applicant_address" type="text" class="validate" required>
+					<label for="applicant_address" data-error="" data-success="">Street</label>
 				</div>
-			</div>
-			
-			<div class="row">
 				<div class="input-field col s12">
-					<input id="applicant_lname" name="applicant_lname" type="text" required />
-					<label for="applicant_lname">Last Name</label>
+					<input id="applicant_city" name="applicant_city" type="text" class="validate" required>
+					<label for="applicant_city" data-error="" data-success="">City</label>
 				</div>
 			</div>
 			<div class="row">
 				<div class="input-field col s6">
-					<input id="applicant_address" name="applicant_address" type="text" required />
-					<label for="applicant_address">Street</label>
-				</div>
-				<div class="input-field col s6">
-					<input id="applicant_city" name="applicant_city" type="text" required />
-					<label for="applicant_city">City</label>
-				</div>
-			</div>
-			<div class="row">
-				<div class="input-field col s6">
-					<input id="applicant_province" name="applicant_province" type="text" required />
+					<input id="applicant_province" name="applicant_province" type="text" class="validate" required>
 					<label for="applicant_province">State/Province</label>
 				</div>
 				<div class="input-field col s6">
-					<input id="applicant_postal" name="applicant_postal" type="number" required />
-					<label for="applicant_postal">Postal/Zip Code</label>
+					<input id="applicant_postal" name="applicant_postal" type="text" class="validate" pattern="^[0-9]{4}$"  required>
+					<label for="applicant_postal" data-error="You must input valid Postal Code." data-success="">Postal/Zip Code</label>
 				</div>
 			</div>
 			<div class="row">
 				<div class="input-field col s12">
-					<input id="applicant_email" name="applicant_email" type="email" required />
-					<label for="applicant_email" data-error="wrong" data-success="right">Email</label>
+					<input id="applicant_email" name="applicant_email" type="email" class="validate" placeholder="someone@example.com" required>
+					<label for="applicant_email" data-error="You must input valid Email Address." data-success="">Email</label>
 				</div>
-			</div>
-			
-			<div class="row">
-				<div class="input-field col s6">
-					<input id="applicant_contact" name="applicant_contact" type="number" required />
-					<label for="applicant_contact">Contact Number</label>
-				</div>
-				
-				<div class="input-field col s6">
-					<input id="applicant_age" name="applicant_age" type="number" required />
-					<label for="applicant_age">Age</label>
+				<div class="input-field col s12">
+					<input id="applicant_contact" name="applicant_contact" type="tel" class="validate" pattern="^\W\d{12}|\d{11}$" title="Example: 09123456789 / +639123456789" required>
+					<label for="applicant_contact" data-error="You must input valid Contact Number." data-success="">Contact Number</label>
 				</div>
 			</div>
 			<div class="row">
-				
-			
 				<div class="input-field col s6">
-					<select class="browser-default" id="applicant_gender" name="applicant_gender" required />
+					<select class="browser-default" id="applicant_gender" name="applicant_gender">
 						<option value="Male">Male</option>
 						<option value="Female">Female</option>
 					</select>
 				</div>
-				
-				<div class="input-field col s4">
-					<select class="browser-default" id="applicant_cstatus" name="applicant_cstatus" required />
+				<div class="input-field col s6">
+					<select class="browser-default" id="applicant_cstatus" name="applicant_cstatus">
 						<option value="Single">Single</option>
 						<option value="Married">Married</option>
 						<option value="Widowed">Widowed</option>
-						<option value="Separated">Separated</option>
-						<option value="Divorced">Divorced</option>
+						<option value="Separated">Separated</option>	
 					</select>
 				</div>
 			</div>
+			
 			<div class="row">
 				<div class="input-field col s6">
-					<input type="date" class="datepicker" id="applicant_dob" name="applicant_dob" required />
-					<label for="applicant_dob">Date of Birth</label>
+					<input id="applicant_age" name="applicant_age" type="number" class="validate" min="18" max="40"  required >
+					<label for="applicant_age" data-error="You must be atleast 18-40 years old. Enter Valid Age." data-success="">Age</label>
 				</div>
 				<div class="input-field col s6">
-					<input id="applicant_pob" name="applicant_pob" type="text" required />
+					<input id="applicant_dob" name="applicant_dob" type="date" class="datepicker" onchange="submitBday()" required>
+					<label for="applicant_dob" data-error="wrong" data-success="right">Date of Birth</label>
+				</div>
+				<div class="input-field col s12">
+					<input id="applicant_pob" name="applicant_pob" type="text" class="validate" required>
 					<label for="applicant_pob">Place of Birth</label>
 				</div>
 			</div>
 			
+			<div class="row">
+				<div class="input-field col s6">
+					<input id="applicant_sss" name="applicant_sss" type="text" class="validate" placeholder="02-1234567-9" pattern="^\d{2}\W\d{7}\W\d{1}$" required>
+					<label for="applicant_sss" data-error="Please follow the pattern. Input Valid SSS Number." data-success="">SSS Number:</label>
+				</div>
+				
+				<div class="input-field col s6">
+					<input id="applicant_pagIbig" name="applicant_pagIbig" type="text" class="validate" pattern="^\d{12}$" placeholder="12345678912" required>
+					<label for="applicant_pagIbig" data-error="Please follow the pattern. Input Valid Pag-Ibig Number." data-success="">Pag Ibig Number:</label>
+				</div>
+				<!--<div class="input-field col s12">
+					<input id="applicant_tin" name="applicant_tin" type="text" class="validate" placeholder="123-456-789" pattern="^\d{3}\W\d{3}\W\d{3}$">
+					<label for="applicant_tin" data-error="Please follow the pattern. Input Valid TIN Number." data-success="">Tin Number:</label>
+				</div>
+				<div class="input-field col s12">
+					<input id="applicant_phil" name="applicant_phil" type="text" class="validate" placeholder="123456789123" pattern="^\d{12}$">
+					<label for="applicant_phil"  data-error="Please follow the pattern. Input Valid TIN Number." data-success="">PhilHealth Number:</label>
+				</div>-->
+				
+			</div>
+		
 			<div class="row">
 				<div class="input-field col s4">
 					<input id="applicant_username" name="applicant_username" type="text" required />
@@ -147,56 +172,83 @@
 				</div>
 			</div>
 			
-			<div class="row">
-			<h5 id="hAdmin">Skills/Work Experiences</h5>
+			<fieldset>
+			<legend id="hAdmin">Skills/Work Experiences</legend>
 			<div id="skillset" class="row"></div>
+			
+			</fieldset>
+			</br />
+			</br />
+			
+			
+				<!--<input type="checkbox" required name="agree" value="agree" id="agree"/><label for="agree">I accept the <a href="tc.html"> Terms & Coditions</a></label>
+			<div class="row right">
+			<p><input type="checkbox" required name="terms" value="terms" id="terms"/><label for="terms">I accept the <a href="tc.html"> Terms & Coditions</a></label></p>
+			-->
+			<div>
+			 <button data-target="modal1" class="btn waves-effect waves-light btn-large responsive-button right">Submit</button>
+				<div id="modal1" class="modal">
+   					 <div class="modal-content">
+      					<h4>Confirmation</h4>
+      					<p>Do you agree to submit all the informations above, so as its Terms and Conditions?</p>
+      					<a href="Terms And Conditions.html">Terms and Conditions</a>
+    				</div>
+    			<div class="modal-footer">
+      				<a href ="" class="modal-action modal-close waves-effect waves-green btn-flat" type="submit" name="saveApplicant" id="saveApplicant" >Yes</a>
+      			</div>
+  			</div>
 			</div>
 			
-			</br />
-			</br />
-			<div>
-			<button class="btn waves-effect waves-light btn-large responsive-button right" type="submit" name="saveApplicant" id="saveApplicant">Submit</button>
-			</div>
 		</form>
-	</div>
+	</div>	
+		
 	
 	<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 	<script src="js/materialize.js"></script>
+	<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.0.3/jquery-confirm.min.js"></script>
 	<script src="js/init.js"></script>
-	<script type="text/javascript">
+	<script type="text/javascript">	
 	$(document).ready(function() {
-	
+
 	$('.datepicker').pickadate({
 		formatSubmit: 'yyyy/mm/dd',
 		hiddenName: true,
 		selectYears: 15
 	});
+
 	
-	//$('.datepicker').pickadate({
-			//selectMonths: true, // Creates a dropdown to control month
-			//selectYears: 16 // Creates a dropdown of 15 years to control year
-	//});		
-		
-		
 	$(function() {
-    $("#applicant_confirmpass").keyup(function() {
-        var password = $("#applicant_password").val();
-        $("#divCheckPasswordMatch").html(password == $(this).val() ? "Passwords match." : "Passwords do not match!");
-    });
+		$("#applicant_confirmpass").keyup(function() {
+			var password = $("#applicant_password").val();
+			$("#divCheckPasswordMatch").html(password == $(this).val() ? "Passwords match." : "Passwords do not match!");
+		});
 	});
 
-	$.getJSON('http://www.grand-pillar.com/uploads/subicjob/loadData.php?category=true',  function(json)  {
+	$.getJSON('http://www.grand-pillar.com/uploads/Subicjobs/loadData.php?category=true',  function(json)  {
 			$.each(json,  function  (key,  val)  {
-				$('#skillset').append('<div class="input-field col s6"><p><input type="checkbox" required name="skills[]" value="'+val.category_id+'" id="index'+key+'" class="chkbox"/><label for="index'+key+'">'+val.category_title+'</label></p></div>');
+				$('#skillset').append('<div class="input-field col s4"><p><input type="checkbox" required name="skills[]" value="'+val.category_id+'" id="index'+key+'" class="chkbox single-checkbox"/><label for="index'+key+'">'+val.category_title+'</label></p></div>');
 			});	
-		});		
-		
+	});	
+			
+		  $(document).ready(function(){
+    // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+    $('#modal1').modal();
+  });
+
+$("#saveapp").validate();
+
+
+			jQuery.extend(jQuery.validator.messages,{
+			required: "This field is required." });
+	
+	
 		$("#saveApplicant").click(function() {
 			var data = $("#saveapp").serialize();
 			
 			$.ajax({
 				type : 'POST',
-				url  : 'http://www.grand-pillar.com/uploads/subicjob/saveApplicantData.php',
+				url  : 'http://www.grand-pillar.com/uploads/Subicjobs/saveApplicantData.php',
 				data : data,
 				success :  function(response) {
 					$('#applicant_fname').val('');
@@ -213,6 +265,8 @@
 					$("#applicant_cstatus").val($("#applicant_cstatus option:first").val());
 					$('#applicant_dob').val('');
 					$('#applicant_pob').val('');
+					$('#applicant_sss').val('');
+					$('#applicant_pagIbig').val('');
 					$('#applicant_username').val('');
 					$('#applicant_password').val('');
 					$('#applicant_confirmpass').val('');
@@ -223,14 +277,41 @@
 				
 				}
 			});	
+			
+	
 
 			return false;
-		});			
+		});		
+		
 	});
-
-  
-	 
 	</script>	
 	
+<footer class="page-footer  blue lighten-1">
+		<div id="templatemo_footer">
+
+        <div class="container ">
+			
+			<div class="row">
+				<div class="container left">
+					
+					<h5 class="white-text">Subic Bay Metropolitan Authority</h5>
+					<p class="white-text">Bldg. 229 Waterfront Road, Subic Bay Freeport Zone, Philippines.<br> Voice: +6347 252 4000 Fax: +6347 252 4185 </p>
+					
+				</div>
+			</div>
+		</div>
+    
+		<div class="footer-copyright">
+       <div class="container">
+			
+				<a class="white-text" href="#">Copyright. All Rights Reserved</a>
+			
+		</div>
+		</div>
+     
+    
+    </div>
+</footer>
 </body>
+
 </html>

@@ -40,6 +40,7 @@
 				<a href="" id="link2" class="collection-item">Send Notification</a>
 				<a href="" id="link3" class="collection-item">New Job Post Request</a>
 				<a href="" id="link4" class="collection-item">Applicants List</a>
+				<a href="" id="link5" class="collection-item">Job Category</a>
 			</div>
 		</div>
 	
@@ -83,13 +84,14 @@
 		var locId = getUrlParameter('locId');
 		
 		$("#link1").attr("href", "company.html?locId="+locId);
-		$("#link2").attr("href", "notification.html?locId="+locId);
+		$("#link2").attr("href", "sendNotif.html?locId="+locId);
 		$("#link3").attr("href", "jobposting.html?locId="+locId);
 		$("#link4").attr("href", "applist.html?locId="+locId);
+		$("#link5").attr("href", "locatorjcategory.html?locId="+locId);
 		
 		var rstat = '';
 		
-		$.getJSON('http://www.grand-pillar.com/uploads/subicjob/loadData.php?appfilter='+locId, function(json) {
+		$.getJSON('http://www.grand-pillar.com/uploads/Subicjobs/loadData.php?appfilter='+locId, function(json) {
 			console.log(json);
 			$.each(json, function (key, val) {		
 			
@@ -107,7 +109,7 @@
 				}
 			
 			
-				$("#applicantslist").append('<tr><td>'+val.applicant_lname+' '+val.applicant_fname+'</td><td>'+val.applicant_contact+'</td><td>'+val.application_date+'</td><td>'+rstat+'</td><td><a href="profile.html?amdId=1&appId='+val.applicant_id+'" class="btn waves-effect waves-light btn-large responsive-button">View Profile</a></td></tr>');
+				$("#applicantslist").append('<tr><td>'+val.applicant_lname+' '+val.applicant_fname+'</td><td>'+val.applicant_contact+'</td><td>'+val.application_date+'</td><td>'+rstat+'</td><td><a href="profile2.html?locId=1&appId='+val.applicant_id+'" class="btn waves-effect waves-light btn-large responsive-button">View Profile</a></td></tr>');
 			
 			
 			
@@ -115,7 +117,7 @@
 			});
 		});		
 		
-		$.getJSON('http://www.grand-pillar.com/uploads/subicjob/loadData.php?loc='+locId, function(json) {
+		$.getJSON('http://www.grand-pillar.com/uploads/Subicjobs/loadData.php?loc='+locId, function(json) {
 			$("#hi").text(json.locators_name);		
 		});
 		

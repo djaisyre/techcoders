@@ -7,6 +7,9 @@
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 	<link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+	<link href="templatemo_style.css" rel="stylesheet" type="text/css" />
+	
+	<link rel="icon" type="image/png" href="icon.png" />
 	<title>Subic Jobs</title>
 </head>
 <body>
@@ -19,23 +22,30 @@
 			<li><a href="about.html"><img src="icons/a.png" class="icon"> About Us</a></li>
 			<li>
 				<!--<a href="login.html" class="nbm"><img src="icons/sign-in1.png" class="icon"> Login</a>-->
-				<a href="applicantlogin.html" class='dropdown-button btn blue darken-3'> LogIn</a>
-				<!--<a class='dropdown-button btn blue darken-3' href='#' data-activates='dropdown2'>LogIn</a>
+				<a class='dropdown-button btn  blue darken-3' href='#' data-activates='dropdown1'>LogIn</a>
+				<ul id='dropdown1' class='dropdown-content'>
+					<li><a href="adminlogin.html">Admin</a></li>
+					<li><a href="locatorlogin.html">Locator</a></li>
+					<li><a href="applicantlogin.html">Applicant</a></li>
+				</ul>		
+			</li>
+		</ul>
+		<ul id="nav-mobile" class="side-nav">
+			 <li><img src="hahahaha.png" class="icon responsive-img"></li>
+			<li><a href="index.html" class="nbm"><img src="icons/h1.png" class="icon"> Home</a></li>
+			<li><a href="jobpost.html" class="nbm"><img src="icons/s1.png" class="icon"> Job Postings</a></li>
+			<li><a href="faqs.html" class="nbm"><img src="icons/q1.png" class="icon"> FAQs</a></li>
+			<li><a href="about.html" class="nbm"><img src="icons/a1.png" class="icon"> About Us</a></li>
+			<li>
+				<!--<a href="login.html" class="nbm"><img src="icons/sign-in1.png" class="icon"> Login</a>-->
+				<a class='dropdown-button btn blue darken-3' href='#' data-activates='dropdown2'>LogIn</a>
 				<ul id='dropdown2' class='dropdown-content'>
 					<li><a href="adminlogin.html">Admin</a></li>
 					<li><a href="locatorlogin.html">Locator</a></li>
 					<li><a href="applicantlogin.html">Applicant</a></li>
-				</ul>-->				
+				</ul>				
 			</li>
 		</ul>
-		<ul id="nav-mobile" class="side-nav">
-			 <li><img src="icons/banner1.png" class="icon responsive-img"></li>
-        <li><a href="index.html" class="nbm"><img src="icons/h1.png" class="icon"> Home</a></li>
-		<li><a href="jobpost.html" class="nbm"><img src="icons/s1.png" class="icon"> Job Postings</a></li>
-        <li><a href="faqs.html" class="nbm"><img src="icons/q1.png" class="icon"> FAQs</a></li>
-        <li><a href="about.html" class="nbm"><img src="icons/a1.png" class="icon"> About Us</a></li>
-		<li><a href="applicantlogin.html" class="nbm"><img src="icons/sign-in1.png" class="icon"> Login</a></li>
-      </ul>
 		<a href="#" data-activates="nav-mobile" class="button-collapse"><img src="icons/menu.png" class="icon"></a>
 		</div>
 	</nav>
@@ -56,7 +66,10 @@
 		<div class="parallax"><img src="background1.jpg" alt=""></div>
 	</div>
 	<br>
+	
+
 	<div class="container" id="bodycon">
+		<center><img src="icons/icon_02.png" alt="image 1" /></center>
 		<h4 id="hMiss">Our Mission</h4><hr>
 		<div class="row">
 			<div class="col s4">
@@ -95,21 +108,36 @@
 			<li class="collection-item">Endorsement for Issuance of Entry/Exit Pass for SBFZ Accredited Service Contractors</li>
 		</ul><br>
 	</div>
+	
 	<footer class="page-footer  blue lighten-1">
-		<div class="container ">
+		<div id="templatemo_footer">
+
+        <div class="container ">
+			
 			<div class="row">
-				<div class="col l6 s12">
+				<div class="container left">
+					
 					<h5 class="white-text">Subic Bay Metropolitan Authority</h5>
 					<p class="white-text">Bldg. 229 Waterfront Road, Subic Bay Freeport Zone, Philippines.<br> Voice: +6347 252 4000 Fax: +6347 252 4185 </p>
+					
 				</div>
 			</div>
 		</div>
+    
 		<div class="footer-copyright">
-			<div class="container">
+       <div class="container">
+			
 				<a class="white-text" href="#">Copyright. All Rights Reserved</a>
-			</div>
+			
 		</div>
-	</footer>
+		</div>
+     
+    
+    </div>
+</footer>
+	
+	
+	
 	<!--  Scripts-->
 	<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 	<script src="js/materialize.js"></script>

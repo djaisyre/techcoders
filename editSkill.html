@@ -80,13 +80,13 @@
 		$("#link6").attr("href", "appEduc.html?appId="+appId);
 		$("#link7").attr("href", "jobexp.html?appId="+appId);		
 		
-		$.getJSON('http://www.grand-pillar.com/uploads/subicjob/loadData.php?applicantsprofile='+appId, function(json) {
+		$.getJSON('http://www.grand-pillar.com/uploads/Subicjobs/loadData.php?applicantsprofile='+appId, function(json) {
 			$("#hello").text(json.applicant_fname);		
 		});
 		
-		$.getJSON('http://www.grand-pillar.com/uploads/subicjob/loadData.php?category=true', function(json) {
+		$.getJSON('http://www.grand-pillar.com/uploads/Subicjobs/loadData.php?category=true', function(json) {
 			$.each(json, function (key, val) {
-				$('#skillset').append('<div class="input-field col s6"><p><input type="checkbox" name="skills[]" value="'+val.category_id+'" id="index'+key+'" class="chkbox" /><label for="index'+key+'">'+val.category_title+'</label></p></div>');
+				$('#skillset').append('<div class="input-field col s4"><p><input type="checkbox" name="skills[]" value="'+val.category_id+'" id="index'+key+'" class="chkbox" /><label for="index'+key+'">'+val.category_title+'</label></p></div>');
 			});	
 		});
 		
@@ -95,10 +95,10 @@
 			
 			$.ajax({
 				type : 'POST',
-				url  : 'http://www.grand-pillar.com/uploads/subicjob/editSkill.php',
+				url  : 'http://www.grand-pillar.com/uploads/Subicjobs/editSkill.php',
 				data : data,
 				success :  function(response) {	
-					
+					window.alert('Edited Succesfully');
 				}
 			});	
 

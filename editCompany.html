@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+	<title>SubicJobs</title>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+	<link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+</head>
+<body>
+	<nav class="  blue lighten-1 " role="navigation">
+		<div class="nav-wrapper container">
+			<ul class="right hide-on-med-and-down">
+				<li><a href="" id="link1"><img src="icons/sign-in.png" class="icon"> Back</a></li>
+				<li><a href="index.html"><img src="icons/sign-in.png" class="icon"> Logout</a></li>
+			</ul>
+		</div>
+	</nav>
+	<div class="row">
+		<div class="col s12">
+			<div class="card z-depth-5">
+				<div class="card-image" >
+					<img id="cdImg" src="bground354.jpg">
+				</div>
+				<div class="col s2">
+					<img id="crImg" src="icons/user.png" alt="" class="circle responsive-img z-depth-2"> 
+				</div>
+				<div class="card-content">
+					<h4 id="hAdmin">Hello Admin!</h4>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+	<h3 class="register"><img src="icons/r2.png" class="icon">Update Job Posting</h3><br>
+	<div class="row wew">
+		<form method="post" id="savepost" class="col s12">
+			<div class="row">
+				<div class="input-field col s12">
+					<input id="jobpost_id" name="jobpost_id" type="hidden" class="validate">
+					<input id="jobpost_title" name="jobpost_title" type="text" class="validate">
+					<label for="jobpost_title">Title</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s12">
+					<input type="date" class="datepicker" id="jobpost_date_closing" name="jobpost_date_closing" />
+					<label for="jobpost_date_closing">Closing Date</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s12">
+					<input id="jobpost_numapp" name="jobpost_numapp" type="number" class="validate">
+					<label for="jobpost_numapp">Number of Applicants</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s12">
+					<textarea name="jobpost_description" id="jobpost_description" class="materialize-textarea"></textarea>
+					<label for="jobpost_description">Qualifications</label>
+				</div>
+			</div>
+			<div id="forLocator" class="row">
+				<div class="input-field col s12">
+					<select class="browser-default forLocator" id="jobpost_status" name="jobpost_status">
+						<option value="1">Open</option>
+						<option value="0">Closed</option>
+					</select>
+				</div>
+			</div>
+			<div id="forAdmin" class="row">
+				<div class="input-field col s12">
+					<select class="browser-default forAdmin" id="jobpost_status" name="jobpost_status">
+						<option value="">--Select Status--</option>
+						<option value="3">Approve</option>
+					</select>
+				</div>
+			</div>			
+			<div id="skillset" class="row">
+			</div>			
+			</br />
+			<div>
+			<button class="btn waves-effect waves-light btn-large responsive-button right" type="submit" name="editPosting" id="editPosting">Submit
+				<i class="material-icons right">send</i>
+			</button>
+			</div>
+		</form>
+	</div>
+	<div class="footer-copyright  blue lighten-1">
+		<div class="container">
+			<a class="white-text" href="#">Copyright. All Rights Reserved</a>
+		</div>
+	</div>
+	<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script src="js/materialize.js"></script>
+	<script src="js/init.js"></script>
+	<script>
+	$(document).ready(function(){
+		function getUrlParameter(sParam) {
+			var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+				sURLVariables = sPageURL.split('&'),
+				sParameterName,
+				i;
+
+			for (i = 0; i < sURLVariables.length; i++) {
+				sParameterName = sURLVariables[i].split('=');
+
+				if (sParameterName[0] === sParam) {
+					return sParameterName[1] === undefined ? true : sParameterName[1];
+				}
+			}
+		}
+		
+		var locId = getUrlParameter('locId');
+		if(locId) {
+			$("#link1").attr("href", "company.html?locId="+locId);
+			$("#forAdmin").hide();
+			$(".forAdmin").prop('disabled', true);
+		}
+		
+		var amdId = getUrlParameter('amdId');
+		if(amdId) {
+			$("#link1").attr("href", "admin.html?amdId="+amdId);
+			$("#forLocator").hide();
+			$(".forLocator").prop('disabled', true);			
+		}		
+		
+		var compId = getUrlParameter('compId');
+		
+		$("#editPosting").click(function() {
+			var data = $("#savepost").serialize();
+			
+			$.ajax({
+				type : 'POST',
+				url  : 'http://www.grand-pillar.com/uploads/Subicjobs/editPosting.php',
+				data : data,
+				success :  function(response) {
+					console.log(response);
+					
+				}
+			});	
+
+			return false;
+		});	
+		
+		$.getJSON('http://www.grand-pillar.com/uploads/Subicjobs/loadData.php?jobpostdtls='+compId, function(json) {
+			$('#jobpost_id').val(json.jobpost_id);
+			$('#jobpost_title').val(json.jobpost_title);
+			$('#jobpost_date_closing').val(json.jobpost_date_closing);
+			$('#jobpost_description').val(json.jobpost_description);
+			$('#jobpost_numapp').val(json.jobpost_numapp);
+		});
+		
+		$.getJSON('http://www.grand-pillar.com/uploads/Subicjobs/loadData.php?category=true', function(json) {
+			$.each(json, function (key, val) {
+				$('#skillset').append('<div class="input-field col s4"><p><input type="checkbox" name="skills[]" value="'+val.category_id+'" id="index'+key+'" /><label for="index'+key+'">'+val.category_title+'</label></p></div>');	
+			});
+		});	
+		
+		var arrSkills = [];
+		
+		$.getJSON('http://www.grand-pillar.com/uploads/Subicjobs/getSkills.php?jobId='+compId, function(json) {
+			$.each(json, function (key, val) {
+				arrSkills.push(val.category_id);
+			});
+		});
+
+//$('input[type=checkbox]').each(function () {
+	//console.log($(this).val());
+	//if(jQuery.inArray($(this).val(), arrSkills)) {
+		//console.log('yo');
+		//$(this).prop("checked","true");
+	//}
+//});		
+		
+		$('.datepicker').pickadate({
+			selectMonths: true, // Creates a dropdown to control month
+			selectYears: 16 // Creates a dropdown of 15 years to control year
+		});		
+		
+			$.getJSON('http://www.grand-pillar.com/uploads/Subicjobs/loadData.php?adminid='+amdId, function(json) {
+			$("#hi").text(json.admin_fname);		
+		});
+		
+	});
+	</script>	
+</body>
+</html>

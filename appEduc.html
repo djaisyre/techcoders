@@ -38,7 +38,7 @@
 			<div class="row">
 
 				<div class="input-field col s4 right">
-					<input type="text" name="applicant_id" id="applicant_id" class="validate"  />
+					<input type="text" name="applicant_id" id="applicant_id" class="validate"  readonly/>
 					<label for="applicant_id">Applicant ID</label>
 				</div>
 			</div>
@@ -124,13 +124,15 @@
 		$("#link5").attr("href", "editJob.html?appId="+appId);
 		$("#link6").attr("href", "appEduc.html?appId="+appId);
 		$("#link7").attr("href", "jobexp.html?appId="+appId);		
-
+		
+		$("#applicant_id").val(appId);
+		
 		$("#saveEduc").click(function() {
 			var data = $("#ajaxform").serialize();
 			
 			$.ajax({
 				type : 'POST',
-				url  : 'http://www.grand-pillar.com/uploads/subicjob/saveEducData.php',
+				url  : 'http://www.grand-pillar.com/uploads/Subicjobs/saveEducData.php',
 				data : data,
 				success :  function(response) {
 					$('#educ_type').val('');
@@ -138,13 +140,14 @@
 					$('#school_addr').val('');
 					$('#year_graduated').val('');
 					$('#applicant_id').val('');
+			
 				}
 			});	
 
 			return false;
 		});			
 		
-		$.getJSON('http://www.grand-pillar.com/uploads/subicjob/loadData.php?applicantsprofile='+appId, function(json) {
+		$.getJSON('http://www.grand-pillar.com/uploads/Subicjobs/loadData.php?applicantsprofile='+appId, function(json) {
 			$("#hello").text(json.applicant_fname);		
 		});
 		

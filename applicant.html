@@ -7,10 +7,12 @@
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 	<link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+	
+	
 	<title>Subic Jobs</title>
 </head>
 <body>
-	<nav class="  blue lighten-1 " role="navigation">
+<nav class="  blue lighten-1 " role="navigation">
 		<div class="nav-wrapper container">
 
 			<ul class="right">
@@ -26,10 +28,12 @@
 				<div class="card-image" >
 					<img id="cdImg" src="bground354.jpg">
 				</div>
-				<div class="col s12 center" id="imgSze">
-					<img src="icons/e1.png" width="95px" height="95px" class="circle">
+				<div class="col s12 right" id="imgSze">
+					<!--<img src="icons/e1.png" width="95px" height="95px" class="circle">-->
+					<a href="" class="btn-floating btn-small waves-effect waves-light amber darken-4 right" id="link9"><i class="fa fa-upload" aria-hidden="true"></i>Upload</a>
+					
 				</div>
-				
+				<div id="images" class="center"></div>
 			    <div id="hello" class="card-content center">
         		</div>
 				
@@ -44,38 +48,36 @@
 		</div>
 	</div>
 	<br />
+	
+	
 	<div id="test1">
+		
+		<!--Upload Image-->
+	
+		
 		<div class="row border">
 			<h5 class="teal white-text header">General Information
 				<a href="" class="btn-floating btn-small waves-effect waves-light  light-blue right" id="link3"><i class="material-icons">edit</i></a>
 			</h5>
 			<br />
+
 			
-			<div class="row padding-left-right">
+		<div class="row padding-left-right">
 				<div class="col l4 s4">
 					<label>Applicant ID:</label>
 					<p id="apid"></p>
 				</div>
 			</div>
 			<div class="row padding-left-right">
-				<div class="col l4 s12">
+				<div class="col l4 s4">
 					<label>Last Name:</label>
 					<p id="lname"></p>
 				</div>
-			</div>
-			
-			<div class="row padding-left-right">
-				
-				<div class="col l4 s12">
+				<div class="col l4 s4">
 					<label>First Name:</label>
 					<p id="fname"></p>
 				</div>
-				
-			</div>
-			
-			<div class="row padding-left-right">
-		
-				<div class="col l4 s12">
+				<div class="col l4 s4">
 					<label>Middle Name:</label>
 					<p id="mname"></p>
 				</div>
@@ -114,21 +116,28 @@
 					<p id="email"></p>
 				</div>
 				<div class="col l4 s6">
-					<label>Sex:</label>
-					<p id="sex"></p>
-				</div>
-			</div>	
-			<div class="row padding-left-right">
-				<div class="col l4 s6">
 					<label>Contact Number:</label>
 					<p id="contact"></p>
 				</div>
-				<div class="col l4 s6">
+				
+			</div>
+			<div class="row padding-left-right">
+				<div class="col l4 s4">
 					<label>Civil Status:</label>
 					<p id="cstatus"></p>
 				</div>
+			
+				<div class="col l4 s6">
+					<label>Sex:</label>
+					<p id="sex"></p>
+				</div>
+				
+				<div class="col l4 s4">
+					<label>Age:</label>
+					<p id="age"></p>
+				</div>
 			</div>
-		
+			
 			<div class="row padding-left-right">
 				<div class="col l4 s6">
 					<label>Date of Birth:</label>
@@ -138,6 +147,18 @@
 					<label>Place of Birth:</label>
 					<p id="pob"></p>
 			</div>
+			</div>
+			
+			<div class="row padding-left-right">
+				<div class="col l4 s6">
+					<label>SSS NO:</label>
+					<p id="sss"></p>
+				</div>
+				<div class="col l4 s6">
+					<label>PAG-IBIG NO:</label>
+					<p id="pag-ibig"></p>
+				</div>
+				
 			</div>
 
 		</div>
@@ -229,8 +250,10 @@
 		
 				
 			</div>
+			
 		</div>
 	</div>
+	
 	<div id="test2">
 	<br />
 		<div class="row border">
@@ -251,10 +274,13 @@
 		</div>
 	</div>
 	
+	
+	
 	<!--  Scripts-->
 	<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 	<script src="js/materialize.js"></script>
 	<script src="js/init.js"></script>
+	
 	<script>
 	$(document).ready(function(){
 		function getUrlParameter(sParam) {
@@ -282,9 +308,12 @@
 		$("#link6").attr("href", "appEduc.html?appId="+appId);
 		$("#link7").attr("href", "jobexp.html?appId="+appId);
 		$("#link8").attr("href", "editSkill.html?appId="+appId);
+		//upload images
+		$("#link9").attr("href", "test.html?appId="+appId);
+		//$("#link10").attr("href", "updateimage.html?appId="+appId);
 	
 		
-		$.getJSON('http://www.grand-pillar.com/uploads/subicjob/loadData.php?applicantsprofile='+appId, function(json) {
+		$.getJSON('http://www.grand-pillar.com/uploads/Subicjobs/loadData.php?applicantsprofile='+appId, function(json) {
 			$("#apid").text(json.applicant_id);
 			$("#lname").text(json.applicant_lname);
 			$("#fname").text(json.applicant_fname);
@@ -296,12 +325,15 @@
 			$("#postal").text(json.applicant_postal);
 			$("#contact").text(json.applicant_contact);
 			$("#sex").text(json.applicant_gender);
+			$("#age").text(json.applicant_age);
 			$("#cstatus").text(json.applicant_cstatus);
 			$("#dob").text(json.applicant_dob);
 			$("#pob").text(json.applicant_pob);
+			$("#sss").text(json.applicant_sss);
+			$("#pag-ibig").text(json.applicant_pagIbig);
 		});
 		
-		$.getJSON('http://www.grand-pillar.com/uploads/subicjob/loadData.php?applicanteduc='+appId, function(json) {
+		$.getJSON('http://www.grand-pillar.com/uploads/Subicjobs/loadData.php?applicanteduc='+appId, function(json) {
 			$("#eductype").text(json.educ_type);
 			$("#school").text(json.school_name);
 			$("#schooladdr").text(json.school_addr);
@@ -309,7 +341,7 @@
 			//$("#app").text(json.applicant_id);
 		});
 		
-		$.getJSON('http://www.grand-pillar.com/uploads/subicjob/loadData.php?jobexperience='+appId, function(json) {
+		$.getJSON('http://www.grand-pillar.com/uploads/Subicjobs/loadData.php?jobexperience='+appId, function(json) {
 			$("#pos").text(json.jobex_title);
 			$("#cname").text(json.jobex_company);
 			$("#from").text(json.jobex_started);
@@ -317,18 +349,17 @@
 			//$("#appli").text(json.applicant_id);
 		});
 		
-		$.getJSON('http://www.grand-pillar.com/uploads/subicjob/loadData.php?applicantsprofile='+appId, function(json) {
+		$.getJSON('http://www.grand-pillar.com/uploads/Subicjobs/loadData.php?applicantsprofile='+appId, function(json) {
 			$("#hello").text(json.applicant_fname);		
 		});
-	
 		
-		$.getJSON('http://www.grand-pillar.com/uploads/subicjob/loadData.php?appId='+appId, function(json) {
+		$.getJSON('http://www.grand-pillar.com/uploads/Subicjobs/loadData.php?appId='+appId, function(json) {
 			$.each(json, function (key, val) {
 				$("#skilllist").append('<div class="input-field col s2">'+val.category_title+'</div>');
 			});			 
 		});
 		
-		$.getJSON('http://www.grand-pillar.com/uploads/subicjob/loadData.php?application='+appId, function(json) {
+		$.getJSON('http://www.grand-pillar.com/uploads/Subicjobs/loadData.php?application='+appId, function(json) {
 			$.each(json, function (key, val) {
 				var jpoststat = '';
 				if(val.jobpost_status == 0) {
@@ -351,19 +382,37 @@
 				$("#applications").append('<tr><td>'+val.jobpost_title+'</td><td>'+val.jobpost_date_closing+'</td><td>'+jpoststat+'</td><td>'+val.application_date+'</td><td>'+appStat+'</td></tr>');
 			});			
 		});		
-		
 	
 		$('ul.tabs').tabs('select_tab', 'test1');
+	
+	var trylang;
+	var trimlang;
+	
+	$.getJSON('http://www.grand-pillar.com/uploads/Subicjobs/loadData.php?selectFile='+appId, function(result){
+        $.each(result, function(i, field){
+			trylang = field.primary_file;
+			trimlang = trylang.split(' ').join('+');
+			//trimlang = trylang.replace(/\s/g,'');
+			//trimlang = $.trim(trylang); hindi gumagana
+			$("#images").append('<img src="data:image/png;base64,'+trimlang+'" class="my-image" />');
+        });
+    });	
+	Demo.init();
+	
 	
 	});
 	
 
-	</script>
+	</script>	
+	
 <div class="footer-copyright  blue lighten-1">
 		<div class="container">
 			<a class="white-text" href="#">Copyright. All Rights Reserved</a>
 		</div>
 </div>
 	
+	
+	
 </body>
+
 </html>

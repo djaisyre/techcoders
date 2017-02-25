@@ -37,11 +37,10 @@
 		<div class="col s2">
 			<div class="collection">
 			<a href="" id="link1" class="collection-item">Locators List</a>
-				<a href="" id="link7" class="collection-item">Applicants List</a>
-				
+				<a href="" id="link7" class="collection-item">Applicants List <b id="pendong"></b></a>
 				<a href="" id="link2" class="collection-item">Job Category</a>
-				<a href="" id="link3" class="collection-item">Job Post Request</a>
-				<a href="" id="link4" class="collection-item">Register of Eligibles</a>
+				<a href="" id="link3" class="collection-item">Job Post Request <b id="pending"></b></a>
+				<a href="" id="link4" class="collection-item">Register of Eligibles <b id="roe"></b></a>
 				<a href="" id="link6" class="collection-item">Evaluation</a>
 				<a href="" id="link8" class="collection-item">Report</a>
 			</div>
@@ -86,6 +85,30 @@
 			}
 		}
 		
+		function pendingApplicant() {
+			$.getJSON('http://www.grand-pillar.com/uploads/Subicjobs/loadData.php?applicationPending=true', function(json) {
+				$('#pendong').text(json.length);
+			});		
+		}
+		
+		pendingApplicant();
+		
+		function pendingJob() {
+			$.getJSON('http://www.grand-pillar.com/uploads/Subicjobs/loadData.php?jobrequestPending=true', function(json) {
+				$('#pending').text(json.length);
+			});		
+		}
+		
+		pendingJob();
+		
+		function hiredApplicant() {
+			$.getJSON('http://www.grand-pillar.com/uploads/Subicjobs/loadData.php?applicationHired=true', function(json) {
+				$('#roe').text(json.length);
+			});		
+		}
+		
+		hiredApplicant();
+		
 		var amdId = getUrlParameter('amdId');
 		
 		$("#link1").attr("href", "admin.html?amdId="+amdId);
@@ -99,7 +122,7 @@
 		
 		var rstat = '';
 		
-		$.getJSON('http://www.grand-pillar.com/uploads/subicjob/loadData.php?applicationlist=true', function(json) {
+		$.getJSON('http://www.grand-pillar.com/uploads/Subicjobs/loadData.php?applicationlist=true', function(json) {
 			$.each(json, function (key, val) {
 			var stat = val.application_status;
 			
@@ -116,8 +139,9 @@
 				
 				$("#applicantslist").append('<tr><td>'+val.application_date+'</td><td>'+rstat+'</td><td>'+val.applicant_lname+' '+val.applicant_fname+'</td><td>'+val.applicant_contact+'</td><td><a href="profile.html?amdId=1&appId='+val.applicant_id+'" class="btn waves-effect waves-light btn-large responsive-button">View Profile</a></td></tr>');
 			});
-		});		
-		$.getJSON('http://www.grand-pillar.com/uploads/subicjob/loadData.php?adminid='+amdId, function(json) {
+		});	
+
+		$.getJSON('http://www.grand-pillar.com/uploads/Subicjobs/loadData.php?adminid='+amdId, function(json) {
 			$("#hi").text(json.admin_fname);		
 		});
 		

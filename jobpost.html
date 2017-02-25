@@ -29,23 +29,30 @@
 			<li><a href="about.html"><img src="icons/a.png" class="icon"> About Us</a></li>
 			<li>
 				<!--<a href="login.html" class="nbm"><img src="icons/sign-in1.png" class="icon"> Login</a>-->
-				<a href="applicantlogin.html" class='dropdown-button btn blue darken-3'> LogIn</a>
-				<!--<a class='dropdown-button btn blue darken-3' href='#' data-activates='dropdown2'>LogIn</a>
+				<a class='dropdown-button btn blue darken-3' href='#' data-activates='dropdown1'>LogIn</a>
+				<ul id='dropdown1' class='dropdown-content'>
+					<li><a href="adminlogin.html">Admin</a></li>
+					<li><a href="locatorlogin.html">Locator</a></li>
+					<li><a href="applicantlogin.html">Applicant</a></li>
+				</ul>
+			</li>
+		</ul>
+		<ul id="nav-mobile" class="side-nav">
+			<li><img src="hahahaha.png" class="icon responsive-img"></li>
+			<li><a href="index.html" class="nbm"><img src="icons/h1.png" class="icon"> Home</a></li>
+			<li><a href="jobpost.html" class="nbm"><img src="icons/s1.png" class="icon"> Job Postings</a></li>
+			<li><a href="faqs.html" class="nbm"><img src="icons/q1.png" class="icon"> FAQs</a></li>
+			<li><a href="about.html" class="nbm"><img src="icons/a1.png" class="icon"> About Us</a></li>
+			<li>
+				<!--<a href="login.html" class="nbm"><img src="icons/sign-in1.png" class="icon"> Login</a>-->
+				<a class='dropdown-button btn blue darken-3' href='#' data-activates='dropdown2'>LogIn</a>
 				<ul id='dropdown2' class='dropdown-content'>
 					<li><a href="adminlogin.html">Admin</a></li>
 					<li><a href="locatorlogin.html">Locator</a></li>
 					<li><a href="applicantlogin.html">Applicant</a></li>
-				</ul>-->				
+				</ul>
 			</li>
 		</ul>
-		<ul id="nav-mobile" class="side-nav">
-			 <li><img src="icons/banner1.png" class="icon responsive-img"></li>
-        <li><a href="index.html" class="nbm"><img src="icons/h1.png" class="icon"> Home</a></li>
-		<li><a href="jobpost.html" class="nbm"><img src="icons/s1.png" class="icon"> Job Postings</a></li>
-        <li><a href="faqs.html" class="nbm"><img src="icons/q1.png" class="icon"> FAQs</a></li>
-        <li><a href="about.html" class="nbm"><img src="icons/a1.png" class="icon"> About Us</a></li>
-		<li><a href="applicantlogin.html" class="nbm"><img src="icons/sign-in1.png" class="icon"> Login</a></li>
-      </ul>
 		<a href="#" data-activates="nav-mobile" class="button-collapse"><img src="icons/menu.png" class="icon"></a>
 		</div>
 	</nav>
@@ -53,7 +60,7 @@
 	
 	<div class="container">
 		<h4><img src="icons/jbs.png" class="icon"> Job Posts</h4>
-		<!--<div class="row">
+		<!--div class="row">
 			<div class="input-field col s6">
 			  <input name="search" id="search" type="text" class="validate">
 			  <label for="search">Search Jobs</label>
@@ -61,7 +68,7 @@
 			<div class="input-field col s6">
 				<button class="btn waves-effect waves-light" type="submit" name="action" id="action">Submit</button>
 			</div>
-			</div>-->
+		</div>-->
 		<div id="jobpost" class="row">
 
 		</div>
@@ -93,7 +100,7 @@
 		var url = '';
 
 		if(appId) {
-			server = 'http://www.grand-pillar.com/uploads/subicjob/loadData.php?appIdJob='+appId;
+			server = 'http://www.grand-pillar.com/uploads/Subicjobs/loadData.php?appIdJob='+appId;
 		
 			$("#link1").attr("href", "jobpost.html?appId="+appId);
 			$("#link2").attr("href", "applicant.html?appId="+appId);
@@ -101,7 +108,7 @@
 			$('#loggedin').show();
 			$('.itdepends').hide();
 		} else {
-			server = 'http://www.grand-pillar.com/uploads/subicjob/loadData.php?jobpostings=true';
+			server = 'http://www.grand-pillar.com/uploads/Subicjobs/loadData.php?jobpostings=true';
 		
 			$('#loggedin').hide();
 			$('.itdepends').show();
@@ -111,7 +118,7 @@
 			$('#jobpost').empty();
 			var str = $('#search').val();
 
-			$.getJSON('http://www.grand-pillar.com/uploads/subicjob/loadData.php?searchStr='+str+'&appIdJobb='+appId, function(json) {
+			$.getJSON('http://www.grand-pillar.com/uploads/Subicjobs/loadData.php?searchStr='+str+'&appIdJobb='+appId, function(json) {
 				console.log(json);
 				$.each(json, function (key, val) {
 					var status = '';
@@ -130,12 +137,13 @@
 						url = 'registration.html?postId='+val.jobpost_id;
 					}
 
-					$("#jobpost").append('<div class="col s12 m6"><div class="card blue-grey darken-1"><div class="card-content white-text"><span class="card-title">'+val.jobpost_title+'</span><p>Date Posted: '+val.jobpost_date_posted+'</p><p>Date Closing: '+val.jobpost_date_closing+'</p></div><div class="card-action"><a href="'+url+'">Click Here to Apply</a></div></div></div>');
+					$("#jobpost").append('<div class="col s12 m6"><div class="card blue-grey darken-1"><div class="card-content white-text"><span class="card-title">'+val.jobpost_title+'</span><p>Date Posted: '+val.jobpost_date_posted+'</p><p>Date Closing: '+val.jobpost_date_closing+'</p></div><div class="card-action"><a href="'+url+'">Click Here to Apply</a><p><a href="applicantlogin.html">Member?</p></a></div></div></div>');
 					
 				});
 			});
 		});		
 		
+		//console.log(server);
 		$.getJSON(server, function(json) {
 			$.each(json, function (key, val) {
 				var status = '';
@@ -155,7 +163,7 @@
 				}
 				
 				//$("#jobpost").append('<div class="col s12 m6"><div class="card blue-grey darken-1"><div class="card-content white-text"><span class="card-title">'+val.jobpost_title+'</span><p>Date Posted: '+val.jobpost_date_posted+'</p><p>Date Closing: '+val.jobpost_date_closing+'</p></div><div class="card-action"><a href="applicantlogin.html?postId='+val.jobpost_id+'">Click Here to Apply</a></div></div></div>');
-				$("#jobpost").append('<div class="col s12 m6"><div class="card blue-grey darken-1"><div class="card-content white-text"><span class="card-title">'+val.jobpost_title+'</span><p>Date Posted: '+val.jobpost_date_posted+'</p><p>Date Closing: '+val.jobpost_date_closing+'</p></div><div class="card-action"><a href="'+url+'">Click Here to Apply</a></div></div></div>');
+				$("#jobpost").append('<div class="col s12 m6"><div class="card blue-grey darken-1"><div class="card-content white-text"><span class="card-title">'+val.jobpost_title+'</span><p>Date Posted: '+val.jobpost_date_posted+'</p><p>Date Closing: '+val.jobpost_date_closing+'</p></div><div class="card-action"><a href="'+url+'">Click Here to Apply</a><p><a href="applicantlogin.html">Member?</p></a></div></div></div>');
 				
 			});
 		});
@@ -166,20 +174,31 @@
 	});
 	</script>	
 	
-	<footer class="page-footer  blue lighten-1">
-		<div class="container ">
+		<footer class="page-footer  blue lighten-1">
+		<div id="templatemo_footer">
+
+        <div class="container ">
+			
 			<div class="row">
-				<div class="col l6 s12">
+				<div class="container left">
+					
 					<h5 class="white-text">Subic Bay Metropolitan Authority</h5>
 					<p class="white-text">Bldg. 229 Waterfront Road, Subic Bay Freeport Zone, Philippines.<br> Voice: +6347 252 4000 Fax: +6347 252 4185 </p>
+					
 				</div>
 			</div>
 		</div>
+    
 		<div class="footer-copyright">
-			<div class="container">
+       <div class="container">
+			
 				<a class="white-text" href="#">Copyright. All Rights Reserved</a>
-			</div>
+			
 		</div>
-	</footer>
+		</div>
+     
+    
+    </div>
+</footer>
 </body>
 </html>
