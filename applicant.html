@@ -314,7 +314,7 @@
 		//$("#link10").attr("href", "updateimage.html?appId="+appId);
 	
 		
-		$.getJSON('http://wwww.grand-pillar.com/uploads/subicjobssbma/loadData.php?applicantsprofile='+appId, function(json) {
+		$.getJSON('http://www.grand-pillar.com/uploads/subicjobssbma/loadData.php?applicantsprofile='+appId, function(json) {
 			$("#apid").text(json.applicant_id);
 			$("#lname").text(json.applicant_lname);
 			$("#fname").text(json.applicant_fname);
@@ -334,7 +334,7 @@
 			$("#pag-ibig").text(json.applicant_pagIbig);
 		});
 		
-		$.getJSON('http://wwww.grand-pillar.com/uploads/subicjobssbma/loadData.php?applicanteduc='+appId, function(json) {
+		$.getJSON('http://www.grand-pillar.com/uploads/subicjobssbma/loadData.php?applicanteduc='+appId, function(json) {
 			$("#eductype").text(json.educ_type);
 			$("#school").text(json.school_name);
 			$("#schooladdr").text(json.school_addr);
@@ -342,7 +342,7 @@
 			//$("#app").text(json.applicant_id);
 		});
 		
-		$.getJSON('http://wwww.grand-pillar.com/uploads/subicjobssbma/loadData.php?jobexperience='+appId, function(json) {
+		$.getJSON('http://www.grand-pillar.com/uploads/subicjobssbma/loadData.php?jobexperience='+appId, function(json) {
 			$("#pos").text(json.jobex_title);
 			$("#cname").text(json.jobex_company);
 			$("#from").text(json.jobex_started);
@@ -350,17 +350,17 @@
 			//$("#appli").text(json.applicant_id);
 		});
 		
-		$.getJSON('http://wwww.grand-pillar.com/uploads/subicjobssbma/loadData.php?applicantsprofile='+appId, function(json) {
+		$.getJSON('http://www.grand-pillar.com/uploads/subicjobssbma/loadData.php?applicantsprofile='+appId, function(json) {
 			$("#hello").text(json.applicant_fname);		
 		});
 		
-		$.getJSON('http://wwww.grand-pillar.com/uploads/subicjobssbma/loadData.php?appId='+appId, function(json) {
+		$.getJSON('http://www.grand-pillar.com/uploads/subicjobssbma/loadData.php?appId='+appId, function(json) {
 			$.each(json, function (key, val) {
 				$("#skilllist").append('<div class="input-field col s2">'+val.category_title+'</div>');
 			});			 
 		});
 		
-		$.getJSON('http://wwww.grand-pillar.com/uploads/subicjobssbma/loadData.php?application='+appId, function(json) {
+		$.getJSON('http://www.grand-pillar.com/uploads/subicjobssbma/loadData.php?application='+appId, function(json) {
 			$.each(json, function (key, val) {
 				var jpoststat = '';
 				if(val.jobpost_status == 0) {
@@ -389,7 +389,7 @@
 	var trylang;
 	var trimlang;
 	
-	$.getJSON('http://wwww.grand-pillar.com/uploads/subicjobssbma/loadData.php?selectFile='+appId, function(result){
+	$.getJSON('http://www.grand-pillar.com/uploads/subicjobssbma/loadData.php?selectFile='+appId, function(result){
         $.each(result, function(i, field){
 			trylang = field.primary_file;
 			trimlang = trylang.split(' ').join('+');

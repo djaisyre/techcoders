@@ -132,7 +132,7 @@
 			
 			$.ajax({
 				type : 'POST',
-				url  : 'http://wwww.grand-pillar.com/uploads/subicjobssbma/saveEducData.php',
+				url  : 'http://www.grand-pillar.com/uploads/subicjobssbma/saveEducData.php',
 				data : data,
 				success :  function(response) {
 					$('#educ_type').val('');
@@ -147,7 +147,7 @@
 			return false;
 		});			
 		
-		$.getJSON('http://wwww.grand-pillar.com/uploads/subicjobssbma/loadData.php?applicantsprofile='+appId, function(json) {
+		$.getJSON('http://www.grand-pillar.com/uploads/subicjobssbma/loadData.php?applicantsprofile='+appId, function(json) {
 			$("#hello").text(json.applicant_fname);		
 		});
 		

@@ -34,6 +34,7 @@
 			</li>
 		</ul>
 		<ul id="nav-mobile" class="side-nav">
+		<li><img src="hahahaha.png" class="icon responsive-img"></li>
 			<li><a href="index.html" class="nbm"><img src="icons/h1.png" class="icon"> Home</a></li>
 			<li><a href="jobpost.html" class="nbm"><img src="icons/s1.png" class="icon"> Job Postings</a></li>
 			<li><a href="faqs.html" class="nbm"><img src="icons/q1.png" class="icon"> FAQs</a></li>
@@ -41,12 +42,14 @@
 			
 			<li>
 				<!--<a href="login.html" class="nbm"><img src="icons/sign-in1.png" class="icon"> Login</a>-->
-				<a class='dropdown-button btn blue darken-3' href='#' data-activates='dropdown2'>LogIn</a>
-				<ul id='dropdown2' class='dropdown-content'>
-					<li><a href="adminlogin.html">Admin</a></li>
-					<li><a href="locatorlogin.html">Locator</a></li>
-					<li><a href="applicantlogin.html">Applicant</a></li>
-				</ul>				
+				<a href="applicantlogin.html" class="button btn blue darken-3">Login</a>
+        <!--<a href="login.html" class="nbm"><img src="icons/sign-in1.png" class="icon"> Login</a>-->
+        <!--<a class='dropdown-button btn blue darken-3' href='#' data-activates='dropdown2'>LogIn</a>
+        <ul id='dropdown2' class='dropdown-content'>
+          <li><a href="adminlogin.html">Admin</a></li>
+          <li><a href="locatorlogin.html">Locator</a></li>
+          <li><a href="applicantlogin.html">Applicant</a></li>
+        </ul>-->		
 			</li>
 		</ul>
 		<a href="#" data-activates="nav-mobile" class="button-collapse"><img src="icons/menu.png" class="icon"></a>
@@ -459,9 +462,9 @@ These Terms will be applied fully and affect to your use of this Application/Web
 	jQuery.extend(jQuery.validator.messages,{
 			required: "This field is required." });
 	
-	$.getJSON('http://wwww.grand-pillar.com/uploads/subicjobssbma/loadData.php?category=true',  function(json)  {
+	$.getJSON('http://www.grand-pillar.com/uploads/subicjobssbma/loadData.php?category=true',  function(json)  {
 			$.each(json,  function  (key,  val)  {
-				$('#skillset').append('<div class="input-field col s4"><p><input type="checkbox" name="skills[]" value="'+val.category_id+'" id="index'+key+'" class="chkbox"/><label for="index'+key+'">'+val.category_title+'</label></p></div>');
+				$('#skillset').append('<div class="input-field col s6"><p><input type="checkbox" name="skills[]" value="'+val.category_id+'" id="index'+key+'" class="chkbox"/><label for="index'+key+'">'+val.category_title+'</label></p></div>');
 			});	
 		});		
 		
@@ -479,7 +482,7 @@ These Terms will be applied fully and affect to your use of this Application/Web
 			
 			$.ajax({
 				type : 'POST',
-				url  : 'http://wwww.grand-pillar.com/uploads/subicjobssbma/saveApplicantData.php',
+				url  : 'http://www.grand-pillar.com/uploads/subicjobssbma/saveApplicantData.php',
 				data : data,
 				success :  function(response) {
 					$('#applicant_fname').val('');

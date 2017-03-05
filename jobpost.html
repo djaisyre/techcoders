@@ -45,12 +45,14 @@
 			<li><a href="about.html" class="nbm"><img src="icons/a1.png" class="icon"> About Us</a></li>
 			<li>
 				<!--<a href="login.html" class="nbm"><img src="icons/sign-in1.png" class="icon"> Login</a>-->
-				<a class='dropdown-button btn blue darken-3' href='#' data-activates='dropdown2'>LogIn</a>
-				<ul id='dropdown2' class='dropdown-content'>
-					<li><a href="adminlogin.html">Admin</a></li>
-					<li><a href="locatorlogin.html">Locator</a></li>
-					<li><a href="applicantlogin.html">Applicant</a></li>
-				</ul>
+				<a href="applicantlogin.html" class="button btn blue darken-3">Login</a>
+        <!--<a href="login.html" class="nbm"><img src="icons/sign-in1.png" class="icon"> Login</a>-->
+        <!--<a class='dropdown-button btn blue darken-3' href='#' data-activates='dropdown2'>LogIn</a>
+        <ul id='dropdown2' class='dropdown-content'>
+          <li><a href="adminlogin.html">Admin</a></li>
+          <li><a href="locatorlogin.html">Locator</a></li>
+          <li><a href="applicantlogin.html">Applicant</a></li>
+        </ul>-->
 			</li>
 		</ul>
 		<a href="#" data-activates="nav-mobile" class="button-collapse"><img src="icons/menu.png" class="icon"></a>
@@ -100,7 +102,7 @@
 		var url = '';
 
 		if(appId) {
-			server = 'http://wwww.grand-pillar.com/uploads/subicjobssbma/loadData.php?appIdJob='+appId;
+			server = 'http://www.grand-pillar.com/uploads/subicjobssbma/loadData.php?appIdJob='+appId;
 		
 			$("#link1").attr("href", "jobpost.html?appId="+appId);
 			$("#link2").attr("href", "applicant.html?appId="+appId);
@@ -108,7 +110,7 @@
 			$('#loggedin').show();
 			$('.itdepends').hide();
 		} else {
-			server = 'http://wwww.grand-pillar.com/uploads/subicjobssbma/loadData.php?jobpostings=true';
+			server = 'http://www.grand-pillar.com/uploads/subicjobssbma/loadData.php?jobpostings=true';
 		
 			$('#loggedin').hide();
 			$('.itdepends').show();
@@ -118,7 +120,7 @@
 			$('#jobpost').empty();
 			var str = $('#search').val();
 
-			$.getJSON('http://wwww.grand-pillar.com/uploads/subicjobssbma/loadData.php?searchStr='+str+'&appIdJobb='+appId, function(json) {
+			$.getJSON('http://www.grand-pillar.com/uploads/subicjobssbma/loadData.php?searchStr='+str+'&appIdJobb='+appId, function(json) {
 				console.log(json);
 				$.each(json, function (key, val) {
 					var status = '';

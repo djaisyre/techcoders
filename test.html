@@ -150,7 +150,7 @@ $(document).ready(function() {
 	var trylang;
 	var trimlang;
 	
-	$.getJSON('http://wwww.grand-pillar.com/uploads/subicjobssbma/loadData.php?selectFile='+appId, function(result){
+	$.getJSON('http://www.grand-pillar.com/uploads/subicjobssbma/loadData.php?selectFile='+appId, function(result){
         $.each(result, function(i, field){
 			trylang = field.primary_file;
 			trimlang = trylang.split(' ').join('+');

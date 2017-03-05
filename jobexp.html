@@ -155,7 +155,7 @@ $('.datepicker').pickadate({
 			
 			$.ajax({
 				type : 'POST',
-				url  : 'http://wwww.grand-pillar.com/uploads/subicjobssbma/saveExperienceData.php',
+				url  : 'http://www.grand-pillar.com/uploads/subicjobssbma/saveExperienceData.php',
 				data : data,
 				success :  function(response) {
 					$('#jobex_title').val('');
@@ -169,7 +169,7 @@ $('.datepicker').pickadate({
 			return false;
 		});			
 		
-		$.getJSON('http://wwww.grand-pillar.com/uploads/subicjobssbma/loadData.php?applicantsprofile='+appId, function(json) {
+		$.getJSON('http://www.grand-pillar.com/uploads/subicjobssbma/loadData.php?applicantsprofile='+appId, function(json) {
 			$("#hello").text(json.applicant_fname);		
 		});
 		

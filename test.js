@@ -46,7 +46,7 @@ var Demo = (function() {
 		
 		//save the crop image in database
 			$.ajax({
-				url: 'http://wwww.grand-pillar.com/uploads/subicjobssbma/upload.php',
+				url: 'http://www.grand-pillar.com/uploads/subicjobssbma/upload.php',
 				type: 'POST',
 				data: "imgdata="+yesTrim+"&applicant_id="+appId,
 				//data: 'code='+code+'&userid='+userid,
