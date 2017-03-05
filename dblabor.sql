@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
+-- version 4.1.14
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 15, 2017 at 03:50 AM
--- Server version: 10.1.13-MariaDB
--- PHP Version: 5.6.21
+-- Generation Time: Mar 05, 2017 at 02:57 PM
+-- Server version: 5.6.17
+-- PHP Version: 5.5.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -14,7 +14,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 
 --
 -- Database: `dblabor`
@@ -26,15 +26,16 @@ SET time_zone = "+00:00";
 -- Table structure for table `tbl_admin`
 --
 
-CREATE TABLE `tbl_admin` (
-  `admin_id` int(10) NOT NULL,
+CREATE TABLE IF NOT EXISTS `tbl_admin` (
+  `admin_id` int(10) NOT NULL AUTO_INCREMENT,
   `admin_lname` varchar(35) DEFAULT NULL,
   `admin_fname` varchar(35) DEFAULT NULL,
   `admin_email` varchar(35) DEFAULT NULL,
   `admin_uname` varchar(35) DEFAULT NULL,
   `admin_upass` varchar(35) DEFAULT NULL,
-  `admin_status` int(10) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `admin_status` int(10) DEFAULT NULL,
+  PRIMARY KEY (`admin_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `tbl_admin`
@@ -49,8 +50,8 @@ INSERT INTO `tbl_admin` (`admin_id`, `admin_lname`, `admin_fname`, `admin_email`
 -- Table structure for table `tbl_applicant`
 --
 
-CREATE TABLE `tbl_applicant` (
-  `applicant_id` int(10) NOT NULL,
+CREATE TABLE IF NOT EXISTS `tbl_applicant` (
+  `applicant_id` int(10) NOT NULL AUTO_INCREMENT,
   `applicant_lname` varchar(35) DEFAULT NULL,
   `applicant_fname` varchar(35) DEFAULT NULL,
   `applicant_mname` varchar(100) NOT NULL,
@@ -60,19 +61,19 @@ CREATE TABLE `tbl_applicant` (
   `applicant_city` varchar(55) NOT NULL,
   `applicant_province` varchar(55) NOT NULL,
   `applicant_postal` int(10) NOT NULL,
-  `applicant_contact` varchar(35) DEFAULT NULL,
+  `applicant_contact` varchar(11) DEFAULT NULL,
   `applicant_age` int(10) NOT NULL,
   `applicant_email` varchar(35) DEFAULT NULL,
   `applicant_dob` date NOT NULL,
   `applicant_pob` varchar(255) NOT NULL,
+  `applicant_sss` varchar(20) NOT NULL,
+  `applicant_pagIbig` varchar(20) NOT NULL,
   `applicant_username` varchar(35) DEFAULT NULL,
   `applicant_password` varchar(35) DEFAULT NULL,
   `applicant_confirmpass` varchar(35) NOT NULL,
-  `profile_pics` blob NOT NULL,
-  `sss_pics` blob NOT NULL,
-  `nbi_pics` blob NOT NULL,
-  `applicant_status` int(10) DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `applicant_status` int(10) DEFAULT '0',
+  PRIMARY KEY (`applicant_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -80,13 +81,17 @@ CREATE TABLE `tbl_applicant` (
 -- Table structure for table `tbl_application`
 --
 
-CREATE TABLE `tbl_application` (
-  `application_id` int(10) NOT NULL,
+CREATE TABLE IF NOT EXISTS `tbl_application` (
+  `application_id` int(10) NOT NULL AUTO_INCREMENT,
   `application_date` date DEFAULT NULL,
   `application_status` int(10) DEFAULT '0',
+  `application_notif` int(10) NOT NULL DEFAULT '0',
   `jobpost_id` int(10) DEFAULT NULL,
-  `applicant_id` int(10) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `applicant_id` int(10) DEFAULT NULL,
+  PRIMARY KEY (`application_id`),
+  KEY `jobpost_id` (`jobpost_id`),
+  KEY `applicant_id` (`applicant_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -94,11 +99,12 @@ CREATE TABLE `tbl_application` (
 -- Table structure for table `tbl_category`
 --
 
-CREATE TABLE `tbl_category` (
-  `category_id` int(10) NOT NULL,
+CREATE TABLE IF NOT EXISTS `tbl_category` (
+  `category_id` int(10) NOT NULL AUTO_INCREMENT,
   `category_title` varchar(35) DEFAULT NULL,
-  `category_description` blob
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `category_description` blob,
+  PRIMARY KEY (`category_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -106,14 +112,15 @@ CREATE TABLE `tbl_category` (
 -- Table structure for table `tbl_educ`
 --
 
-CREATE TABLE `tbl_educ` (
-  `educ_id` int(10) NOT NULL,
+CREATE TABLE IF NOT EXISTS `tbl_educ` (
+  `educ_id` int(10) NOT NULL AUTO_INCREMENT,
   `educ_type` varchar(255) NOT NULL,
   `school_name` varchar(255) NOT NULL,
   `school_addr` varchar(255) NOT NULL,
   `year_graduated` year(4) NOT NULL,
-  `applicant_id` int(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `applicant_id` int(10) NOT NULL,
+  PRIMARY KEY (`educ_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -121,16 +128,18 @@ CREATE TABLE `tbl_educ` (
 -- Table structure for table `tbl_jobpost`
 --
 
-CREATE TABLE `tbl_jobpost` (
-  `jobpost_id` int(10) NOT NULL,
+CREATE TABLE IF NOT EXISTS `tbl_jobpost` (
+  `jobpost_id` int(10) NOT NULL AUTO_INCREMENT,
   `jobpost_title` varchar(35) DEFAULT NULL,
   `jobpost_description` blob,
   `jobpost_numapp` int(10) NOT NULL,
   `jobpost_date_posted` date DEFAULT NULL,
   `jobpost_date_closing` varchar(35) DEFAULT NULL,
   `jobpost_status` int(10) DEFAULT '1',
-  `locators_id` int(10) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `locators_id` int(10) DEFAULT NULL,
+  PRIMARY KEY (`jobpost_id`),
+  KEY `locators_id` (`locators_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -138,14 +147,15 @@ CREATE TABLE `tbl_jobpost` (
 -- Table structure for table `tbl_job_exp`
 --
 
-CREATE TABLE `tbl_job_exp` (
-  `jobex_id` int(10) NOT NULL,
+CREATE TABLE IF NOT EXISTS `tbl_job_exp` (
+  `jobex_id` int(10) NOT NULL AUTO_INCREMENT,
   `jobex_title` varchar(255) NOT NULL,
   `jobex_company` varchar(255) NOT NULL,
   `jobex_started` date NOT NULL,
   `jobex_end` date NOT NULL,
-  `applicant_id` int(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `applicant_id` int(10) NOT NULL,
+  PRIMARY KEY (`jobex_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -153,15 +163,16 @@ CREATE TABLE `tbl_job_exp` (
 -- Table structure for table `tbl_locators`
 --
 
-CREATE TABLE `tbl_locators` (
-  `locators_id` int(10) NOT NULL,
+CREATE TABLE IF NOT EXISTS `tbl_locators` (
+  `locators_id` int(10) NOT NULL AUTO_INCREMENT,
   `locators_name` varchar(35) DEFAULT NULL,
   `locators_address` varchar(35) DEFAULT NULL,
   `locators_contact` varchar(35) DEFAULT NULL,
   `locators_uname` varchar(35) DEFAULT NULL,
   `locators_upass` varchar(35) DEFAULT NULL,
-  `locators_status` int(10) DEFAULT '1'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `locators_status` int(10) DEFAULT '1',
+  PRIMARY KEY (`locators_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -169,11 +180,14 @@ CREATE TABLE `tbl_locators` (
 -- Table structure for table `tbl_qualification`
 --
 
-CREATE TABLE `tbl_qualification` (
-  `qualification_id` int(10) NOT NULL,
+CREATE TABLE IF NOT EXISTS `tbl_qualification` (
+  `qualification_id` int(10) NOT NULL AUTO_INCREMENT,
   `jobpost_id` int(10) DEFAULT NULL,
-  `category_id` int(10) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `category_id` int(10) DEFAULT NULL,
+  PRIMARY KEY (`qualification_id`),
+  KEY `jobpost_id` (`jobpost_id`),
+  KEY `category_id` (`category_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -181,137 +195,28 @@ CREATE TABLE `tbl_qualification` (
 -- Table structure for table `tbl_skills`
 --
 
-CREATE TABLE `tbl_skills` (
-  `skills_id` int(10) NOT NULL,
+CREATE TABLE IF NOT EXISTS `tbl_skills` (
+  `skills_id` int(10) NOT NULL AUTO_INCREMENT,
   `applicant_id` int(10) DEFAULT NULL,
-  `category_id` int(10) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `category_id` int(10) DEFAULT NULL,
+  PRIMARY KEY (`skills_id`),
+  KEY `applicant_id` (`applicant_id`),
+  KEY `category_id` (`category_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
 
 --
--- Indexes for dumped tables
+-- Table structure for table `tbl_upload`
 --
 
---
--- Indexes for table `tbl_admin`
---
-ALTER TABLE `tbl_admin`
-  ADD PRIMARY KEY (`admin_id`);
+CREATE TABLE IF NOT EXISTS `tbl_upload` (
+  `upload_id` int(10) NOT NULL AUTO_INCREMENT,
+  `primary_file` longblob NOT NULL,
+  `applicant_id` int(10) NOT NULL,
+  PRIMARY KEY (`upload_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
---
--- Indexes for table `tbl_applicant`
---
-ALTER TABLE `tbl_applicant`
-  ADD PRIMARY KEY (`applicant_id`);
-
---
--- Indexes for table `tbl_application`
---
-ALTER TABLE `tbl_application`
-  ADD PRIMARY KEY (`application_id`),
-  ADD KEY `jobpost_id` (`jobpost_id`),
-  ADD KEY `applicant_id` (`applicant_id`);
-
---
--- Indexes for table `tbl_category`
---
-ALTER TABLE `tbl_category`
-  ADD PRIMARY KEY (`category_id`);
-
---
--- Indexes for table `tbl_educ`
---
-ALTER TABLE `tbl_educ`
-  ADD PRIMARY KEY (`educ_id`);
-
---
--- Indexes for table `tbl_jobpost`
---
-ALTER TABLE `tbl_jobpost`
-  ADD PRIMARY KEY (`jobpost_id`),
-  ADD KEY `locators_id` (`locators_id`);
-
---
--- Indexes for table `tbl_job_exp`
---
-ALTER TABLE `tbl_job_exp`
-  ADD PRIMARY KEY (`jobex_id`);
-
---
--- Indexes for table `tbl_locators`
---
-ALTER TABLE `tbl_locators`
-  ADD PRIMARY KEY (`locators_id`);
-
---
--- Indexes for table `tbl_qualification`
---
-ALTER TABLE `tbl_qualification`
-  ADD PRIMARY KEY (`qualification_id`),
-  ADD KEY `jobpost_id` (`jobpost_id`),
-  ADD KEY `category_id` (`category_id`);
-
---
--- Indexes for table `tbl_skills`
---
-ALTER TABLE `tbl_skills`
-  ADD PRIMARY KEY (`skills_id`),
-  ADD KEY `applicant_id` (`applicant_id`),
-  ADD KEY `category_id` (`category_id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `tbl_admin`
---
-ALTER TABLE `tbl_admin`
-  MODIFY `admin_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT for table `tbl_applicant`
---
-ALTER TABLE `tbl_applicant`
-  MODIFY `applicant_id` int(10) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `tbl_application`
---
-ALTER TABLE `tbl_application`
-  MODIFY `application_id` int(10) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `tbl_category`
---
-ALTER TABLE `tbl_category`
-  MODIFY `category_id` int(10) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `tbl_educ`
---
-ALTER TABLE `tbl_educ`
-  MODIFY `educ_id` int(10) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `tbl_jobpost`
---
-ALTER TABLE `tbl_jobpost`
-  MODIFY `jobpost_id` int(10) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `tbl_job_exp`
---
-ALTER TABLE `tbl_job_exp`
-  MODIFY `jobex_id` int(10) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `tbl_locators`
---
-ALTER TABLE `tbl_locators`
-  MODIFY `locators_id` int(10) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `tbl_qualification`
---
-ALTER TABLE `tbl_qualification`
-  MODIFY `qualification_id` int(10) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `tbl_skills`
---
-ALTER TABLE `tbl_skills`
-  MODIFY `skills_id` int(10) NOT NULL AUTO_INCREMENT;
 --
 -- Constraints for dumped tables
 --

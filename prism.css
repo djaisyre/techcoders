@@ -194,7 +194,7 @@ pre[class*="language-"]:after {
 @media screen and (max-width: 767px) {
   pre[class*="language-"]:before,
   pre[class*="language-"]:after {
-    bottom: 14px;
+    bottom: 1px;
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none;

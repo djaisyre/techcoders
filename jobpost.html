@@ -45,12 +45,12 @@
 			<li><a href="about.html" class="nbm"><img src="icons/a1.png" class="icon"> About Us</a></li>
 			<li>
 				<!--<a href="login.html" class="nbm"><img src="icons/sign-in1.png" class="icon"> Login</a>-->
-				<a class='btn blue darken-3' href='applicantlogin.html'>LogIn</a>
-				<!--<ul id='dropdown2' class='dropdown-content'>
+				<a class='dropdown-button btn blue darken-3' href='#' data-activates='dropdown2'>LogIn</a>
+				<ul id='dropdown2' class='dropdown-content'>
 					<li><a href="adminlogin.html">Admin</a></li>
 					<li><a href="locatorlogin.html">Locator</a></li>
 					<li><a href="applicantlogin.html">Applicant</a></li>
-				</ul>-->
+				</ul>
 			</li>
 		</ul>
 		<a href="#" data-activates="nav-mobile" class="button-collapse"><img src="icons/menu.png" class="icon"></a>
@@ -100,7 +100,7 @@
 		var url = '';
 
 		if(appId) {
-			server = 'http://www.grand-pillar.com/uploads/Subicjobs/loadData.php?appIdJob='+appId;
+			server = 'http://wwww.grand-pillar.com/uploads/subicjobssbma/loadData.php?appIdJob='+appId;
 		
 			$("#link1").attr("href", "jobpost.html?appId="+appId);
 			$("#link2").attr("href", "applicant.html?appId="+appId);
@@ -108,7 +108,7 @@
 			$('#loggedin').show();
 			$('.itdepends').hide();
 		} else {
-			server = 'http://www.grand-pillar.com/uploads/Subicjobs/loadData.php?jobpostings=true';
+			server = 'http://wwww.grand-pillar.com/uploads/subicjobssbma/loadData.php?jobpostings=true';
 		
 			$('#loggedin').hide();
 			$('.itdepends').show();
@@ -118,7 +118,7 @@
 			$('#jobpost').empty();
 			var str = $('#search').val();
 
-			$.getJSON('http://www.grand-pillar.com/uploads/Subicjobs/loadData.php?searchStr='+str+'&appIdJobb='+appId, function(json) {
+			$.getJSON('http://wwww.grand-pillar.com/uploads/subicjobssbma/loadData.php?searchStr='+str+'&appIdJobb='+appId, function(json) {
 				console.log(json);
 				$.each(json, function (key, val) {
 					var status = '';
@@ -137,7 +137,7 @@
 						url = 'registration.html?postId='+val.jobpost_id;
 					}
 
-					$("#jobpost").append('<div class="col s12 m6"><div class="card blue-grey darken-1"><div class="card-content white-text"><span class="card-title">'+val.jobpost_title+'</span><p>Date Posted: '+val.jobpost_date_posted+'</p><p>Date Closing: '+val.jobpost_date_closing+'</p></div><div class="card-action"><a href="'+url+'">Click Here to Apply</a><p><a href="applicantlogin.html">Member?</p></a></div></div></div>');
+					$("#jobpost").append('<div class="col s12 m6"><div class="card blue-grey darken-1"><div class="card-content white-text"><span class="card-title">'+val.jobpost_title+'</span><p>Date Posted: '+val.jobpost_date_posted+'</p><p>Date Closing: '+val.jobpost_date_closing+'</p></div><div class="card-action"><a href="'+url+'">Click Here to Apply</a><p><a href="applicantlogin.html">Already a Member?</p></a></div></div></div>');
 					
 				});
 			});
@@ -163,7 +163,7 @@
 				}
 				
 				//$("#jobpost").append('<div class="col s12 m6"><div class="card blue-grey darken-1"><div class="card-content white-text"><span class="card-title">'+val.jobpost_title+'</span><p>Date Posted: '+val.jobpost_date_posted+'</p><p>Date Closing: '+val.jobpost_date_closing+'</p></div><div class="card-action"><a href="applicantlogin.html?postId='+val.jobpost_id+'">Click Here to Apply</a></div></div></div>');
-				$("#jobpost").append('<div class="col s12 m6"><div class="card blue-grey darken-1"><div class="card-content white-text"><span class="card-title">'+val.jobpost_title+'</span><p>Date Posted: '+val.jobpost_date_posted+'</p><p>Date Closing: '+val.jobpost_date_closing+'</p></div><div class="card-action"><a href="'+url+'">Click Here to Apply</a><p><a href="applicantlogin.html">Member?</p></a></div></div></div>');
+				$("#jobpost").append('<div class="col s12 m6"><div class="card blue-grey darken-1"><div class="card-content white-text"><span class="card-title">'+val.jobpost_title+'</span><p>Date Posted: '+val.jobpost_date_posted+'</p><p>Date Closing: '+val.jobpost_date_closing+'</p></div><div class="card-action"><a href="'+url+'">Click Here to Apply</a><p><a href="applicantlogin.html">Already a Member?</p></a></div></div></div>');
 				
 			});
 		});

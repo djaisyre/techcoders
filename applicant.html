@@ -8,7 +8,7 @@
 	<link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 	<link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 	
-	
+	<link rel="icon" type="image/png" href="icon.png" />
 	<title>Subic Jobs</title>
 </head>
 <body>
@@ -26,11 +26,11 @@
 		<div class="col s12">
 			<div class="card z-depth-5">
 				<div class="card-image" >
-					<img id="cdImg" src="bground354.jpg" class="icon responsive-img">
+					<img id="cdImg" src="bground354.jpg">
 				</div>
 				<div class="col s12 right" id="imgSze">
 					<!--<img src="icons/e1.png" width="95px" height="95px" class="circle">-->
-					<a href="" class="btn-floating btn-small waves-effect waves-light amber darken-4 right" id="link9"><i class="fa fa-upload" aria-hidden="true"></i>Upload</a>
+					<a href="" class="btn-floating btn-small waves-effect waves-light amber darken-4 right" id="link9"><i class="fa fa-upload" aria-hidden="true"></i> Upload</a>
 					
 				</div>
 				<div id="images" class="center"></div>
@@ -281,6 +281,7 @@
 	<script src="js/materialize.js"></script>
 	<script src="js/init.js"></script>
 	
+	
 	<script>
 	$(document).ready(function(){
 		function getUrlParameter(sParam) {
@@ -313,7 +314,7 @@
 		//$("#link10").attr("href", "updateimage.html?appId="+appId);
 	
 		
-		$.getJSON('http://www.grand-pillar.com/uploads/Subicjobs/loadData.php?applicantsprofile='+appId, function(json) {
+		$.getJSON('http://wwww.grand-pillar.com/uploads/subicjobssbma/loadData.php?applicantsprofile='+appId, function(json) {
 			$("#apid").text(json.applicant_id);
 			$("#lname").text(json.applicant_lname);
 			$("#fname").text(json.applicant_fname);
@@ -333,7 +334,7 @@
 			$("#pag-ibig").text(json.applicant_pagIbig);
 		});
 		
-		$.getJSON('http://www.grand-pillar.com/uploads/Subicjobs/loadData.php?applicanteduc='+appId, function(json) {
+		$.getJSON('http://wwww.grand-pillar.com/uploads/subicjobssbma/loadData.php?applicanteduc='+appId, function(json) {
 			$("#eductype").text(json.educ_type);
 			$("#school").text(json.school_name);
 			$("#schooladdr").text(json.school_addr);
@@ -341,7 +342,7 @@
 			//$("#app").text(json.applicant_id);
 		});
 		
-		$.getJSON('http://www.grand-pillar.com/uploads/Subicjobs/loadData.php?jobexperience='+appId, function(json) {
+		$.getJSON('http://wwww.grand-pillar.com/uploads/subicjobssbma/loadData.php?jobexperience='+appId, function(json) {
 			$("#pos").text(json.jobex_title);
 			$("#cname").text(json.jobex_company);
 			$("#from").text(json.jobex_started);
@@ -349,17 +350,17 @@
 			//$("#appli").text(json.applicant_id);
 		});
 		
-		$.getJSON('http://www.grand-pillar.com/uploads/Subicjobs/loadData.php?applicantsprofile='+appId, function(json) {
+		$.getJSON('http://wwww.grand-pillar.com/uploads/subicjobssbma/loadData.php?applicantsprofile='+appId, function(json) {
 			$("#hello").text(json.applicant_fname);		
 		});
 		
-		$.getJSON('http://www.grand-pillar.com/uploads/Subicjobs/loadData.php?appId='+appId, function(json) {
+		$.getJSON('http://wwww.grand-pillar.com/uploads/subicjobssbma/loadData.php?appId='+appId, function(json) {
 			$.each(json, function (key, val) {
 				$("#skilllist").append('<div class="input-field col s2">'+val.category_title+'</div>');
 			});			 
 		});
 		
-		$.getJSON('http://www.grand-pillar.com/uploads/Subicjobs/loadData.php?application='+appId, function(json) {
+		$.getJSON('http://wwww.grand-pillar.com/uploads/subicjobssbma/loadData.php?application='+appId, function(json) {
 			$.each(json, function (key, val) {
 				var jpoststat = '';
 				if(val.jobpost_status == 0) {
@@ -388,7 +389,7 @@
 	var trylang;
 	var trimlang;
 	
-	$.getJSON('http://www.grand-pillar.com/uploads/Subicjobs/loadData.php?selectFile='+appId, function(result){
+	$.getJSON('http://wwww.grand-pillar.com/uploads/subicjobssbma/loadData.php?selectFile='+appId, function(result){
         $.each(result, function(i, field){
 			trylang = field.primary_file;
 			trimlang = trylang.split(' ').join('+');

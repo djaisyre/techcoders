@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
 	<title>SubicJobs</title>
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.0.3/jquery-confirm.min.css">
 	<link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 	<link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+	
 	<style type="text/css">
 		input[type="checkbox"]:required:invalid + label { color: black; }
 		input[type="checkbox"]:required:valid + label { color: red; }
@@ -33,7 +34,6 @@
 			</li>
 		</ul>
 		<ul id="nav-mobile" class="side-nav">
-		 <li><img src="hahahaha.png" class="icon responsive-img"></li>
 			<li><a href="index.html" class="nbm"><img src="icons/h1.png" class="icon"> Home</a></li>
 			<li><a href="jobpost.html" class="nbm"><img src="icons/s1.png" class="icon"> Job Postings</a></li>
 			<li><a href="faqs.html" class="nbm"><img src="icons/q1.png" class="icon"> FAQs</a></li>
@@ -41,12 +41,12 @@
 			
 			<li>
 				<!--<a href="login.html" class="nbm"><img src="icons/sign-in1.png" class="icon"> Login</a>-->
-				<a class='btn blue darken-3' href='applicantlogin.html'>LogIn</a>
-				<!--<ul id='dropdown2' class='dropdown-content'>
+				<a class='dropdown-button btn blue darken-3' href='#' data-activates='dropdown2'>LogIn</a>
+				<ul id='dropdown2' class='dropdown-content'>
 					<li><a href="adminlogin.html">Admin</a></li>
 					<li><a href="locatorlogin.html">Locator</a></li>
 					<li><a href="applicantlogin.html">Applicant</a></li>
-				</ul>-->			
+				</ul>				
 			</li>
 		</ul>
 		<a href="#" data-activates="nav-mobile" class="button-collapse"><img src="icons/menu.png" class="icon"></a>
@@ -58,7 +58,133 @@
 	
 		<form method="POST" id="saveapp" class="col s12">
 	
+	<fieldset>
+			<legend> Create Username and Password </legend>
+				<div class="row">
+				<div class="input-field col s4">
+					<input id="applicant_username" name="applicant_username" type="text" class="validate" required>
+					<label for="applicant_username">Username</label>
+				</div>
+				<div class="input-field col s4">
+					<input id="applicant_password" name="applicant_password" type="password" class="validate" required>
+					<label for="applicant_password">Password</label>
+				</div>
+				<div class="input-field col s4">
+					<input id="applicant_confirmpass" name="applicant_confirmpass" type="password" required />
+					<label for="applicant_confirmpass">Confirm Password</label>
+					<div class="registrationFormAlert" id="divCheckPasswordMatch"></div>
+				</div>
+			</div>
+		</fieldset>
+		 
+		<br />
+		<br />
+		
+		
+		<fieldset>
+		<legend> Personal Information </legend>
 			<div class="row">
+				<div class="input-field col s12">
+					<input id="applicant_fname" name="applicant_fname" type="text" class="validate"  placeholder="First Name"  required onkeyup="LettersOnly(this)">
+				</div>
+				
+				<div class="input-field col s12">
+					<input id="applicant_mname" name="applicant_mname" type="text" class="validate"  placeholder="Middle Name"  required onkeyup="LettersOnly(this)">
+				</div>
+				
+				<div class="input-field col s12">
+					<input id="applicant_lname" name="applicant_lname" type="text" class="validate" placeholder="Last Name"  required onkeyup="LettersOnly(this)">
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s12">
+					<input id="applicant_address" name="applicant_address" type="text" class="validate" placeholder="Street" required>
+				</div>
+				<div class="input-field col s12">
+					<input id="applicant_city" name="applicant_city" type="text" class="validate"  required placeholder="City"  required onkeyup="LettersOnly(this)">
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s6">
+					<input id="applicant_province" name="applicant_province" type="text" class="validate"  required placeholder="State/Province"  required onkeyup="LettersOnly(this)">
+				</div>
+				<div class="input-field col s6">
+					<input id="applicant_postal" name="applicant_postal" type="text" class="validate" maxlength="4" placeholder="Postal/Zip Code" required onkeyup="NumbersOnly(this)"  >
+				</div>
+			</div>
+						<div class="row">
+				<div class="input-field col s6">
+					<select class="browser-default" id="applicant_gender" name="applicant_gender">
+						<option value="Male">Male</option>
+						<option value="Female">Female</option>
+					</select>
+				</div>
+				<div class="input-field col s6">
+					<select class="browser-default" id="applicant_cstatus" name="applicant_cstatus">
+						<option value="Single">Single</option>
+						<option value="Married">Married</option>
+						<option value="Widowed">Widowed</option>
+						<option value="Separated">Separated</option>
+						<option value="Divorced">Divorced</option>
+					</select>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="input-field col s6">
+					<input id="applicant_age" name="applicant_age" type="number" class="validate" min="18" max="40" placeholder="Age" title="You must be atleast 18-40 years old." required >
+					
+				</div>
+				<div class="input-field col s6">
+					<input id="applicant_dob" name="applicant_dob" type="date" class="datepicker"  onchange="changeDate()" required>
+					<label for="applicant_dob" data-error="wrong" data-success="right">Date of Birth</label>
+				</div>
+				<div class="input-field col s12">
+					<input id="applicant_pob" name="applicant_pob" type="text" class="validate"  required placeholder="Place of Birth"  required onkeyup="LettersOnly(this)">
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="input-field col s12">
+					<input id="applicant_contact" name="applicant_contact" type="text" class="validate" maxlength="11" placeholder="Contact Number" 
+					pattern="^(09|\+639)\d{9}$" required onkeyup="NumbersOnly(this)"  >
+					
+					<label for="applicant_contact" data-error="Please enter valid contact number" data-success=""></label>
+				</div>
+				<div class="input-field col s12">
+					<input id="applicant_email" name="applicant_email" type="email" class="validate" placeholder="Email" required>
+					<label for="applicant_email" data-error="You must input valid Email Address." data-success=""></label>
+				</div>
+
+			</div>
+		</fieldset>
+		
+		<br />
+		<br />
+		
+		
+		<fieldset>
+		<legend> Other Information </legend>
+			<div class="row">
+				<div class="input-field col s12">
+					<input  id="applicant_sss" name="applicant_sss" type="text" class="validate" maxlength="10" placeholder="SSS ID Number" required onkeyup="NumbersOnly(this)"  >
+				</div>
+				<div class="input-field col s12">
+					<input  id="applicant_pagIbig" name="applicant_pagIbig" type="text" class="validate" maxlength="11" placeholder="Pag Ibig Number" required onkeyup="NumbersOnly(this)"  >
+				</div>
+			</div>
+
+			
+			</fieldset>
+			
+		<br>
+		
+	
+	
+	
+	
+
+			<!--<div class="row">
 				<div class="input-field col s12">
 					<input id="applicant_fname" name="applicant_fname" type="text" class="validate" minlength="2" required >
 					<label for="applicant_fname" data-error="Enter Valid First Name." data-success="">First Name</label>
@@ -100,7 +226,7 @@
 					<label for="applicant_email" data-error="You must input valid Email Address." data-success="">Email</label>
 				</div>
 				<div class="input-field col s12">
-					<input id="applicant_contact" name="applicant_contact" type="tel" class="validate" pattern="^\W\d{12}|\d{11}$" title="Example: 09123456789 / +639123456789" required>
+					<input id="applicant_contact" name="applicant_contact" maxlength="11" type="\	" class="validate" pattern="^\W\d{12}|\d{11}$" title="Example: 09123456789 / +639123456789" required>
 					<label for="applicant_contact" data-error="You must input valid Contact Number." data-success="">Contact Number</label>
 				</div>
 			</div>
@@ -138,12 +264,12 @@
 			
 			<div class="row">
 				<div class="input-field col s6">
-					<input id="applicant_sss" name="applicant_sss" type="text" class="validate" placeholder="02-1234567-9" pattern="^\d{2}\W\d{7}\W\d{1}$" required>
+					<input id="applicant_sss" name="applicant_sss" type="number" maxlength="10" class="validate" placeholder="02-1234567-9" pattern="^\d{2}\W\d{7}\W\d{1}$" required>
 					<label for="applicant_sss" data-error="Please follow the pattern. Input Valid SSS Number." data-success="">SSS Number:</label>
 				</div>
 				
 				<div class="input-field col s6">
-					<input id="applicant_pagIbig" name="applicant_pagIbig" type="text" class="validate" pattern="^\d{12}$" placeholder="12345678912" required>
+					<input id="applicant_pagIbig" name="applicant_pagIbig" type="number" class="validate" pattern="^\d{12}$" placeholder="12345678912" required>
 					<label for="applicant_pagIbig" data-error="Please follow the pattern. Input Valid Pag-Ibig Number." data-success="">Pag Ibig Number:</label>
 				</div>
 				<!--<div class="input-field col s12">
@@ -155,7 +281,7 @@
 					<label for="applicant_phil"  data-error="Please follow the pattern. Input Valid TIN Number." data-success="">PhilHealth Number:</label>
 				</div>-->
 				
-			</div>
+			<!--</div>
 		
 			<div class="row">
 				<div class="input-field col s4">
@@ -171,7 +297,7 @@
 					<label for="applicant_confirmpass">Confirm Password</label>
 					<div class="registrationFormAlert" id="divCheckPasswordMatch"></div>
 				</div>
-			</div>
+			</div>-->
 			
 			<fieldset>
 			<legend id="hAdmin">Skills/Work Experiences</legend>
@@ -180,76 +306,180 @@
 			</fieldset>
 			</br />
 			</br />
-			
-			
-				<!--<input type="checkbox" required name="agree" value="agree" id="agree"/><label for="agree">I accept the <a href="tc.html"> Terms & Coditions</a></label>
-			<div class="row right">
-			<p><input type="checkbox" required name="terms" value="terms" id="terms"/><label for="terms">I accept the <a href="tc.html"> Terms & Coditions</a></label></p>
-			-->
-			<div>
+<div>
 			 <button data-target="modal1" class="btn waves-effect waves-light btn-large responsive-button right">Submit</button>
 				<div id="modal1" class="modal">
    					 <div class="modal-content">
-      					<h4>Confirmation</h4>
+					 <h4 style="text-align: center;">TERMS AND CONDITIONS</h4>
+<strong>Introduction</strong>
+<p>These Application/Website Standard Terms and Conditions written on this page shall manage your use of this website. 
+These Terms will be applied fully and affect to your use of this Application/Website.
+ By using this Application/Website, you agreed to accept all terms and conditions written in here.
+ You must not use this Application/Website if you disagree with any of these Application/Website Standard Terms and Conditions.</p>
+ 
+ <p>Minors or people below 18 years old are not allowed to use this Application/Website.</p>
+ 
+<strong>Intellectual Property Rights</strong>
+ <p>Other than the content you own, under these Terms, Subic Jobs and/or its licensors own all the intellectual property rights and materials contained in this Application/Website.</p>
+ <p>You are granted limited license only for purposes of viewing the material contained on this Application/Website.</p>
+ 
+<strong>Restrictions</strong>
+ <p>You are specifically restricted from all of the following</p>
+ 
+<p>Publishing any Application/Website material in any other media;</p>
+ <p>Selling, sublicensing and/or otherwise commercializing any Application/Website material;</p>
+ <p>Publicly performing and/or showing any Application/Website material;</p>
+ <p>Using this Application/Website in any way that is or may be damaging to this Application/Website;</p>
+ <p>Using this Application/Website in any way that impacts user access to this Application/Website;</p>
+ <p>Using this Application/Website contrary to applicable laws and regulations, or in any way may cause harm to the Application/Website, or to any person or business entity;</p>
+ <p>Engaging in any data mining, data harvesting, data extracting or any other similar activity in relation to this Application/Website;</p>
+ <p>Using this Application/Website to engage in any advertising or marketing.</p>
+ 
+ <p>Certain areas of this Application/Website are restricted from being access by you and Subic Jobs may further restrict access by you to any areas of this Application/Website, at any time, in absolute discretion. 
+ Any user ID and password you may have for this Application/Website are confidential and you must maintain confidentiality as well.</p>
+ 
+<strong>Your Content</strong>
+ <p>In these Application/Website Standard Terms and Conditions, “Your Content” shall mean any  images or other material you choose to display on this Application/Website. 
+ By displaying Your Content, you grant Subic Jobs a non-exclusive, worldwide irrevocable, sub licensable license to use, reproduce, adapt, publish, translate and distribute it in any and all media.</p>
+ 
+ <p>Your Content must be your own and must not be invading any third-party’s rights.
+ Subic Jobs reserves the right to remove any of Your Content from this Application/Website at any time without notice.</p>
+ 
+<strong>No warranties</strong>
+ <p>This Application/Website is provided “as is,” with all faults, and Subic Jobs express no representations or warranties, of any kind related to this Application/Website or the materials contained on this Application/Website.
+ Also, nothing contained on this Application/Website shall be interpreted as advising you.</p>
+ 
+<strong>Limitation of liability</strong>
+ <p>In no event shall Subic Jobs, nor any of its officers, directors and employees, shall be held liable for anything arising out of or in any way connected with your use of this Application/Website whether such liability is under contract. 
+ &nbsp;Subic Jobs, including its officers, directors and employees shall not be held liable for any indirect, consequential or special liability arising out of or in any way related to your use of this Application/Website.</p>
+ 
+<strong>Indemnification</strong>
+ <p>You hereby indemnify to the fullest extent Subic Jobs from and against any and/or all liabilities, costs, demands, causes of action, damages and expenses arising in any way related to your breach of any of the provisions of these Terms.</p>
+ 
+<strong>Severability</strong>
+ <p>If any provision of these Terms is found to be invalid under any applicable law, such provisions shall be deleted without affecting the remaining provisions herein.</p>
+ 
+<strong>Variation of Terms</strong>
+ <p>Subic Jobs is permitted to revise these Terms at any time as it sees fit, and by using this Application/Website you are expected to review these Terms on a regular basis.</p>
+ 
+<strong>Assignment</strong>
+ <p>The Subic Jobs is allowed to assign, transfer, and subcontract its rights and/or obligations under these Terms without any notification. 
+ However, you are not allowed to assign, transfer, or subcontract any of your rights and/or obligations under these Terms.</p>
+ 
+<strong>Entire Agreement</strong>
+ <p>These Terms constitute the entire agreement between Subic Jobs and you in relation to your use of this Website, and supersede all prior agreements and understandings.</p>
+ 
+ <strong>Governing Law &amp; Jurisdiction</strong>
+ <p>These Terms will be governed by and interpreted in accordance with the laws of the Republic of the Philippines, and you submit to the non-exclusive jurisdiction of the state and federal courts located in Philippines for the resolution of any disputes.</p>
+ 
+ 
+					 
+					 
+      					<!--<h4>Confirmation</h4>-->
       					<p>Do you agree to submit all the informations above, so as its Terms and Conditions?</p>
-      					<a href="Terms And Conditions.html">Terms and Conditions</a>
+      					<!--<a href="Terms And Conditions.html">Terms and Conditions</a>-->
     				</div>
     			<div class="modal-footer">
       				<a href ="" class="modal-action modal-close waves-effect waves-green btn-flat" type="submit" name="saveApplicant" id="saveApplicant" >Yes</a>
       			</div>
   			</div>
 			</div>
+	
+				<!--<input type="checkbox" required name="agree" value="agree" id="agree"/><label for="agree">I accept the <a href="tc.html"> Terms & Coditions</a></label>
+			<div class="row right">
+			<p><input type="checkbox" required name="terms" value="terms" id="terms"/><label for="terms">I accept the <a href="tc.html"> Terms & Coditions</a></label></p>
+			<button class="btn waves-effect waves-light btn-large responsive-button right" type="submit" name="saveApplicant" id="saveApplicant">Submit</button>
+			-->
+			<!---->
 			
 		</form>
 	</div>	
 		
 	
 	<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-	<script src="js/materialize.js"></script>
 	<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.0.3/jquery-confirm.min.js"></script>
+	<script src="js/materialize.js"></script>
 	<script src="js/init.js"></script>
-	<script type="text/javascript">	
-	$(document).ready(function() {
+	<script type="text/javascript">
+	
+	
+	function changeDate(){
 
+				var today = new Date()
+				var dob = new Date(document.getElementById('applicant_dob').value) 
+		        // var rdyDOB = dob.substr(0,dob.length); 
+		        // console.log(age)
+		        $('#applicant_age').val(comAge(today,dob));
+				
+	}
+	
+	function comAge(today, dob){
+				var birthday = new Date(today.getFullYear(), dob.getMonth(), dob.getDate());
+				if (today >= birthday) 
+		        return age = today.getFullYear() - dob.getFullYear();
+				else 		
+				return age = today.getFullYear () - dob.getFullYear() - 1;
+	
+	}
+	
+	
+	$(document).ready(function() {
+	var d = new Date();
+	d.setFullYear( d.getFullYear() - 100 );
 	$('.datepicker').pickadate({
 		formatSubmit: 'yyyy/mm/dd',
 		hiddenName: true,
-		selectYears: 15
-	});
+		selectMonths: true,
+		selectYears: 20,
+		max: new Date,
 
+		// onChange: function() {
+
+		//     }
+
+		});
+
+
+
+		
+		//$('.datepicker').pickadate({
+		//selectMonths: true, // Creates a dropdown to control month
+		//selectYears: 16 // Creates a dropdown of 15 years to control year
+		//});
+
+		  $(document).ready(function(){
+			// the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+			$('#modal1').modal();
+		});
+
+		$("#saveapp").validate();
+
+
+	jQuery.extend(jQuery.validator.messages,{
+			required: "This field is required." });
 	
+	$.getJSON('http://wwww.grand-pillar.com/uploads/subicjobssbma/loadData.php?category=true',  function(json)  {
+			$.each(json,  function  (key,  val)  {
+				$('#skillset').append('<div class="input-field col s4"><p><input type="checkbox" name="skills[]" value="'+val.category_id+'" id="index'+key+'" class="chkbox"/><label for="index'+key+'">'+val.category_title+'</label></p></div>');
+			});	
+		});		
+		
 	$(function() {
 		$("#applicant_confirmpass").keyup(function() {
 			var password = $("#applicant_password").val();
 			$("#divCheckPasswordMatch").html(password == $(this).val() ? "Passwords match." : "Passwords do not match!");
 		});
 	});
-
-	$.getJSON('http://www.grand-pillar.com/uploads/Subicjobs/loadData.php?category=true',  function(json)  {
-			$.each(json,  function  (key,  val)  {
-				$('#skillset').append('<div class="input-field col s6"><p><input type="checkbox" required name="skills[]" value="'+val.category_id+'" id="index'+key+'" class="chkbox single-checkbox"/><label for="index'+key+'">'+val.category_title+'</label></p></div>');
-			});	
-	});	
-			
-		  $(document).ready(function(){
-    // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
-    $('#modal1').modal();
-  });
-
-$("#saveapp").validate();
-
-
-			jQuery.extend(jQuery.validator.messages,{
-			required: "This field is required." });
 	
+
 	
 		$("#saveApplicant").click(function() {
 			var data = $("#saveapp").serialize();
 			
 			$.ajax({
 				type : 'POST',
-				url  : 'http://www.grand-pillar.com/uploads/Subicjobs/saveApplicantData.php',
+				url  : 'http://wwww.grand-pillar.com/uploads/subicjobssbma/saveApplicantData.php',
 				data : data,
 				success :  function(response) {
 					$('#applicant_fname').val('');
@@ -259,9 +489,9 @@ $("#saveapp").validate();
 					$('#applicant_city').val('');
 					$('#applicant_province').val('');
 					$('#applicant_postal').val('');
-					$('#applicant_email').val('');
 					$('#applicant_contact').val('');
 					$('#applicant_age').val('');
+					$('#applicant_email').val('');
 					$("#applicant_gender").val($("#applicant_gender option:first").val());
 					$("#applicant_cstatus").val($("#applicant_cstatus option:first").val());
 					$('#applicant_dob').val('');
@@ -273,20 +503,38 @@ $("#saveapp").validate();
 					$('#applicant_confirmpass').val('');
 					$('.chkbox').attr('checked', false);
 					 //alert("Registration Successful");
-					window.alert('Succesfully Registered');
-					 window.location.href='applicantlogin.html';
+					window.alert('Registration Successful');
+					window.location.href='applicantlogin.html';
 				
-				}
-			});	
-			
-	
+			}
+			});
 
 			return false;
-		});		
-		
+		});
+
 	});
-	</script>	
+
+
+	function LettersOnly(input){
+		var regex = /[^a-z \s]/gi;
+		input.value=input.value.replace(regex,"");
+	}
 	
+	function NumbersOnly(input){
+		var regex = /[^0-9]/g;
+		input.value=input.value.replace(regex,"");
+	}
+	
+
+	
+	$(function() {
+      $("#refresh").click(function() {
+         $("#randomdiv").load("registration.html")
+      })
+    });
+	
+	</script>	
+
 <footer class="page-footer  blue lighten-1">
 		<div id="templatemo_footer">
 

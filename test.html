@@ -6,18 +6,41 @@
 	<link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-	
+		<link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 	
 	<title>Subic Jobs</title>
 
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-
-	<!--Croppie Plugins CSS-->
-	<link rel="Stylesheet" type="text/css" href="prism.css" />
+	
+	<!--Croppie Plugins CSS
+	<link rel="Stylesheet" type="text/css" href="prism.css" />-->
     <link rel="Stylesheet" type="text/css" href="croppie.css" />
     <link rel="Stylesheet" type="text/css" href="demo.css" />
     <link rel="Stylesheet" type="text/css" href="sweetalert.css" />
+	
+	<style>
+	.inputfile {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+.inputfile + label {
+    font-size: 1.25em;
+    font-weight: 700;
+    color: white;
+    background-color: black;
+    display: inline-block;
+}
+
+.inputfile:focus + label,
+.inputfile + label:hover {
+    background-color: red;
+}
+
+</style>
 	
 </head>
 <body>
@@ -34,40 +57,56 @@
 	</nav>
 <br />
 <br />
-			<div class="row padding-left-right">
+			<div class="row padding-left-right" id="bodycon">
 
 				<div class="input-field col s4 right">
 					<input type="hidden" name="applicant_id" id="applicant_id" class="validate" readonly/>
 					
 				</div>
 			
-			
-                    <div class="demo-wrap upload-demo">
+			<div class="demo-wrap upload-demo">
                     <div class="container" style="padding-bottom:100px;">
                     <div class="grid">
                         <div class="col-1-2">
                             
-                            <pre class="language-javascript"><code class="language-javascript"></code></pre>
+                            <pre class="language-javascript"><code class="language-javascript">
+</code></pre>
+
                             <div class="actions">
-                                <a class="btn file-btn">
-                                    <span>Upload</span>
-                                    <input type="file" id="upload" value="Choose a file" accept="image/*" />
-                                </a>
-                                <button class="upload-result">Result</button>
+							<div class="upload-msg">
+                                Upload a file to start cropping
                             </div>
+                            <div class="upload-demo-wrap">
+                                <div id="upload-demo"></div>
+                            </div>
+							
+							<br>
+							<br>
+							<center>
+                                <a class="btn file-btn waves-effect waves-light btn-large responsive-button">
+                                    <span>Choose Image</span>
+                                    <input type="file" id="upload" class="inputfile" value="Choose a file" accept="image/*" />
+                                </a>
+                                <button class="upload-result btn-large">Preview</button>
+                            </center>
+							</div>
                         </div>
-                        <div class="col-1-2">
+                        <!--<div class="col-1-2">
                             <div class="upload-msg">
                                 Upload a file to start cropping
                             </div>
                             <div class="upload-demo-wrap">
                                 <div id="upload-demo"></div>
                             </div>
-                        </div>
+							
+
+                        </div>-->
                     </div>
                 </div>
                 </div>
-       </div> 
+			
+     
+	 </div> 
                 
 </body>
 	<script src="jquery.min.js"></script>
@@ -111,7 +150,7 @@ $(document).ready(function() {
 	var trylang;
 	var trimlang;
 	
-	$.getJSON('http://www.grand-pillar.com/uploads/Subicjobs/loadData.php?selectFile='+appId, function(result){
+	$.getJSON('http://wwww.grand-pillar.com/uploads/subicjobssbma/loadData.php?selectFile='+appId, function(result){
         $.each(result, function(i, field){
 			trylang = field.primary_file;
 			trimlang = trylang.split(' ').join('+');
