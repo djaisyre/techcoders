@@ -3,6 +3,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+	<link rel="icon" type="image/png" href="icon.png" />
 	<title>SubicJobs</title>
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
@@ -89,7 +90,7 @@
 		
 		$.getJSON('http://www.grand-pillar.com/uploads/subicjobssbma/loadData.php?category=true',  function(json)  {
 			$.each(json,  function  (key,  val)  {
-				$('#skillset').append('<div class="input-field col s4"><p><input type="checkbox" name="skills[]" value="'+val.category_id+'" id="index'+key+'" class="chkbox"/><label for="index'+key+'">'+val.category_title+'</label></p></div>');
+				$('#skillset').append('<div class="input-field col s6"><p><input type="checkbox" name="skills[]" value="'+val.category_id+'" id="index'+key+'" class="chkbox"/><label for="index'+key+'">'+val.category_title+'</label></p></div>');
 			});	
 		});		
 		
@@ -105,10 +106,15 @@
 			$("#applicant_province").val(json.applicant_province);
 			$("#applicant_postal").val(json.applicant_postal);
 			$("#applicant_contact").val(json.applicant_contact);
+			$("#applicant_age").val(json.applicant_age);
 			//$("#applicant_gender").val(json.applicant_gender);
 			$('select[name="applicant_gender"]').find('option:contains("'+json.applicant_gender+'")').attr("selected", true);
 			//$("#applicant_cstatus").val(json.applicant_cstatus);
 			$('select[name="applicant_cstatus"]').find('option:contains("'+json.applicant_cstatus+'")').attr("selected", true);
+			$('#applicant_dob').val(json.applicant_dob);
+			$('#applicant_pob').val(json.applicant_pob);
+			$('#applicant_sss').val(json.applicant_sss);
+			$('#applicant_pagIbig').val(json.applicant_pagIbig);
 		});	
 	
 		$.getJSON('http://www.grand-pillar.com/uploads/subicjobssbma/loadData.php?applicantsprofile='+appId, function(json) {

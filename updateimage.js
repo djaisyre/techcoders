@@ -1,3 +1,4 @@
+
 function getUrlParameter(sParam) {
     var sPageURL = decodeURIComponent(window.location.search.substring(1)),
         sURLVariables = sPageURL.split('&'),
@@ -44,8 +45,9 @@ var Demo = (function() {
 			
 		
 		//save the crop image in database
+			
 			$.ajax({
-				url: 'http://www.grand-pillar.com/uploads/subicjobssbma/upload.php',
+				url: 'server/updateimage.php',
 				type: 'POST',
 				data: "imgdata="+yesTrim+"&applicant_id="+appId,
 				//data: 'code='+code+'&userid='+userid,
@@ -53,7 +55,6 @@ var Demo = (function() {
 					console.log(response);
 				}
 			});
-			
 
 		}
 		swal({
@@ -175,7 +176,6 @@ var Demo = (function() {
 	}*/
 
 	function demoUpload() {
-
 		var $uploadCrop;
 
 		function readFile(input) {
