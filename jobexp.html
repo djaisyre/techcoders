@@ -28,8 +28,9 @@
 					<img id="cdImg" src="bground354.jpg">
 				</div>
 				<div class="col s12 center" id="imgSze">
-					<img src="icons/e1.png" width="95px" height="95px" class="circle">
+					
 				</div>
+				<div id="images" class="center"></div>
 				 <div id="hello" class="card-content center">
         		</div>
 			</div>
@@ -113,6 +114,14 @@
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="js/materialize.js"></script>
   <script src="js/init.js"></script>
+  
+  <script src="sweetalert.min.js"></script>
+	<script src="prism.js"></script>
+    <script src="croppie.js"></script>
+    <script src="demo.js"></script>
+    <script src="test.js"></script>
+    <script src="exif.js"></script>
+	
 <script type="text/javascript">
 
 $(document).ready(function() {
@@ -174,7 +183,19 @@ $('.datepicker').pickadate({
 			$("#hello").text(json.applicant_fname);		
 		});
 		
-		
+		var trylang;
+	var trimlang;
+	
+	$.getJSON('http://www.grand-pillar.com/uploads/subicjobssbma/loadData.php?selectFile='+appId, function(result){
+        $.each(result, function(i, field){
+			trylang = field.primary_file;
+			trimlang = trylang.split(' ').join('+');
+			//trimlang = trylang.replace(/\s/g,'');
+			//trimlang = $.trim(trylang); hindi gumagana
+			$("#images").append('<img src="data:image/png;base64,'+trimlang+'" class="my-image" />');
+        });
+    });	
+	Demo.init();
 		
 		});		
 </script>

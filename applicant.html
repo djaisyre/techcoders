@@ -280,7 +280,13 @@
 	<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 	<script src="js/materialize.js"></script>
 	<script src="js/init.js"></script>
-	
+
+	<script src="sweetalert.min.js"></script>
+	<script src="prism.js"></script>
+    <script src="croppie.js"></script>
+    <script src="demo.js"></script>
+    <script src="test.js"></script>
+    <script src="exif.js"></script>
 	
 	<script>
 	$(document).ready(function(){
@@ -356,7 +362,7 @@
 		
 		$.getJSON('http://www.grand-pillar.com/uploads/subicjobssbma/loadData.php?appId='+appId, function(json) {
 			$.each(json, function (key, val) {
-				$("#skilllist").append('<div class="input-field col s2">'+val.category_title+'</div>');
+				$("#skilllist").append('<div class="input-field col s6">'+val.category_title+'</div>');
 			});			 
 		});
 		
