@@ -130,7 +130,8 @@
 				url  : 'http://www.grand-pillar.com/uploads/subicjobssbma/editApplicant.php',
 				data : data,
 				success :  function(response) {
-				$('.chkbox').attr('checked', false);				
+				$('.chkbox').attr('checked', false);	
+				location.reload();				
 				}
 			});	
 
