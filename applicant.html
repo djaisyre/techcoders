@@ -34,8 +34,7 @@
 					
 				</div>
 				<div id="images" class="center"></div>
-			    <div id="hello" class="card-content center">
-        		</div>
+			    <div id="hello" class="card-content center"></div>
 				
 		</div>
 	</div>	
@@ -62,12 +61,12 @@
 			<br />
 
 			
-		<div class="row padding-left-right">
+			<!--<div class="row padding-left-right">
 				<div class="col l4 s4">
 					<label>Applicant ID:</label>
 					<p id="apid"></p>
 				</div>
-			</div>
+			</div>-->
 			<div class="row padding-left-right">
 				<div class="col l4 s4">
 					<label>Last Name:</label>
@@ -127,7 +126,7 @@
 					<p id="cstatus"></p>
 				</div>
 			
-				<div class="col l4 s6">
+				<div class="col l4 s4">
 					<label>Sex:</label>
 					<p id="sex"></p>
 				</div>
@@ -164,7 +163,7 @@
 		</div>
 		
 		<div class="row border" >
-			<h5 class="teal white-text header2">Skills
+			<h5 class="teal white-text header2">Skills/Work Experience
 				<a href="" class="btn-floating btn-small waves-effect waves-light  light-blue right" id="link8"><i class="material-icons">edit</i></a>
 			</h5>
 			<div id="skilllist" class="row padding-left-right">
@@ -264,7 +263,7 @@
 						<th data-field="Job Post Title">Job Post Title</th>
 						<th data-field="Job Post Closing">Job Post Closing</th>
 						<th data-field="Job Post Status">Job Post Status</th>
-						<th data-field="Application Date">Application Sate</th>
+						<th data-field="Application Date">Application Date</th>
 						<th data-field="Application Status">Application Status</th>
 					</tr>
 				</thead>
@@ -340,6 +339,12 @@
 			$("#pag-ibig").text(json.applicant_pagIbig);
 		});
 		
+		$.getJSON('http://www.grand-pillar.com/uploads/subicjobssbma/loadData.php?appId='+appId, function(json) {
+			$.each(json, function (key, val) {
+				$("#skilllist").append('<div class="input-field col s6">'+val.category_title+'</div>');
+			});			 
+		});
+		
 		$.getJSON('http://www.grand-pillar.com/uploads/subicjobssbma/loadData.php?applicanteduc='+appId, function(json) {
 			$("#eductype").text(json.educ_type);
 			$("#school").text(json.school_name);
@@ -360,11 +365,7 @@
 			$("#hello").text(json.applicant_fname);		
 		});
 		
-		$.getJSON('http://www.grand-pillar.com/uploads/subicjobssbma/loadData.php?appId='+appId, function(json) {
-			$.each(json, function (key, val) {
-				$("#skilllist").append('<div class="input-field col s6">'+val.category_title+'</div>');
-			});			 
-		});
+		
 		
 		$.getJSON('http://www.grand-pillar.com/uploads/subicjobssbma/loadData.php?application='+appId, function(json) {
 			$.each(json, function (key, val) {

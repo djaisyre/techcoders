@@ -3,11 +3,12 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-  <link rel="icon" type="image/png" href="icon.png" />
-  <title>SubicJobs</title>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  
+  <link rel="icon" type="image/png" href="icon.png" />
+  <title>SubicJobs</title>
 </head>
 <body>
 
@@ -44,22 +45,21 @@
       <div class="row">
 
 				<div class="input-field col s4 right">
-					<input type="text" name="applicant_id" id="applicant_id" class="validate"  readonly/>
-					<label for="applicant_id">Applicant ID</label>
+					<input type="hidden" name="applicant_id" id="applicant_id" class="validate"  readonly/>
 				</div>
 	   </div>
 
 
       <div class="row">
-	   <div class="input-field col s12">
+	   <div class="input-field col s6">
 		<input type="hidden" name="jobex_id" id="jobex_id" class="validate" />
-          <input id="jobexp_title" name="jobex_title" type="text" class="validate" />
-          <label for="jobex_title">Job Title :</label>
+          <input id="jobex_title" name="jobex_title" type="text" class="validate" />
+          <label for="jobex_title">Job Title</label>
         </div>
 	  
-        <div class="input-field col s12">
+        <div class="input-field col s6">
           <input id="jobex_company" name="jobex_company" type="text" class="validate" />
-          <label for="jobex_company">Company Name :</label>
+          <label for="jobex_company">Company Name</label>
         </div>
        
       </div>
@@ -67,13 +67,13 @@
       <div class="row">
           <div class="input-field col s6">
           <input id="jobex_started" name="jobex_started" type="date" class="datepicker" />
-          <label for="jobex_started">From (Month/Year Started) :</label>
+          <label for="jobex_started">From (Month/Year Started)</label>
         </div>
 	
 		
           <div class="input-field col s6">
           <input id="jobex_end" name="jobex_end" type="date" class="datepicker" />
-          <label for="jobex_end">To (Month/Year Ended) :</label>
+          <label for="jobex_end">To (Month/Year Ended)</label>
         </div>
 
         </div>
@@ -173,6 +173,7 @@ $('.datepicker').pickadate({
 					$('#jobex_started').val('');
 					$('#jobex_end').val('');
 					$('#applicant_id').val('');	
+					window.alert('Successfully Added');
 					location.reload();
 					
 				}
@@ -186,7 +187,7 @@ $('.datepicker').pickadate({
 		});
 		
 		var trylang;
-	var trimlang;
+		var trimlang;
 	
 	$.getJSON('http://www.grand-pillar.com/uploads/subicjobssbma/loadData.php?selectFile='+appId, function(result){
         $.each(result, function(i, field){

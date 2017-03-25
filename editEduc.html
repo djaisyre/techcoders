@@ -24,7 +24,7 @@
 		<div class="col s12">
 			<div class="card z-depth-5">
 				<div class="card-image" >
-					<img id="cdImg" src="background4.jpg">
+					<img id="cdImg" src="bground354.jpg">
 				</div>
 				<div class="col s12 center" id="imgSze">
 					
@@ -44,8 +44,8 @@
 
 				<div class="row">
 				<div class="input-field col s4 right">
-					<input type="text" name="applicant_id" id="applicant_id" class="validate"  readonly/>
-					<label for="applicant_id">Applicant ID</label>
+					<input type="hidden" name="applicant_id" id="applicant_id" class="validate"  readonly/>
+					
 				</div>
 			</div>
 			<div class="row">
@@ -60,19 +60,20 @@
 					<option value="Elementary">Elementary</option>
 				</select>
 				</div>
-				<div class="input-field col s12">
-					<input type="text" name="school_name" id="school_name" class="validate"  />
-					<label for="school_name">School Name</label>								
-				</div>
-			</div>						
-			<div class="row">
-				<div class="input-field col s6">
-					<input type="text" name="school_addr" id="school_addr" class="validate"  />
-					<label for="school_addr">School Address</label>
-				</div>
 				<div class="input-field col s6">
 					<input type="number" name="year_graduated" id="year_graduated" class="validate" />
 					<label for="year_graduated">Last Year Attended</label>
+				</div>
+				
+			</div>						
+			<div class="row">
+				<div class="input-field col s6">
+					<input type="text" name="school_name" id="school_name" class="validate"  />
+					<label for="school_name">School Name</label>								
+				</div>
+				<div class="input-field col s6">
+					<input type="text" name="school_addr" id="school_addr" class="validate"  />
+					<label for="school_addr">School Address</label>
 				</div>
 			</div>
 
@@ -129,12 +130,13 @@
 		$.getJSON('http://www.grand-pillar.com/uploads/subicjobssbma/loadData.php?applicanteduc='+appId, function(json) {
 			$("#educ_id").val(json.educ_id);
 			$("#educ_type").val(json.educ_type);
+			$("#year_graduated").val(json.year_graduated);
 			$("#school_name").val(json.school_name);
 			$("#school_addr").val(json.school_addr);
-			$("#year_graduated").val(json.year_graduated);
 			$("#applicant_id").val(json.applicant_id);
 		
 		});	
+	
 	
 		
 		$("#editEduc").click(function() {
@@ -151,7 +153,7 @@
 					$('#school_addr').val('');
 					$('#year_graduated').val('');
 					$('#applicant_id').val('');		
-					
+					window.alert('Successfully Edited');
 					location.reload();
 				}
 			});	
@@ -160,7 +162,19 @@
 		});	
 		
 
-		
+		var trylang;
+		var trimlang;
+	
+		$.getJSON('http://www.grand-pillar.com/uploads/subicjobssbma/loadData.php?selectFile='+appId, function(result){
+        $.each(result, function(i, field){
+			trylang = field.primary_file;
+			trimlang = trylang.split(' ').join('+');
+			//trimlang = trylang.replace(/\s/g,'');
+			//trimlang = $.trim(trylang); hindi gumagana
+			$("#images").append('<img src="data:image/png;base64,'+trimlang+'" class="my-image" />');
+        });
+    });	
+	Demo.init();
 
 	
 	});

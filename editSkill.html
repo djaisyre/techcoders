@@ -36,13 +36,15 @@
 	</div>	
 	</div>
 	
-	<h3 class="register"><img src="icons/r2.png" class="icon">Edit Skills</h3> <br>
+	<h3 class="register"><img src="icons/r2.png" class="icon">Edit Skills/Work Experiences</h3> <br>
 	<div class="row wew">
 		<form method="post" id="saveapp" class="col s12">
 			<div class="row">
-				<h5 id="hAdmin">Skills</h5>
+			<fieldset>
+				<legend id="hAdmin">Skills/Work Experiences</legend>
 				<input type="hidden" name="appId" id="appId" />
 				<div id="skillset" class="row"></div>
+			</fieldset>
 			</div>
 			<div>
 				<button class="btn waves-effect waves-light btn-large responsive-button right" type="submit" name="editApplicant" id="editApplicant">Submit</button>
@@ -88,7 +90,7 @@
 		
 		$.getJSON('http://www.grand-pillar.com/uploads/subicjobssbma/loadData.php?category=true', function(json) {
 			$.each(json, function (key, val) {
-				$('#skillset').append('<div class="input-field col s4"><p><input type="checkbox" name="skills[]" value="'+val.category_id+'" id="index'+key+'" class="chkbox" /><label for="index'+key+'">'+val.category_title+'</label></p></div>');
+				$('#skillset').append('<div class="input-field col s6"><p><input type="checkbox" name="skills[]" value="'+val.category_id+'" id="index'+key+'" class="chkbox" /><label for="index'+key+'">'+val.category_title+'</label></p></div>');
 			});	
 		});
 		

@@ -3,7 +3,6 @@
 <head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-	<link rel="icon" type="image/png" href="icon.png" />
 	<title>SubicJobs</title>
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.0.3/jquery-confirm.min.css">
@@ -35,12 +34,11 @@
 			</li>
 		</ul>
 		<ul id="nav-mobile" class="side-nav">
-		 <li><img src="hahahaha.png" class="icon responsive-img"></li>
+			 <li><img src="hahahaha.png" class="icon responsive-img"></li>
 			<li><a href="index.html" class="nbm"><img src="icons/h1.png" class="icon"> Home</a></li>
 			<li><a href="jobpost.html" class="nbm"><img src="icons/s1.png" class="icon"> Job Postings</a></li>
 			<li><a href="faqs.html" class="nbm"><img src="icons/q1.png" class="icon"> FAQs</a></li>
 			<li><a href="about.html" class="nbm"><img src="icons/a1.png" class="icon"> About Us</a></li>
-			
 			<li>
 				<!--<a href="login.html" class="nbm"><img src="icons/sign-in1.png" class="icon"> Login</a>-->
 				<a href="applicantlogin.html" class="button btn blue darken-3">Login</a>
@@ -50,7 +48,7 @@
           <li><a href="adminlogin.html">Admin</a></li>
           <li><a href="locatorlogin.html">Locator</a></li>
           <li><a href="applicantlogin.html">Applicant</a></li>
-        </ul>-->		
+        </ul>-->	
 			</li>
 		</ul>
 		<a href="#" data-activates="nav-mobile" class="button-collapse"><img src="icons/menu.png" class="icon"></a>
@@ -183,126 +181,6 @@
 			
 		<br>
 		
-	
-	
-	
-	
-
-			<!--<div class="row">
-				<div class="input-field col s12">
-					<input id="applicant_fname" name="applicant_fname" type="text" class="validate" minlength="2" required >
-					<label for="applicant_fname" data-error="Enter Valid First Name." data-success="">First Name</label>
-				</div>
-				
-				<div class="input-field col s12">
-					<input id="applicant_mname" name="applicant_mname" type="text" minlength="2" class="validate">
-					<label for="applicant_mname" data-error="Enter Valid Middle Name." data-success="">Middle Name</label>
-				</div>
-				
-				<div class="input-field col s12">
-					<input id="applicant_lname" name="applicant_lname" type="text" class="validate" minlength="2" required>
-					<label for="applicant_lname" data-error="Enter Valid Last Name." data-success="">Last Name</label>
-				</div>
-			</div>
-			<div class="row">
-				<div class="input-field col s12">
-					<input id="applicant_address" name="applicant_address" type="text" class="validate" required>
-					<label for="applicant_address" data-error="" data-success="">Street</label>
-				</div>
-				<div class="input-field col s12">
-					<input id="applicant_city" name="applicant_city" type="text" class="validate" required>
-					<label for="applicant_city" data-error="" data-success="">City</label>
-				</div>
-			</div>
-			<div class="row">
-				<div class="input-field col s6">
-					<input id="applicant_province" name="applicant_province" type="text" class="validate" required>
-					<label for="applicant_province">State/Province</label>
-				</div>
-				<div class="input-field col s6">
-					<input id="applicant_postal" name="applicant_postal" type="text" class="validate" pattern="^[0-9]{4}$"  required>
-					<label for="applicant_postal" data-error="You must input valid Postal Code." data-success="">Postal/Zip Code</label>
-				</div>
-			</div>
-			<div class="row">
-				<div class="input-field col s12">
-					<input id="applicant_email" name="applicant_email" type="email" class="validate" placeholder="someone@example.com" required>
-					<label for="applicant_email" data-error="You must input valid Email Address." data-success="">Email</label>
-				</div>
-				<div class="input-field col s12">
-					<input id="applicant_contact" name="applicant_contact" maxlength="11" type="\	" class="validate" pattern="^\W\d{12}|\d{11}$" title="Example: 09123456789 / +639123456789" required>
-					<label for="applicant_contact" data-error="You must input valid Contact Number." data-success="">Contact Number</label>
-				</div>
-			</div>
-			<div class="row">
-				<div class="input-field col s6">
-					<select class="browser-default" id="applicant_gender" name="applicant_gender">
-						<option value="Male">Male</option>
-						<option value="Female">Female</option>
-					</select>
-				</div>
-				<div class="input-field col s6">
-					<select class="browser-default" id="applicant_cstatus" name="applicant_cstatus">
-						<option value="Single">Single</option>
-						<option value="Married">Married</option>
-						<option value="Widowed">Widowed</option>
-						<option value="Separated">Separated</option>	
-					</select>
-				</div>
-			</div>
-			
-			<div class="row">
-				<div class="input-field col s6">
-					<input id="applicant_age" name="applicant_age" type="number" class="validate" min="18" max="40"  required >
-					<label for="applicant_age" data-error="You must be atleast 18-40 years old. Enter Valid Age." data-success="">Age</label>
-				</div>
-				<div class="input-field col s6">
-					<input id="applicant_dob" name="applicant_dob" type="date" class="datepicker" onchange="submitBday()" required>
-					<label for="applicant_dob" data-error="wrong" data-success="right">Date of Birth</label>
-				</div>
-				<div class="input-field col s12">
-					<input id="applicant_pob" name="applicant_pob" type="text" class="validate" required>
-					<label for="applicant_pob">Place of Birth</label>
-				</div>
-			</div>
-			
-			<div class="row">
-				<div class="input-field col s6">
-					<input id="applicant_sss" name="applicant_sss" type="number" maxlength="10" class="validate" placeholder="02-1234567-9" pattern="^\d{2}\W\d{7}\W\d{1}$" required>
-					<label for="applicant_sss" data-error="Please follow the pattern. Input Valid SSS Number." data-success="">SSS Number:</label>
-				</div>
-				
-				<div class="input-field col s6">
-					<input id="applicant_pagIbig" name="applicant_pagIbig" type="number" class="validate" pattern="^\d{12}$" placeholder="12345678912" required>
-					<label for="applicant_pagIbig" data-error="Please follow the pattern. Input Valid Pag-Ibig Number." data-success="">Pag Ibig Number:</label>
-				</div>
-				<!--<div class="input-field col s12">
-					<input id="applicant_tin" name="applicant_tin" type="text" class="validate" placeholder="123-456-789" pattern="^\d{3}\W\d{3}\W\d{3}$">
-					<label for="applicant_tin" data-error="Please follow the pattern. Input Valid TIN Number." data-success="">Tin Number:</label>
-				</div>
-				<div class="input-field col s12">
-					<input id="applicant_phil" name="applicant_phil" type="text" class="validate" placeholder="123456789123" pattern="^\d{12}$">
-					<label for="applicant_phil"  data-error="Please follow the pattern. Input Valid TIN Number." data-success="">PhilHealth Number:</label>
-				</div>-->
-				
-			<!--</div>
-		
-			<div class="row">
-				<div class="input-field col s4">
-					<input id="applicant_username" name="applicant_username" type="text" required />
-					<label for="applicant_username">Username</label>
-				</div>
-				<div class="input-field col s4">
-					<input id="applicant_password" name="applicant_password" type="password" required />
-					<label for="applicant_password">Password</label>
-				</div>
-				<div class="input-field col s4">
-					<input id="applicant_confirmpass" name="applicant_confirmpass" type="password" required />
-					<label for="applicant_confirmpass">Confirm Password</label>
-					<div class="registrationFormAlert" id="divCheckPasswordMatch"></div>
-				</div>
-			</div>-->
-			
 			<fieldset>
 			<legend id="hAdmin">Skills/Work Experiences</legend>
 			<div id="skillset" class="row"></div>
@@ -374,7 +252,7 @@ These Terms will be applied fully and affect to your use of this Application/Web
  <p>These Terms constitute the entire agreement between Subic Jobs and you in relation to your use of this Website, and supersede all prior agreements and understandings.</p>
  
  <strong>Governing Law &amp; Jurisdiction</strong>
- <p>These Terms will be governed by and interpreted in accordance with the laws of the Republic of the Philippines, and you submit to the non-exclusive jurisdiction of the state and federal courts located in Philippines for the resolution of any disputes.</p>
+ <p>These Terms will be governed by and interpreted in accordance with the laws of the Republic of the Philippines, and you submit to the non-exclusive jurisdiction of the Republic of the Philippines and its  Supreme Court  for the resolution of any disputes.</p>
  
  
 					 
@@ -399,7 +277,9 @@ These Terms will be applied fully and affect to your use of this Application/Web
 		</form>
 	</div>	
 		
-	
+	<script src="https://cdn.jsdelivr.net/jquery.validation/1.15.0/jquery.validate.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/jquery.validation/1.15.0/additional-methods.min.js"></script>
+	<script src="js/script.js"></script>
 	<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 	<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.0.3/jquery-confirm.min.js"></script>
@@ -463,9 +343,9 @@ These Terms will be applied fully and affect to your use of this Application/Web
 	jQuery.extend(jQuery.validator.messages,{
 			required: "This field is required." });
 	
-	$.getJSON('http://www.grand-pillar.com/uploads/subicjobssbma/loadData.php?category=true',  function(json)  {
+	$.getJSON('server/loadData.php?category=true',  function(json)  {
 			$.each(json,  function  (key,  val)  {
-				$('#skillset').append('<div class="input-field col s6"><p><input type="checkbox" name="skills[]" value="'+val.category_id+'" id="index'+key+'" class="chkbox"/><label for="index'+key+'">'+val.category_title+'</label></p></div>');
+				$('#skillset').append('<div class="input-field col s4"><p><input type="checkbox" name="skills[]" value="'+val.category_id+'" id="index'+key+'" class="chkbox"/><label for="index'+key+'">'+val.category_title+'</label></p></div>');
 			});	
 		});		
 		

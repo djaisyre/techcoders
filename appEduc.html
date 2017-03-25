@@ -40,8 +40,8 @@
 			<div class="row">
 
 				<div class="input-field col s4 right">
-					<input type="text" name="applicant_id" id="applicant_id" class="validate"  readonly/>
-					<label for="applicant_id">Applicant ID</label>
+					<input type="hidden" name="applicant_id" id="applicant_id" class="validate"  readonly/>
+					
 				</div>
 			</div>
 
@@ -63,7 +63,7 @@
 					<input type="number" name="year_graduated" id="year_graduated" class="validate" />
 					<label for="year_graduated">Last Year Attended</label>
 				</div>
-				</div>
+			</div>
 
 				<div class="input-field col s12">
 					<input type="text" name="school_name" id="school_name" class="validate"  />
@@ -150,6 +150,7 @@
 					$('#school_addr').val('');
 					$('#year_graduated').val('');
 					$('#applicant_id').val('');
+					window.alert('Successfully Added');
 					location.reload();
 				}
 			});	

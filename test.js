@@ -51,6 +51,8 @@ var Demo = (function() {
 				//data: 'code='+code+'&userid='+userid,
 				success: function (response) {
 					console.log(response);
+					window.alert('Successfully Uploaded');
+					location.reload();
 				}
 			});
 			
